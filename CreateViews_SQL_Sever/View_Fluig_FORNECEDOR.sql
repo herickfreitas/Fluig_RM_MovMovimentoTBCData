@@ -1,0 +1,27 @@
+USE [Corporerm_homolog]
+GO
+
+/****** Object:  View [dbo].[_Fluig_FORNECEDOR]    Script Date: 16/06/2020 18:22:36 ******/
+SET ANSI_NULLS OFF
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+
+
+CREATE VIEW [dbo].[_Fluig_FORNECEDOR] AS
+
+SELECT 
+
+	CODCFO
+,	NOMEFANTASIA
+,	CODCFO+" - "+NOMEFANTASIA AS COD_NOMEFANTASIA
+,	NOME 
+
+FROM FCFO(NOLOCK) 
+WHERE ATIVO = 1
+
+GO
+
