@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>Formulário Inclusao de Movimento</title>
+
+  <link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide.min.css">
+
+  <script src="/webdesk/vcXMLRPC.js"></script>
+  <script src="/portal/resources/js/jquery/jquery.js"></script>
+  <script src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+  <script src="/portal/resources/js/mustache/mustache-min.js"></script>
+  <script src="/portal/resources/style-guide/js/fluig-style-guide.min.js"></script>
+  <script type="text/javascript" src="numeral.js"></script>
+
+</head>
+
+<body>
+  <form name="formInclusaoMovimento" role="form">
+    <div class="fluig-style-guide">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Movimento</h2>
+        </div>
+        <div class="panel-body">
+          <div class="container-fluid">
+
+            <!-- Informação oculta por script INICIO -->
+            <div class="row form-group" id="dvCustomizada"> 
+              <div class="col-xs-6 col-md-2">
+                <label class="control-label" id="lblsolicitacao">Número Solicitação</label>
+                <input class="form-control" type="text" name="n_solicitacao" id="n_solicitacao"   />
+              </div>
+              <div class="col-xs-6 col-md-2" id="divSolicitante">
+                <label class='control-label' id='lblsolicitante'>Solicitante</label>
+                <input class="form-control" type="text" name="solicitante" id="solicitante"   />
+              </div>
+              <div class="col-xs-6 col-md-2" id="divGestorcc">
+                <label class="control-label" id="lblGestorcc">Gestor do Centro de Custo</label>
+                <input class="form-control" type="text" name="gestorcc" id="gestorcc"    />
+              </div>
+              <div class="col-xs-6 col-md-2" id="divAutorizador">
+                <label class="control-label" id="lblautorizador">Autorizador</label>
+                <input class="form-control" type="text" name="autorizador" id="autorizador"    />
+              </div>
+              <div class="col-xs-6 col-md-2" id="divnivelAprov">
+                <label class="control-label" id="lblnivelAprov">Aprovação</label>
+                <input class="form-control" type="text" name="nivelAprov" id="nivelAprov"    />
+              </div>
+            </div>
+            <!-- Informação oculta por script FIM -->            
+
+
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <label class="control-label" id="lblFilial"><strong>Selecione a Filial</strong></label>
+                <input  type="zoom"
+                        id = "filial"
+                        name="filial"
+                        data-zoom="{
+                            'displayKey':'NOMEFANTASIA',
+                            'datasetId':'_RM_FILIAL',
+                            'maximumSelectionLength':'1',
+                            'fields':[
+                                {
+                                  'field':'CODFILIAL',  
+                                  'label':'Cod. Filial'
+                                },{
+                                  'field':'NOMEFANTASIA',
+                                  'label':'Nome Fantasia',
+                                  'standard':'true'
+                                }
+                            ]
+                        }"
+                    />
+              </div>
+            </div>
+<br><br>
+            <div class="row">
+              <div class="col-xs-12 col-md-8">
+                <label class="control-label" id="lblFornecedor"><strong>Selecione o Favorecido</strong></label>
+                <input  type="zoom"
+                id = "favorecido"
+                name="favorecido"
+                data-zoom="{
+                    'displayKey':'COD_NOMEFANTASIA',
+                    'datasetId':'_RM_FORNECEDOR',
+                    'maximumSelectionLength':'1',
+                    'fields':[
+                        {
+                          'field':'CODCFO',
+                          'label':'Cod. Fornecedor'
+                        },{
+                          'field':'NOMEFANTASIA',
+                          'label':'Nome Fantasia',
+                          'standard':'true'
+                        },{
+                          'field':'NOME',
+                          'label':'Nome'
+                        }
+                    ]
+                }"
+            />
+              </div>
+              <div class="col-xs-6 col-md-4">
+                <label class="control-label"  id="lbldataEmissao"><strong>Data Emissão</strong></label>
+                <input class="form-control" type="text" name="dataEmissao" id="dataEmissao" />
+              </div>
+            </div>
+<br><br> 
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+              <label class="control-label" id="lblCcusto"><strong>Selecione o Centro de Custo</strong></label>
+              <input  type="zoom"
+                      id = "ccusto"
+                      name="ccusto"
+                      data-zoom="{
+                          'displayKey':'CUSTO_NOME',
+                          'datasetId':'_RM_GCCUSTO',
+                          'maximumSelectionLength':'1',
+                          'fields':[
+                              {
+                                'field':'CODCCUSTO',
+                                'label':'Cod. Centro de Custo'
+                              },{
+                                'field':'NOME',
+                                'label':'Nome',
+                                'standard':'true'
+                              },{
+                                'field':'CODREDUZIDO',
+                                'label':'Reduzido'
+                              }
+                          ]
+                      }"
+                  />
+              </div>
+            </div>
+<br><br>  
+
+<div class="row">
+  <button type="button" class="btn btn-primary" name="btn_addProduto" id="btn_addProduto">Adicionar Itens</button>
+</div>
+<br><br>
+
+<div class="container-fluid">
+  <div>
+  <table tablename="tbProdutos" id="tbProdutos" noaddbutton=true>
+    <thead>
+        <tr>
+            <td class="col-xs-7 col-md-7"><b>Produto / Serviço</b></td>
+            <td class="col-xs-1 col-md-1"><b>Qtd.</b></td>
+            <td class="col-xs-2 col-md-2"><b>Valor Unit.</b></td>
+            <td class="col-xs-2 col-md-2"><b>Valor Total</b></td>
+
+        </tr>
+    </thead>
+    <tr> 
+        <td class="col-xs-7 col-md-7"><input type="zoom" id = "nomeItem" name="nomeItem"
+                                              data-zoom="{
+                                                  'displayKey':'COD_NOME',
+                                                  'datasetId':'_RM_PRODUTO',
+                                                  'maximumSelectionLength':'1',
+                                                  'placeholder':'Digite o produto ou serviço',
+                                                  'fields':[
+                                                      {
+                                                        'field':'COD_NOME',
+                                                        'label':'Nome',
+                                                        'standard':'true'
+                                                      }
+                                                  ]
+                                              }" /></td>
+        <td class="col-xs-1 col-md-1"><input type="text"   name="quantidade"    id="quantidade"     class="form-control" ></td>
+        <td class="col-xs-2 col-md-2"><input type="text"   name="valorUnitario" id="valorUnitario"  class="form-control" ></td>
+        <td class="col-xs-2 col-md-2"><input type="text"   name="valorTotal"    id="valorTotal"     class="form-control" ></td>
+    </tr>    
+  </table>
+  </div>
+</div>
+
+<br><br>            
+
+<div class="row">
+<div class="col-xs-2 col-md-2">
+  <label class="control-label"  id="lbltotalMovimento"><strong>Total Movimento</strong></label>
+  <input class="form-control" type="text" name="totalMovimento" id="totalMovimento" />
+</div>
+</div>
+
+
+<br><br>            
+            <div class="row">
+              <label class="control-label" id="lblObservacaoMov"><strong>Observações</strong></label>
+              <textarea class="form-control" rows="5" name="observacaoMov" id="observacaoMov" placeholder="Informações Adcionais"></textarea>
+            </div>              
+
+
+                     
+          </div>
+         </div>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+
+<script>
+
+// Ocultando div que possui parâmetros para evolução do Workflow
+$('#dvCustomizada').hide(); 
+
+// Formatando campo data
+var mySimpleCalendar = FLUIGC.calendar('#dataEmissao'); 
+
+
+// Clique do botão para adicionar linha na tabela de itens
+$("#btn_addProduto").on("click", function(e){
+  wdkAddChild('tbProdutos');
+  valorTotalProd();    
+});
+
+// variável para totalizar o movimento, fora da função para não zerar no quando itens foram incluídos
+var tempMov = 0;
+
+function valorTotalProd() {
+  var qtd = 0;
+  var vlUnit = 0;
+  var temp = 0;
+  var valorTot = 0;
+  var totalMov = 0;
+  
+  // Coletando quantidade
+  $(document).on("blur", "input[id^='quantidade___']", function(e){
+    qtd = parseFloat(($(this).val()).replace(',','.'));
+    });
+
+  //Coletando Valor unitário  
+  $(document).on("blur", "input[id^='valorUnitario___']", function(e){
+    vlUnit = parseFloat(($(this).val()).replace(',','.'));      
+    });
+
+  // Informando total por item
+  $(document).on("focus", "input[id^='valorTotal___']", function(e){
+    temp = (qtd * vlUnit); 
+    tempMov = (tempMov + temp);
+    valorTot = temp.toLocaleString('pt-br', {minimumFractionDigits: 2}); // Formatar moeda
+    $(this).val(valorTot);
+    // Informando total do movimento
+    totalMov = tempMov.toLocaleString('pt-br', {minimumFractionDigits: 2}); // Formatar moeda
+    $("#totalMovimento").val(totalMov);
+    });
+  
+
+  }
+
+
+
+
+//------## Tratando preenchimento dos intens - INICIO ##------//
+/*
+
+//2 segundos 
+window.onload = function(){ 
+  setTimeout(setSelectedZoomItem, 2000);
+  setTimeout(setZoomData, 2000); 
+  } 
+
+// Função coleta o input informado no zoom para os itens
+function setSelectedZoomItem(selectedItem) {
+  
+  var NAME = "NOMEFANTASIA";
+  var FIELD = selectedItem.inputId;
+  var indice = FIELD.indexOf(NAME);
+  
+  if (FIELD.indexOf(NAME) > -1){
+    var seq = FIELD.split("___");
+    setZoomData("CODIGOPRD"+"___"+seq[indice+1], selectedItem["CODIGOPRD"]);
+		    } 
+  }
+  
+
+// Funcao replica para outros campos do formulário
+function setZoomData(instance, value){
+  window[instance].setValue(value);
+  }
+*/
+
+//------## Tratando preenchimento dos intens - FIM  ##------//
+
+
+
+</script>
+</body>
+</html>
