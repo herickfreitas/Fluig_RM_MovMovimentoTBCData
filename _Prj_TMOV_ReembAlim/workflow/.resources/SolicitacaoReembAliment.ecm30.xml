@@ -1,0 +1,1458 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>SolicitacaoReembAliment</processId>
+    </processDefinitionPK>
+    <processDescription>Prestação de contas de despesas com alimentação</processDescription>
+    <instruction></instruction>
+    <active>true</active>
+    <publicProcess>false</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>Solicitações.Compras</categoryId>
+    <managerEngineAllocationId>Grupo</managerEngineAllocationId>
+    <managerEngineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;w_COMPRADORES&lt;/Group&gt;&lt;/AssignmentController&gt;</managerEngineAllocationConfiguration>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>true</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>0</complementsLevel>
+    <notifyRequisitionerComplements>false</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>false</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>Prestação de contas de despesas com alimentação</processId>
+      <version>113</version>
+    </processDefinitionVersionPK>
+    <versionDescription></versionDescription>
+    <formId>0</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>false</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>2</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>true</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </processStatePK>
+      <stateName>Início</stateName>
+      <stateDescription>Início</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>true</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Grupo</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;Interno&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>282</positionX>
+      <positionY>20</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>116</sequence>
+      </processStatePK>
+      <stateName>Chefia imediata - Validar solicitação</stateName>
+      <stateDescription>Chefia imediata - Validar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>7200</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;2&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1800</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>71</positionX>
+      <positionY>10</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>123</sequence>
+      </processStatePK>
+      <stateName>Autorizadores - Aprovar solicitação</stateName>
+      <stateDescription>Autorizadores - Aprovar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;autorizador&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>61</positionX>
+      <positionY>320</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>135</sequence>
+      </processStatePK>
+      <stateName>Presidência - Aprovar solicitação</stateName>
+      <stateDescription>Presidência - Aprovar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Grupo</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;w_PRES&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>221</positionX>
+      <positionY>290</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>140</sequence>
+      </processStatePK>
+      <stateName>Escalar Outro Aprovador</stateName>
+      <stateDescription>Escalar Outro Aprovador</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Grupo</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;w_OUTAPROV&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>331</positionX>
+      <positionY>460</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>145</sequence>
+      </processStatePK>
+      <stateName>Gestor Centro de Custos - Aprovar solicitação</stateName>
+      <stateDescription>Gestor Centro de Custos - Aprovar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;gestorcc&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>71</positionX>
+      <positionY>150</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>149</sequence>
+      </processStatePK>
+      <stateName>VPF - Aprovar Solicitação</stateName>
+      <stateDescription>VPF - Aprovar Solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Grupo</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;w_VPF&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>382</positionX>
+      <positionY>300</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>147</sequence>
+      </processStatePK>
+      <stateName>Aprovado</stateName>
+      <stateDescription>Aprovado</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>261</positionX>
+      <positionY>140</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>8</sequence>
+      </processStatePK>
+      <stateName>Aprovar</stateName>
+      <stateDescription>Aprovar</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>131</positionX>
+      <positionY>609</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>134</sequence>
+      </processStatePK>
+      <stateName>Reprovar</stateName>
+      <stateDescription>Reprovar</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>401</positionX>
+      <positionY>609</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>65</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>113</version>
+        <sequence>147</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>123</destinationSequenceId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>113</version>
+        <sequence>147</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>149</destinationSequenceId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>105</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>116</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>126</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>123</initialStateSequence>
+      <finalStateSequence>8</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>true</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>137</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>135</initialStateSequence>
+      <finalStateSequence>8</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>true</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>138</linkSequence>
+      </processLinkPK>
+      <actionLabel>Cancelar Solicitação</actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>135</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>Cancelar Solicitação</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>142</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>140</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name>Cancelar Solicitação</name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>143</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>140</initialStateSequence>
+      <finalStateSequence>8</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>true</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>146</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>116</initialStateSequence>
+      <finalStateSequence>145</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>148</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>145</initialStateSequence>
+      <finalStateSequence>147</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>true</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>150</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>147</initialStateSequence>
+      <finalStateSequence>149</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>152</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>149</initialStateSequence>
+      <finalStateSequence>135</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>153</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>147</initialStateSequence>
+      <finalStateSequence>123</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>154</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>149</initialStateSequence>
+      <finalStateSequence>8</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>true</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>155</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>true</returnPermited>
+      <initialStateSequence>123</initialStateSequence>
+      <finalStateSequence>140</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>157</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>145</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>162</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>123</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>163</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>149</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeStateEntry</eventId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>var SeqAtualizaWf = 116;&#xd;
+var SeqCancelaMov = 134;&#xd;
+var SeqFaturaMov = 22;&#xd;
+var SeqConcluiMov = 24;&#xd;
+&#xd;
+&#xd;
+function beforeStateEntry(sequenceId){&#xd;
+/*&#xd;
+	log.info(&quot;beforeStateEntry &quot;+sequenceId);&#xd;
+	&#xd;
+	//Define Respons?vel&#xd;
+    if (sequenceId == SeqAtualizaWf) {&#xd;
+    	atualizaEtapaWorkflow();&#xd;
+    }  &#xd;
+    else&#xd;
+	// De acordo com os estados finais ? passada a a??o a ser realizada no Movimento&#xd;
+    if (sequenceId == SeqCancelaMov)&#xd;
+    	AtualizaMovimento(&quot;Cancela&quot;);&#xd;
+	else if (sequenceId == SeqConcluiMov)&#xd;
+		AtualizaMovimento(&quot;Conclui&quot;);&#xd;
+	else if (sequenceId == SeqFaturaMov)&#xd;
+		AtualizaMovimento(&quot;Fatura&quot;);   &#xd;
+}&#xd;
+&#xd;
+function AtualizaMovimento(acaoMovimento){&#xd;
+	try &#xd;
+	{		&#xd;
+		log.info(&quot;AtualizaMovimento: &quot;+acaoMovimento);&#xd;
+		&#xd;
+		var codColigada = hAPI.getCardValue(&quot;CodColigada&quot;); &#xd;
+		var idMov = hAPI.getCardValue(&quot;IdMov&quot;);&#xd;
+		var idFluig = getValue(&apos;WKNumProces&apos;);&#xd;
+		&#xd;
+		var cCompany = DatasetFactory.createConstraint(&quot;companyId&quot;, getValue(&quot;WKCompany&quot;), getValue(&quot;WKCompany&quot;), ConstraintType.MUST);	&#xd;
+		log.info(&quot;cCompany: &quot;+getValue(&quot;WKCompany&quot;));&#xd;
+		var cUser = DatasetFactory.createConstraint(&quot;colleagueId&quot;, getValue(&quot;WKUser&quot;), getValue(&quot;WKUser&quot;), ConstraintType.MUST);	&#xd;
+		log.info(&quot;cUser: &quot;+getValue(&quot;WKUser&quot;));&#xd;
+		var constraintsEmail = new Array(cCompany, cUser);&#xd;
+		var colleague = DatasetFactory.getDataset(&quot;colleague&quot;, null, constraintsEmail, null);&#xd;
+		&#xd;
+		var Email = colleague.getValue(0, &quot;mail&quot;);&#xd;
+		&#xd;
+		// Passa as chaves do Movimento e o servi?o que dever? ser chamado.&#xd;
+		var fields = new Array(codColigada, idMov, acaoMovimento , Email, idFluig);&#xd;
+		&#xd;
+		log.info(&quot;Passou: &quot;+acaoMovimento);&#xd;
+		&#xd;
+		var dsServiceMov = DatasetFactory.getDataset(&quot;wsDataSetServiceMov&quot;, fields, null, null);	&#xd;
+		&#xd;
+		if(dsServiceMov.getColumnsName()[0] == &quot;ERROR&quot;){&#xd;
+			throw dsServiceMov.getValue(0, &quot;ERROR&quot;);&#xd;
+		}&#xd;
+			&#xd;
+		log.info(&quot;Retorno Dataset: AtualizaMovimento: &quot;+ dsServiceMov);&#xd;
+	}&#xd;
+	catch (e)&#xd;
+	{&#xd;
+		log.error(e);&#xd;
+		throw e;&#xd;
+	}	&#xd;
+}&#xd;
+&#xd;
+function atualizaEtapaWorkflow(){&#xd;
+	try {&#xd;
+		&#xd;
+		log.info(&quot;==========[ atualizaEtapaWorkflow ENTROU ]==========&quot;);&#xd;
+		&#xd;
+		var processo = getValue(&quot;WKNumProces&quot;);     //Recupera o numero da solicitação&#xd;
+		var requisitante = getValue(&quot;WKUser&quot;);		//Recupera o usuário corrente associado a atividade&#xd;
+		&#xd;
+		// Gravando valores no formulário&#xd;
+		hAPI.setCardValue(&quot;n_solicitacao&quot;, processo);&#xd;
+	    hAPI.setCardValue(&quot;solicitante&quot;, requisitante);&#xd;
+	    &#xd;
+	    // Coletando variáveis para consulta de dataSet&#xd;
+	    var id_mov = hAPI.getCardValue(&quot;IdMov&quot;);&#xd;
+	    var codcoligada = 1;&#xd;
+	    &#xd;
+	    // Array com varáveis coletadas&#xd;
+	    var fields = new Array(codcoligada, id_mov, processo);&#xd;
+	    //log.info(&quot;==========[ atualizaEtapaWorkflow fields ]==========&quot;+fields);&#xd;
+	    &#xd;
+	    // Chamada do dataset&#xd;
+	    var dsNucleus = DatasetFactory.getDataset(&apos;wsDatasetNucleus&apos;, fields, null, null);&#xd;
+	    //log.info(&quot;==========[ atualizaEtapaWorkflow dsNucleus ]==========&quot;+dsNucleus);&#xd;
+	    &#xd;
+	    // Coletando XML do retorno&#xd;
+	    var retorno = dsNucleus.getValue(0, &quot;XML&quot;);&#xd;
+		//log.info(&quot;==========[ atualizaEtapaWorkflow retorno ]========== &quot; + retorno);&#xd;
+        &#xd;
+		// Ajustando retorno XML para retirada de elemento&#xd;
+        var factory = javax.xml.parsers.DocumentBuilderFactory.newInstance();&#xd;
+        var parser = factory.newDocumentBuilder();&#xd;
+        var source = new org.xml.sax.InputSource(new java.io.StringReader(retorno));&#xd;
+        var xmlResponse = parser.parse(source);&#xd;
+        &#xd;
+        // 1º Retirando o elemento 2º Retirando o conteúdo&#xd;
+        var nodes = xmlResponse.getElementsByTagName(&quot;CODCCUSTO&quot;);&#xd;
+        var ccusto = nodes.item(0).getTextContent();&#xd;
+        //log.info(&quot;==========[ atualizaEtapaWorkflow nodes CODCCUSTO ]========== &quot; + nodes.item(0).getTextContent());&#xd;
+ &#xd;
+        // Rodando novo dataset para coletar responsável do centro de custo&#xd;
+        var c1 = DatasetFactory.createConstraint(&quot;CODCCUSTO&quot;, ccusto, ccusto, ConstraintType.MUST);&#xd;
+        var constraints = new Array(c1);&#xd;
+        log.info(&quot;==========[ atualizaEtapaWorkflow constraints ]========== &quot; + constraints);&#xd;
+        &#xd;
+        // Executando chamada de dataset&#xd;
+        var datasetReturned = DatasetFactory.getDataset(&quot;_RM_GESTOR_CENTRO_CUSTO&quot;, null, constraints, null);&#xd;
+        &#xd;
+		// Retirando o campo do resultado&#xd;
+		var chefe = datasetReturned.getValue(0, &quot;RESPONSAVEL&quot;);&#xd;
+		log.info(&quot;==========[ atualizaEtapaWorkflow createDataset chefe ]========== &quot; + chefe);        &#xd;
+        &#xd;
+        // Gravando retorno no formulário		&#xd;
+		hAPI.setCardValue(&quot;gestorcc&quot;, chefe);&#xd;
+		&#xd;
+		&#xd;
+		&#xd;
+		// Atribuido valor na variável autorizador&#xd;
+    	if (ccusto.substring(0,11) == (&apos;12.01.02.01&apos;))&#xd;
+    		var autorizador = &apos;Pool:Group:w_SG&apos;; // COMO SG - SIMONEGUIMARAES&#xd;
+    		&#xd;
+    	else if (ccusto == (&apos;20.01.02.08.70080&apos;))&#xd;
+    		var autorizador = &apos;Pool:Group:w_VPF&apos;; // COMO VPF - LEANDROPINTO		&#xd;
+    	&#xd;
+    	else if (ccusto.substring(0,8) == (&apos;20.01.01&apos;))&#xd;
+    			var autorizador = &apos;Pool:Group:w_VPF&apos;; // COMO VPF - LEANDROPINTO&#xd;
+    		&#xd;
+    	else if (ccusto.substring(0,2) == (&apos;12&apos;) || ccusto.substring(0,2) == (&apos;13&apos;) || ccusto.substring(0,2) == (&apos;14&apos;) || &#xd;
+    			ccusto.substring(0,2) == (&apos;15&apos;) || ccusto.substring(0,2) == (&apos;16&apos;))&#xd;
+    		var autorizador = &apos;Pool:Group:w_GP&apos;; // COMO GP - LenouraSchmidt&#xd;
+    	&#xd;
+    	else if (ccusto.substring(0,2) == (&apos;11&apos;) || ccusto.substring(0,2) == (&apos;18&apos;) || ccusto.substring(0,2) == (&apos;50&apos;) || &#xd;
+    			ccusto.substring(0,2) == (&apos;90&apos;) || ccusto.substring(0,2) == (&apos;99&apos;))&#xd;
+    		var autorizador = &apos;Pool:Group:w_VPF&apos;; // COMO VPF - LEANDROPINTO&#xd;
+    	&#xd;
+    	else&#xd;
+    		var autorizador = &apos;Pool:Group:w_SG&apos;; // COMO SG - SIMONEGUIMARAES&#xd;
+    	&#xd;
+    	// Gravando retorno no formulário		&#xd;
+		hAPI.setCardValue(&quot;autorizador&quot;, autorizador);&#xd;
+ &#xd;
+		&#xd;
+		&#xd;
+        // FAIXA DE VALORES PARA APROVAÇÃO		&#xd;
+        // 1º Retirando o elemento 2º Retirando o conteúdo&#xd;
+        var nodes = xmlResponse.getElementsByTagName(&quot;VALORLIQUIDO&quot;);&#xd;
+        var VALORLIQUIDO = nodes.item(0).getTextContent();&#xd;
+		&#xd;
+&#xd;
+    	if (parseFloat(VALORLIQUIDO) &gt; parseFloat(&apos;115070.6000&apos;))&#xd;
+       	 	var faixa = &apos;2&apos;;&#xd;
+    &#xd;
+    	if (parseFloat(VALORLIQUIDO) &lt;= parseFloat(&apos;115070.6000&apos;))&#xd;
+       	 	var faixa = &apos;1&apos;;&#xd;
+    &#xd;
+    	// Gravando retorno no formulário		&#xd;
+		hAPI.setCardValue(&quot;nivelAprov&quot;, faixa);&#xd;
+    	&#xd;
+		&#xd;
+		}&#xd;
+	&#xd;
+	catch (e)&#xd;
+	{&#xd;
+		log.error(e);&#xd;
+		throw e;&#xd;
+	}&#xd;
+*/	&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list>
+    <AdvancedProcessProperties>
+      <advancedProcessPropertiesPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <propertyId>AutomaticTasks</propertyId>
+        <version>113</version>
+      </advancedProcessPropertiesPK>
+      <propertieValue></propertieValue>
+    </AdvancedProcessProperties>
+  </list>
+  <list>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>111</height>
+      <width>531</width>
+      <positionX>2</positionX>
+      <positionY>0</positionY>
+      <stateName>Setor demandante</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>313</height>
+      <width>531</width>
+      <positionX>2</positionX>
+      <positionY>255</positionY>
+      <stateName>Autorizadores</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>82b0b7</color>
+      <height>117</height>
+      <width>285</width>
+      <positionX>247</positionX>
+      <positionY>567</positionY>
+      <stateName>Reprovar</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>3</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>A7FCC0</color>
+      <height>117</height>
+      <width>248</width>
+      <positionX>0</positionX>
+      <positionY>567</positionY>
+      <stateName>Aprovar</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>151</height>
+      <width>531</width>
+      <positionX>2</positionX>
+      <positionY>110</positionY>
+      <stateName>Gestor Centro de Custo</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <sequence>5</sequence>
+      </swimLanePK>
+    </SwimLane>
+  </list>
+  <list>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>31</positionX>
+      <positionY>650</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <componGrafSequence>26</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Aprovado</stateName>
+    </ProcessComponGraf>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>291</positionX>
+      <positionY>640</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <componGrafSequence>30</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Reprovado - Cancela Movimento</stateName>
+    </ProcessComponGraf>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>382</positionX>
+      <positionY>10</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <componGrafSequence>130</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Solicitante</stateName>
+    </ProcessComponGraf>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>21</positionX>
+      <positionY>260</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <componGrafSequence>132</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Pres, SG, VPF e CG</stateName>
+    </ProcessComponGraf>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>451</positionX>
+      <positionY>200</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <componGrafSequence>158</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Grupo w_VPF</stateName>
+    </ProcessComponGraf>
+    <ProcessComponGraf>
+      <componType>1</componType>
+      <positionX>311</positionX>
+      <positionY>220</positionY>
+      <processComponGrafPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <componGrafSequence>160</componGrafSequence>
+      </processComponGrafPK>
+      <stateName>Grupo w_PRES</stateName>
+    </ProcessComponGraf>
+  </list>
+  <list>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>27</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>26</initialStateSequence>
+      <finalStateSequence>8</finalStateSequence>
+    </ProcessLinkAssoc>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>31</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>30</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+    </ProcessLinkAssoc>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>131</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>130</initialStateSequence>
+      <finalStateSequence>2</finalStateSequence>
+    </ProcessLinkAssoc>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>133</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>132</initialStateSequence>
+      <finalStateSequence>123</finalStateSequence>
+    </ProcessLinkAssoc>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>159</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>158</initialStateSequence>
+      <finalStateSequence>149</finalStateSequence>
+    </ProcessLinkAssoc>
+    <ProcessLinkAssoc>
+      <processLinkAssocPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>1</version>
+        <linkSequence>161</linkSequence>
+      </processLinkAssocPK>
+      <initialStateSequence>160</initialStateSequence>
+      <finalStateSequence>135</finalStateSequence>
+    </ProcessLinkAssoc>
+  </list>
+  <list>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>138</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>293</positionX>
+      <positionY>418</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>138</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>673</positionX>
+      <positionY>418</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>138</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>673</positionX>
+      <positionY>607</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>138</linkSequence>
+        <bendSequence>4</bendSequence>
+      </processLinkBendPK>
+      <positionX>673</positionX>
+      <positionY>626</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>142</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>674</positionX>
+      <positionY>494</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>142</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>674</positionX>
+      <positionY>626</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>150</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>434</positionX>
+      <positionY>197</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>155</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>114</positionX>
+      <positionY>503</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>162</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>222</positionX>
+      <positionY>421</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>162</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>678</positionX>
+      <positionY>421</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>162</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>678</positionX>
+      <positionY>626</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>163</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>676</positionX>
+      <positionY>335</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <linkSequence>163</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>676</positionX>
+      <positionY>626</positionY>
+    </ProcessLinkBend>
+  </list>
+  <list/>
+  <list>
+    <ExtendedPropertyField>
+      <extendedPropertyFieldPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembAliment</processId>
+        <version>113</version>
+        <stateSequence>0</stateSequence>
+        <propertyName>AutomaticTasks</propertyName>
+      </extendedPropertyFieldPK>
+      <propertyType>0</propertyType>
+      <propertyDescription>AutomaticTasks</propertyDescription>
+      <propertyValue></propertyValue>
+      <isDefaultProperty>false</isDefaultProperty>
+    </ExtendedPropertyField>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembAliment</processId>
+      <processVersion>113</processVersion>
+      <stateSequence>116</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description>Solicitação de Outras Entradas</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembAliment</processId>
+      <processVersion>113</processVersion>
+      <stateSequence>116</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description>@[form:valorliquido]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembAliment</processId>
+      <processVersion>113</processVersion>
+      <stateSequence>116</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description>117</description>
+    </ProcessAppConfiguration>
+  </list>
+  <list/>
+  <list>
+    <ConditionProcessAutomaticRules>
+      <sequence>147</sequence>
+      <expressionOrder>1</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>nivelAprov</field>
+      <value>1</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>147</sequence>
+      <expressionOrder>2</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>nivelAprov</field>
+      <value>2</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+  </list>
+</list>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>Prestação de contas de despesas com alimentação </title>
+
+  <link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide.min.css">
+
+  <script src="/webdesk/vcXMLRPC.js"></script>
+  <script src="/portal/resources/js/jquery/jquery.js"></script>
+  <script src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+  <script src="/portal/resources/js/mustache/mustache-min.js"></script>
+  <script src="/portal/resources/style-guide/js/fluig-style-guide.min.js"></script>
+  <script type="text/javascript" src="numeral.js"></script>
+
+</head>
+
+<body>
+  <form name="formReembolsoAlimentacao" role="form">
+    <div class="fluig-style-guide">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">Movimento</h2>
+        </div>
+        <div class="panel-body">
+          <div class="container-fluid">
+
+            <!-- Informação oculta por script INICIO -->
+            <div class="row form-group" id="dvCustomizada"> 
+              <div class="col-xs-6 col-md-2" id="divSolicitante">
+                <label class='control-label' id='lblsolicitante'>Solicitante</label>
+                <input class="form-control" type="text" name="solicitante" id="solicitante"   />
+              </div>
+              <div class="col-xs-6 col-md-2" id="divGestorcc">
+                <label class="control-label" id="lblGestorcc">Gestor do Centro de Custo</label>
+                <input class="form-control" type="text" name="gestorcc" id="gestorcc"    />
+              </div>
+              <div class="col-xs-6 col-md-2" id="divAutorizador">
+                <label class="control-label" id="lblautorizador">Autorizador</label>
+                <input class="form-control" type="text" name="autorizador" id="autorizador"    />
+              </div>
+              <div class="col-xs-6 col-md-2" id="divnivelAprov">
+                <label class="control-label" id="lblnivelAprov">Aprovação</label>
+                <input class="form-control" type="text" name="nivelAprov" id="nivelAprov"    />
+              </div>
+            </div>
+            <!-- Informação oculta por script FIM -->            
+
+
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <label class="control-label" id="lblFilial"><strong>Selecione a Filial</strong></label>
+                <input  type="zoom"
+                        id = "filial"
+                        name="filial"
+                        data-zoom="{
+                            'displayKey':'NOMEFANTASIA',
+                            'datasetId':'_RM_FILIAL',
+                            'maximumSelectionLength':'1',
+                            'fields':[
+                                {
+                                  'field':'CODFILIAL',  
+                                  'label':'Cod. Filial'
+                                },{
+                                  'field':'NOMEFANTASIA',
+                                  'label':'Nome Fantasia',
+                                  'standard':'true'
+                                }
+                            ]
+                        }"
+                    />
+              </div>
+            </div>
+<br><br>
+            <div class="row">
+              <div class="col-xs-12 col-md-8">
+                <label class="control-label" id="lblFornecedor"><strong>Selecione o Favorecido</strong></label>
+                <input  type="zoom"
+                id = "favorecido"
+                name="favorecido"
+                data-zoom="{
+                    'displayKey':'COD_NOMEFANTASIA',
+                    'datasetId':'_RM_FORNECEDOR',
+                    'maximumSelectionLength':'1',
+                    'fields':[
+                        {
+                          'field':'CODCFO',
+                          'label':'Cod. Fornecedor'
+                        },{
+                          'field':'NOMEFANTASIA',
+                          'label':'Nome Fantasia',
+                          'standard':'true'
+                        },{
+                          'field':'NOME',
+                          'label':'Nome'
+                        }
+                    ]
+                }"
+            />
+              </div>
+              <div class="col-xs-6 col-md-4">
+                <label class="control-label"  id="lbldataEmissao"><strong>Data Despesa</strong></label>
+                <input class="form-control" type="text" name="dataDespesa" id="dataDespesa" />
+              </div>
+            </div>
+<br><br> 
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+              <label class="control-label" id="lblCcusto"><strong>Selecione o Centro de Custo</strong></label>
+              <input  type="zoom"
+                      id = "ccusto"
+                      name="ccusto"
+                      data-zoom="{
+                          'displayKey':'CUSTO_NOME',
+                          'datasetId':'_RM_GCCUSTO',
+                          'maximumSelectionLength':'1',
+                          'fields':[
+                              {
+                                'field':'CODCCUSTO',
+                                'label':'Cod. Centro de Custo'
+                              },{
+                                'field':'NOME',
+                                'label':'Nome',
+                                'standard':'true'
+                              },{
+                                'field':'CODREDUZIDO',
+                                'label':'Reduzido'
+                              }
+                          ]
+                      }"
+                  />
+              </div>
+            </div>
+<br><br>  
+
+
+
+<br><br>            
+            <div class="row">
+              <label class="control-label" id="lblObservacaoMov"><strong>Observações</strong></label>
+              <textarea class="form-control" rows="5" name="observacaoMov" id="observacaoMov" placeholder="Informações Adcionais"></textarea>
+            </div>              
+
+
+                     
+          </div>
+         </div>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+
+<script>
+
+// Ocultando div que possui parâmetros para evolução do Workflow
+$('#dvCustomizada').hide(); 
+
+// Formatando campo data
+var mySimpleCalendar = FLUIGC.calendar('#dataEmissao'); 
+
+
+
+</script>
+</body>
+</html>
