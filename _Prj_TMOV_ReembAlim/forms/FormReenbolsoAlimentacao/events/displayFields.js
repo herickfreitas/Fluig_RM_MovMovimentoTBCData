@@ -1,17 +1,24 @@
-function displayFields(form,customHTML){ 
-	/*	
-	// Fields
-	var codcoligada = form.getValue("CodColigada"); 
-	var idmov = form.getValue("IdMov");
-	var idFluig = getValue('WKNumProces');
+function displayFields(form,customHTML){
 	
-	form.setValue("IdentificadorFluig", idFluig);
+	var activity = getValue('WKNumState');
+	var inicioPadrao = 0;
+	//var inicioProcesso = 2;
 	
-	var fields = new Array(codcoligada, idmov, idFluig);
+	log.info("displayFields WKNumState "+activity);
+	
+	if (activity != inicioPadrao)  {
+		
+		var habilitar = false; // Informe True para Habilitar ou False para Desabilitar os campos
+	    var mapaForm = new java.util.HashMap();
+	    mapaForm = form.getCardData();
+	    var it = mapaForm.keySet().iterator();
 
-	log.info("displayFields:"+ fields);
+	    while (it.hasNext()) { // Laço de repetição para habilitar/desabilitar os campos
+	        var key = it.next();
+	        form.setEnabled(key, habilitar);
+	    }
+		
+	}
 
-	form.setShowDisabledFields(true);
-	form.setHidePrintLink(true);
-	*/
+	
 }

@@ -22,28 +22,24 @@
     <div class="fluig-style-guide">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Movimento</h2>
+          <h2 class="panel-title">Prestação de contas de despesas com alimentação</h2>
         </div>
         <div class="panel-body">
           <div class="container-fluid">
 
             <!-- Informação oculta por script INICIO -->
             <div class="row form-group" id="dvCustomizada"> 
-              <div class="col-xs-6 col-md-2" id="divSolicitante">
+              <div class="col-xs-4 col-md-4" id="divSolicitante">
                 <label class='control-label' id='lblsolicitante'>Solicitante</label>
                 <input class="form-control" type="text" name="solicitante" id="solicitante"   />
               </div>
-              <div class="col-xs-6 col-md-2" id="divGestorcc">
+              <div class="col-xs-4 col-md-4" id="divGestorcc">
                 <label class="control-label" id="lblGestorcc">Gestor do Centro de Custo</label>
                 <input class="form-control" type="text" name="gestorcc" id="gestorcc"    />
               </div>
-              <div class="col-xs-6 col-md-2" id="divAutorizador">
-                <label class="control-label" id="lblautorizador">Autorizador</label>
-                <input class="form-control" type="text" name="autorizador" id="autorizador"    />
-              </div>
-              <div class="col-xs-6 col-md-2" id="divnivelAprov">
-                <label class="control-label" id="lblnivelAprov">Aprovação</label>
-                <input class="form-control" type="text" name="nivelAprov" id="nivelAprov"    />
+              <div class="col-xs-4 col-md-4" id="divAutorizador">
+                <label class="control-label" id="lblautorizador">Chefia imediata</label>
+                <input class="form-control" type="text" name="chefia" id="chefia"    />
               </div>
             </div>
             <!-- Informação oculta por script FIM -->            
@@ -148,7 +144,7 @@
             
             <div class="row">
               <label class="control-label" id="lblObservacaoMov"><strong>Justificativa</strong></label>
-              <textarea class="form-control" rows="5" name="observacaoMov" id="observacaoMov" placeholder="Informações Adcionais"></textarea>
+              <textarea class="form-control" rows="5" name="observacaoMov" id="observacaoMov" ></textarea>
             </div>    
 
 
@@ -167,7 +163,7 @@
 $('#dvCustomizada').hide(); 
 
 // Formatando campo data
-var mySimpleCalendar = FLUIGC.calendar('#dataEmissao'); 
+var mySimpleCalendar = FLUIGC.calendar('#dataDespesa'); 
 
 
 
