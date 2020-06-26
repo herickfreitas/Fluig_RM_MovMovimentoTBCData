@@ -29,7 +29,7 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Prestação de contas de despesas com alimentação</processId>
-      <version>36</version>
+      <version>55</version>
     </processDefinitionVersionPK>
     <versionDescription></versionDescription>
     <formId>0</formId>
@@ -431,7 +431,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembAliment</processId>
         <expressionOrder>1</expressionOrder>
-        <version>36</version>
+        <version>55</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -443,7 +443,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembAliment</processId>
         <expressionOrder>2</expressionOrder>
-        <version>36</version>
+        <version>55</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -616,6 +616,9 @@
         <version>1</version>
       </workflowProcessEventPK>
       <eventDescription>var SeqProcessamento = 172;&#xd;
+var SeqAprovado = 8; // Inserir movimento no RM&#xd;
+var Usuario = &apos;integracao&apos;;&#xd;
+var Senha = &apos;!2018@Minha!&apos;;&#xd;
 &#xd;
 &#xd;
 function beforeStateEntry(sequenceId){&#xd;
@@ -626,17 +629,12 @@ function beforeStateEntry(sequenceId){&#xd;
 	//If para sequenciar conforme etapas do processo&#xd;
     if (sequenceId == SeqProcessamento) {&#xd;
     	ProcessamentoWorkflow();&#xd;
-    }  &#xd;
-/*&#xd;
-    else&#xd;
-	// De acordo com os estados finais ? passada a a??o a ser realizada no Movimento&#xd;
-    if (sequenceId == SeqCancelaMov)&#xd;
-    	AtualizaMovimento(&quot;Cancela&quot;);&#xd;
-	else if (sequenceId == SeqConcluiMov)&#xd;
-		AtualizaMovimento(&quot;Conclui&quot;);&#xd;
-	else if (sequenceId == SeqFaturaMov)&#xd;
-		AtualizaMovimento(&quot;Fatura&quot;);   &#xd;
-*/&#xd;
+    }&#xd;
+    &#xd;
+    else if (sequenceId == SeqAprovado) {&#xd;
+    	AprovarWorkflow();&#xd;
+    }&#xd;
+	&#xd;
 }&#xd;
 &#xd;
 &#xd;
@@ -703,8 +701,354 @@ function ProcessamentoWorkflow(){&#xd;
 		log.error(e);&#xd;
 		throw e;&#xd;
 	}&#xd;
+	}	&#xd;
 	&#xd;
-}</eventDescription>
+&#xd;
+	function AprovarWorkflow(){ // Inserir movimento no RM&#xd;
+		try { &#xd;
+			&#xd;
+            // Criar o objeto de Integracao&#xd;
+            var SERVICE_STUB = ServiceManager.getService(&apos;wsDataServer&apos;);&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; SERVICE_STUB: &quot; + SERVICE_STUB);&#xd;
+            &#xd;
+            var SERVICE_HELPER = SERVICE_STUB.getBean();&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; SERVICE_HELPER: &quot; + SERVICE_HELPER);&#xd;
+            &#xd;
+            // Criar o obejto da classe principal do Servico&#xd;
+            var wsDataServer = SERVICE_HELPER.instantiate(&apos;com.totvs.WsDataServer&apos;);&#xd;
+            //log.info(&quot;AprovarWorkflow-&gt; wsDataServer: &quot; + wsDataServer);&#xd;
+&#xd;
+            // Obter o objeto do WS&#xd;
+            var iWsDataServer = wsDataServer.getRMIwsDataServer();&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; iWsDataServer: &quot; + iWsDataServer);&#xd;
+            &#xd;
+            // Configurar a autentica??o&#xd;
+            var authIwsDataServer = SERVICE_STUB.getBasicAuthenticatedClient(iWsDataServer, &apos;com.totvs.IwsDataServer&apos;, Usuario, Senha);&#xd;
+            log.info(&quot;AprovarWorkflow -&gt; authIwsDataServer: &quot; + authIwsDataServer);&#xd;
+            &#xd;
+            // Passar os parametros&#xd;
+            var dataServerName = &quot;MovMovimentoTBCData&quot;;&#xd;
+            var contexto = &quot;CODCOLIGADA=1;CODUSUARIO=integracao;CODSISTEMA=T&quot;;&#xd;
+            // Chamada da função com os dados do movimento&#xd;
+            var XML = GetXml();&#xd;
+            &#xd;
+            var result = authIwsDataServer.saveRecord(dataServerName, XML, contexto);&#xd;
+            //log.info(&quot;AprovarWorkflow-&gt; authIwsDataServer.saveRecord: &quot; + result);&#xd;
+            &#xd;
+            if ((result != null) &amp;&amp; (result.indexOf(&quot;===&quot;) != -1)) {&#xd;
+                var msgErro = result.substring(0, result.indexOf(&quot;===&quot;));                &#xd;
+                throw msgErro;&#xd;
+            }        &#xd;
+&#xd;
+            return result;&#xd;
+&#xd;
+		}&#xd;
+		&#xd;
+		catch (e)&#xd;
+		{&#xd;
+            if (e == null)  e = &quot;Erro desconhecido!&quot;;  &#xd;
+            var mensagemErro = &quot;Ocorreu um erro ao salvar dados no RM: &quot; + e;  &#xd;
+            throw mensagemErro+&quot;ERRO NO RM &quot;+result;  &#xd;
+		}&#xd;
+	&#xd;
+	}	&#xd;
+	&#xd;
+	&#xd;
+	&#xd;
+	function GetXml() {&#xd;
+		&#xd;
+		log.info(&quot;CUSTOM: geraXmlContrato - inicio&quot;);&#xd;
+		var XML;&#xd;
+		&#xd;
+		// Coletando informações do form para XML&#xd;
+		var SOLICITANTE = hAPI.getCardValue(&quot;solicitante&quot;);&#xd;
+		var CODFILIAL = (hAPI.getCardValue(&quot;filial&quot;)).substring(0,1);&#xd;
+        var CODCFO = (hAPI.getCardValue(&quot;favorecido&quot;)).substring(0,5);&#xd;
+        var VALORBRUTO = hAPI.getCardValue(&quot;valorDespesa&quot;).replace(&apos;,&apos;,&apos;.&apos;);&#xd;
+        var CODCCUSTO = (hAPI.getCardValue(&quot;ccusto&quot;)).substring(0,17);&#xd;
+        var HOJE = new Date().toISOString().slice(0,19); // Formato &quot;&quot;+DTDESPESAFORMAT+&quot;T22:34:02&quot;&#xd;
+        var HISTORICO = hAPI.getCardValue(&quot;observacaoMov&quot;);&#xd;
+        var DTDESPESA = hAPI.getCardValue(&quot;dataDespesa&quot;); // Formato DD/MM/AAAA&#xd;
+        var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+&quot;-&quot;+DTDESPESA.substring(3,5)+&quot;-&quot;+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD&#xd;
+		&#xd;
+        // Estruturando XML&#xd;
+		XML = &quot;&lt;MovMovimento &gt;&quot; +   &#xd;
+		&quot; &lt;TMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODFILIAL&gt;&quot;+CODFILIAL+&quot;&lt;/CODFILIAL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODLOC&gt;0&quot;+CODFILIAL+&quot;&lt;/CODLOC&gt;	&quot;  + &#xd;
+		&quot; &lt;CODLOCDESTINO&gt;0&quot;+CODFILIAL+&quot;&lt;/CODLOCDESTINO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCFO&gt;&quot;+CODCFO+&quot;&lt;/CODCFO&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMEROMOV&gt;0&lt;/NUMEROMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;SERIE&gt;OE&lt;/SERIE&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTMV&gt;1.2.35&lt;/CODTMV&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPO&gt;A&lt;/TIPO&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUS&gt;A&lt;/STATUS&gt;	&quot;  + &#xd;
+		&quot; &lt;MOVIMPRESSO&gt;0&lt;/MOVIMPRESSO&gt;	&quot;  + &#xd;
+		&quot; &lt;DOCIMPRESSO&gt;0&lt;/DOCIMPRESSO&gt;	&quot;  + &#xd;
+		&quot; &lt;FATIMPRESSA&gt;0&lt;/FATIMPRESSA&gt;	&quot;  + &#xd;
+		&quot; &lt;DATAEMISSAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAEMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATASAIDA&gt;&quot;+HOJE+&quot;&lt;/DATASAIDA&gt;	&quot;  + &#xd;
+		&quot; &lt;COMISSAOREPRES&gt;0.0000&lt;/COMISSAOREPRES&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCPG&gt;29&lt;/CODCPG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORBRUTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORLIQUIDO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORLIQUIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOROUTROS&gt;&quot;+VALORBRUTO+&quot;&lt;/VALOROUTROS&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALFRETE&gt;0.0000&lt;/PERCENTUALFRETE&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORFRETE&gt;0.0000&lt;/VALORFRETE&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALSEGURO&gt;0.0000&lt;/PERCENTUALSEGURO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORSEGURO&gt;0.0000&lt;/VALORSEGURO&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALDESC&gt;0.0000&lt;/PERCENTUALDESC&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESC&gt;0.0000&lt;/VALORDESC&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALDESP&gt;0.0000&lt;/PERCENTUALDESP&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESP&gt;0.0000&lt;/VALORDESP&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCCOMISSAO&gt;0.0000&lt;/PERCCOMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;PESOLIQUIDO&gt;0.0000&lt;/PESOLIQUIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;PESOBRUTO&gt;0.0000&lt;/PESOBRUTO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTB1FLX&gt;01.015&lt;/CODTB1FLX&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTB2FLX&gt;PCR&lt;/CODTB2FLX&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVLCTFLUXUS&gt;-1&lt;/IDMOVLCTFLUXUS&gt;	&quot;  + &#xd;
+		&quot; &lt;CODMOEVALORLIQUIDO&gt;R$&lt;/CODMOEVALORLIQUIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATAMOVIMENTO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAMOVIMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMEROLCTGERADO&gt;1&lt;/NUMEROLCTGERADO&gt;	&quot;  + &#xd;
+		&quot; &lt;GEROUFATURA&gt;0&lt;/GEROUFATURA&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMEROLCTABERTO&gt;1&lt;/NUMEROLCTABERTO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCFOAUX&gt;&quot;+CODCFO+&quot;&lt;/CODCFOAUX&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCCOMISSAOVEN2&gt;0.0000&lt;/PERCCOMISSAOVEN2&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLCFO&gt;1&lt;/CODCOLCFO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODUSUARIO&gt;&quot;+SOLICITANTE+&quot;&lt;/CODUSUARIO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODFILIALDESTINO&gt;2&lt;/CODFILIALDESTINO&gt;	&quot;  + &#xd;
+		&quot; &lt;GERADOPORLOTE&gt;0&lt;/GERADOPORLOTE&gt;	&quot;  + &#xd;
+		&quot; &lt;CODEVENTO&gt;39&lt;/CODEVENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSEXPORTCONT&gt;1&lt;/STATUSEXPORTCONT&gt;	&quot;  + &#xd;
+		&quot; &lt;CODLOTE&gt;1235&lt;/CODLOTE&gt;	&quot;  + &#xd;
+		&quot; &lt;GEROUCONTATRABALHO&gt;0&lt;/GEROUCONTATRABALHO&gt;	&quot;  + &#xd;
+		&quot; &lt;GERADOPORCONTATRABALHO&gt;0&lt;/GERADOPORCONTATRABALHO&gt;	&quot;  + &#xd;
+		&quot; &lt;HORULTIMAALTERACAO&gt;&quot;+HOJE+&quot;&lt;/HORULTIMAALTERACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;INDUSOOBJ&gt;0.00&lt;/INDUSOOBJ&gt;	&quot;  + &#xd;
+		&quot; &lt;CONTABILIZADOPORTOTAL&gt;0&lt;/CONTABILIZADOPORTOTAL&gt;	&quot;  + &#xd;
+		&quot; &lt;INTEGRADOBONUM&gt;0&lt;/INTEGRADOBONUM&gt;	&quot;  + &#xd;
+		&quot; &lt;FLAGPROCESSADO&gt;0&lt;/FLAGPROCESSADO&gt;	&quot;  + &#xd;
+		&quot; &lt;ABATIMENTOICMS&gt;0.0000&lt;/ABATIMENTOICMS&gt;	&quot;  + &#xd;
+		&quot; &lt;HORARIOEMISSAO&gt;&quot;+HOJE+&quot;&lt;/HORARIOEMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;USUARIOCRIACAO&gt;&quot;+SOLICITANTE+&quot;&lt;/USUARIOCRIACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATACRIACAO&gt;&quot;+HOJE+&quot;&lt;/DATACRIACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;STSEMAIL&gt;0&lt;/STSEMAIL&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTOINTERNO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORBRUTOINTERNO&gt;	&quot;  + &#xd;
+		&quot; &lt;VINCULADOESTOQUEFL&gt;0&lt;/VINCULADOESTOQUEFL&gt;	&quot;  + &#xd;
+		&quot; &lt;VRBASEINSSOUTRAEMPRESA&gt;0.0000&lt;/VRBASEINSSOUTRAEMPRESA&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESCCONDICIONAL&gt;0.0000&lt;/VALORDESCCONDICIONAL&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESPCONDICIONAL&gt;0.0000&lt;/VALORDESPCONDICIONAL&gt;	&quot;  + &#xd;
+		&quot; &lt;CONTORCAMENTOANTIGO&gt;0&lt;/CONTORCAMENTOANTIGO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATACONTABILIZACAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATACONTABILIZACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;INTEGRADOAUTOMACAO&gt;0&lt;/INTEGRADOAUTOMACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;INTEGRAAPLICACAO&gt;T&lt;/INTEGRAAPLICACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATALANCAMENTO&gt;&quot;+HOJE+&quot;&lt;/DATALANCAMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;EXTENPORANEO&gt;0&lt;/EXTENPORANEO&gt;	&quot;  + &#xd;
+		&quot; &lt;RECIBONFESTATUS&gt;0&lt;/RECIBONFESTATUS&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVCFO&gt;9843&lt;/IDMOVCFO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORMERCADORIAS&gt;0.0000&lt;/VALORMERCADORIAS&gt;	&quot;  + &#xd;
+		&quot; &lt;USARATEIOVALORFIN&gt;0&lt;/USARATEIOVALORFIN&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLCFOAUX&gt;1&lt;/CODCOLCFOAUX&gt;	&quot;  + &#xd;
+		//&quot; &lt;AVISOPERMISSAO&gt;Movimento teve seus lançamentos contábeis exportados!&lt;/AVISOPERMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORRATEIOLAN&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORRATEIOLAN&gt;	&quot;  + &#xd;
+		&quot; &lt;HISTORICOLONGO&gt;&quot;+HISTORICO+&quot;&lt;/HISTORICOLONGO&gt;	&quot;  + &#xd;
+		&quot; &lt;RATEIOCCUSTODEPTO&gt;&quot;+VALORBRUTO+&quot;&lt;/RATEIOCCUSTODEPTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTOORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORBRUTOORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORLIQUIDOORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORLIQUIDOORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOROUTROSORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALOROUTROSORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORRATEIOLANORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORRATEIOLANORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;FLAGCONCLUSAO&gt;0&lt;/FLAGCONCLUSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSPARADIGMA&gt;N&lt;/STATUSPARADIGMA&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSINTEGRACAO&gt;N&lt;/STATUSINTEGRACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSMOVINCLUSAOCOLAB&gt;0&lt;/STATUSMOVINCLUSAOCOLAB&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA1&gt;1&lt;/CODCOLIGADA1&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVHST&gt;-1&lt;/IDMOVHST&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOV&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TNFE&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORSERVICO&gt;0.0000&lt;/VALORSERVICO&gt;	&quot;  + &#xd;
+		&quot; &lt;DEDUCAOSERVICO&gt;0.0000&lt;/DEDUCAOSERVICO&gt;	&quot;  + &#xd;
+		&quot; &lt;ALIQUOTAISS&gt;0.0000&lt;/ALIQUOTAISS&gt;	&quot;  + &#xd;
+		&quot; &lt;ISSRETIDO&gt;0&lt;/ISSRETIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORISS&gt;0.0000&lt;/VALORISS&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORCREDITOIPTU&gt;0.0000&lt;/VALORCREDITOIPTU&gt;	&quot;  + &#xd;
+		&quot; &lt;BASEDECALCULO&gt;0.0000&lt;/BASEDECALCULO&gt;	&quot;  + &#xd;
+		&quot; &lt;EDITADO&gt;0&lt;/EDITADO&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TNFE&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TMOVFISCAL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CONTRIBUINTECREDENCIADO&gt;0&lt;/CONTRIBUINTECREDENCIADO&gt;	&quot;  + &#xd;
+		&quot; &lt;OPERACAOCONSUMIDORFINAL&gt;0&lt;/OPERACAOCONSUMIDORFINAL&gt;	&quot;  + &#xd;
+		&quot; &lt;OPERACAOPRESENCIAL&gt;0&lt;/OPERACAOPRESENCIAL&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVFISCAL&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+//		&quot; &lt;NOME&gt;Divisão Jurídica - RJ&lt;/NOME&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOR&gt;&quot;+VALORBRUTO+&quot;&lt;/VALOR&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVRATCCU&gt;-1&lt;/IDMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TITMMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODFILIAL&gt;2&lt;/CODFILIAL&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMEROSEQUENCIAL&gt;1&lt;/NUMEROSEQUENCIAL&gt;	&quot;  + &#xd;
+		&quot; &lt;IDPRD&gt;15237&lt;/IDPRD&gt;	&quot;  + &#xd;
+		&quot; &lt;CODIGOPRD&gt;09.30.0128&lt;/CODIGOPRD&gt;	&quot;  + &#xd;
+		&quot; &lt;NOMEFANTASIA&gt;REEMBOLSO DE DESPESA C/ ALIMENTAÇÃO&lt;/NOMEFANTASIA&gt;	&quot;  + &#xd;
+		&quot; &lt;CODIGOREDUZIDO&gt;15237&lt;/CODIGOREDUZIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMNOFABRIC&gt;09.30.0128&lt;/NUMNOFABRIC&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADE&gt;1.0000&lt;/QUANTIDADE&gt;	&quot;  + &#xd;
+		&quot; &lt;PRECOUNITARIO&gt;&quot;+VALORBRUTO+&quot;000000&lt;/PRECOUNITARIO&gt;	&quot;  + &#xd;
+		&quot; &lt;PRECOTABELA&gt;0.0000&lt;/PRECOTABELA&gt;	&quot;  + &#xd;
+		&quot; &lt;DATAEMISSAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAEMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTB1FLX&gt;01.015&lt;/CODTB1FLX&gt;	&quot;  + &#xd;
+		&quot; &lt;CODUND&gt;SERV&lt;/CODUND&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADEARECEBER&gt;1.0000&lt;/QUANTIDADEARECEBER&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORUNITARIO&gt;0.0000&lt;/VALORUNITARIO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORFINANCEIRO&gt;0.0000&lt;/VALORFINANCEIRO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+		&quot; &lt;ALIQORDENACAO&gt;0.0000&lt;/ALIQORDENACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADEORIGINAL&gt;1.0000&lt;/QUANTIDADEORIGINAL&gt;	&quot;  + &#xd;
+		&quot; &lt;FLAG&gt;0&lt;/FLAG&gt;	&quot;  + &#xd;
+		&quot; &lt;BLOCK&gt;0&lt;/BLOCK&gt;	&quot;  + &#xd;
+		&quot; &lt;FATORCONVUND&gt;0.0000&lt;/FATORCONVUND&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTOITEM&gt;&quot;+VALORBRUTO+&quot;000000&lt;/VALORBRUTOITEM&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORTOTALITEM&gt;&quot;+VALORBRUTO+&quot;000000&lt;/VALORTOTALITEM&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADESEPARADA&gt;0.0000&lt;/QUANTIDADESEPARADA&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTCOMISSAO&gt;0.0000&lt;/PERCENTCOMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;COMISSAOREPRES&gt;0.0000&lt;/COMISSAOREPRES&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORESCRITURACAO&gt;0.0000&lt;/VALORESCRITURACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORFINPEDIDO&gt;0.0000&lt;/VALORFINPEDIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOROPFRM1&gt;0.0000&lt;/VALOROPFRM1&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOROPFRM2&gt;0.0000&lt;/VALOROPFRM2&gt;	&quot;  + &#xd;
+		&quot; &lt;PRECOEDITADO&gt;1&lt;/PRECOEDITADO&gt;	&quot;  + &#xd;
+		&quot; &lt;QTDEVOLUMEUNITARIO&gt;1&lt;/QTDEVOLUMEUNITARIO&gt;	&quot;  + &#xd;
+		&quot; &lt;PRECOTOTALEDITADO&gt;0&lt;/PRECOTOTALEDITADO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESCCONDICONALITM&gt;0.0000&lt;/VALORDESCCONDICONALITM&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESPCONDICIONALITM&gt;0.0000&lt;/VALORDESPCONDICIONALITM&gt;	&quot;  + &#xd;
+		&quot; &lt;DATAORCAMENTO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAORCAMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTBORCAMENTO&gt;3.2.02.02.009&lt;/CODTBORCAMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLTBORCAMENTO&gt;1&lt;/CODCOLTBORCAMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORUNTORCAMENTO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORUNTORCAMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALSERVICONFE&gt;0.0000&lt;/VALSERVICONFE&gt;	&quot;  + &#xd;
+		&quot; &lt;CODLOC&gt;02&lt;/CODLOC&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBEM&gt;0.0000&lt;/VALORBEM&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORLIQUIDO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORLIQUIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;RATEIOCCUSTODEPTO&gt;&quot;+VALORBRUTO+&quot;&lt;/RATEIOCCUSTODEPTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTOITEMORIG&gt;&quot;+VALORBRUTO+&quot;000000&lt;/VALORBRUTOITEMORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADETOTAL&gt;1.0000&lt;/QUANTIDADETOTAL&gt;	&quot;  + &#xd;
+		&quot; &lt;PRODUTOSUBSTITUTO&gt;0&lt;/PRODUTOSUBSTITUTO&gt;	&quot;  + &#xd;
+		&quot; &lt;PRECOUNITARIOSELEC&gt;0&lt;/PRECOUNITARIOSELEC&gt;	&quot;  + &#xd;
+		&quot; &lt;INTEGRAAPLICACAO&gt;T&lt;/INTEGRAAPLICACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA1&gt;1&lt;/CODCOLIGADA1&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVHST&gt;-1&lt;/IDMOVHST&gt;	&quot;  + &#xd;
+		&quot; &lt;NSEQITMMOV1&gt;2&lt;/NSEQITMMOV1&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TITMMOV&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TITMMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+		&quot; &lt;NOME&gt;Divisão Jurídica - RJ&lt;/NOME&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOR&gt;&quot;+VALORBRUTO+&quot;&lt;/VALOR&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVRATCCU&gt;-1&lt;/IDMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TITMMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TMOVCOMPL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;CNCAUTORIZ&gt;00&lt;/CNCAUTORIZ&gt;	&quot;  + &#xd;
+		&quot; &lt;COMPROVANT&gt;F&lt;/COMPROVANT&gt;	&quot;  + &#xd;
+		&quot; &lt;COMPROVANTE&gt;NAO&lt;/COMPROVANTE&gt;	&quot;  + &#xd;
+		&quot; &lt;BCISS&gt;0.0000&lt;/BCISS&gt;	&quot;  + &#xd;
+		&quot; &lt;VREMP&gt;0.0000&lt;/VREMP&gt;	&quot;  + &#xd;
+		&quot; &lt;MULTAREC&gt;0.0000&lt;/MULTAREC&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVCOMPL&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TITMMOVCOMPL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;SERVICO&gt;0.0000&lt;/SERVICO&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TITMMOVCOMPL&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TMOVTRANSP&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;RETIRAMERCADORIA&gt;0&lt;/RETIRAMERCADORIA&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOCTE&gt;0&lt;/TIPOCTE&gt;	&quot;  + &#xd;
+		&quot; &lt;TOMADORTIPO&gt;0&lt;/TOMADORTIPO&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOEMITENTEMDFE&gt;0&lt;/TIPOEMITENTEMDFE&gt;	&quot;  + &#xd;
+		&quot; &lt;LOTACAO&gt;1&lt;/LOTACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOTRANSPORTADORMDFE&gt;0&lt;/TIPOTRANSPORTADORMDFE&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOBPE&gt;0&lt;/TIPOBPE&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVTRANSP&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TCTRCMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORNOTAS&gt;0.0000&lt;/VALORNOTAS&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORRATEADO&gt;0.0000&lt;/VALORRATEADO&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADENOTAS&gt;0&lt;/QUANTIDADENOTAS&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADERATEADAS&gt;0&lt;/QUANTIDADERATEADAS&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TCTRCMOV&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TITMMOVFISCAL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;QTDECONTRATADA&gt;0.0000&lt;/QTDECONTRATADA&gt;	&quot;  + &#xd;
+		&quot; &lt;VLRTOTTRIB&gt;0.0000&lt;/VLRTOTTRIB&gt;	&quot;  + &#xd;
+		&quot; &lt;AQUISICAOPAA&gt;0&lt;/AQUISICAOPAA&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TITMMOVFISCAL&gt;	&quot;  + &#xd;
+			&quot;&lt;/MovMovimento&gt;&quot;;&#xd;
+		&#xd;
+		log.info(&quot;CUSTOM: geraXML&quot;+XML );&#xd;
+		 &#xd;
+		 return XML;&#xd;
+			      &#xd;
+			}  &#xd;
+	&#xd;
+</eventDescription>
     </WorkflowProcessEvent>
   </list>
   <list>
@@ -713,7 +1057,7 @@ function ProcessamentoWorkflow(){&#xd;
         <companyId>1</companyId>
         <processId>SolicitacaoReembAliment</processId>
         <propertyId>AutomaticTasks</propertyId>
-        <version>36</version>
+        <version>55</version>
       </advancedProcessPropertiesPK>
       <propertieValue></propertieValue>
     </AdvancedProcessProperties>
@@ -807,7 +1151,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembAliment</processId>
-        <version>36</version>
+        <version>55</version>
         <linkSequence>169</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -818,7 +1162,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembAliment</processId>
-        <version>36</version>
+        <version>55</version>
         <linkSequence>173</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -832,7 +1176,7 @@ function ProcessamentoWorkflow(){&#xd;
       <extendedPropertyFieldPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembAliment</processId>
-        <version>36</version>
+        <version>55</version>
         <stateSequence>0</stateSequence>
         <propertyName>AutomaticTasks</propertyName>
       </extendedPropertyFieldPK>
@@ -850,7 +1194,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -860,7 +1204,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -870,7 +1214,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -880,7 +1224,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -890,7 +1234,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -900,7 +1244,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -910,7 +1254,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -920,7 +1264,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembAliment</processId>
-      <processVersion>36</processVersion>
+      <processVersion>55</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>

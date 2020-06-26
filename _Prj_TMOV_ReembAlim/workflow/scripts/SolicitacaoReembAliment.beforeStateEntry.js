@@ -1,4 +1,7 @@
 var SeqProcessamento = 172;
+var SeqAprovado = 8; // Inserir movimento no RM
+var Usuario = 'integracao';
+var Senha = '!2018@Minha!';
 
 
 function beforeStateEntry(sequenceId){
@@ -9,17 +12,12 @@ function beforeStateEntry(sequenceId){
 	//If para sequenciar conforme etapas do processo
     if (sequenceId == SeqProcessamento) {
     	ProcessamentoWorkflow();
-    }  
-/*
-    else
-	// De acordo com os estados finais ? passada a a??o a ser realizada no Movimento
-    if (sequenceId == SeqCancelaMov)
-    	AtualizaMovimento("Cancela");
-	else if (sequenceId == SeqConcluiMov)
-		AtualizaMovimento("Conclui");
-	else if (sequenceId == SeqFaturaMov)
-		AtualizaMovimento("Fatura");   
-*/
+    }
+    
+    else if (sequenceId == SeqAprovado) {
+    	AprovarWorkflow();
+    }
+	
 }
 
 
@@ -86,5 +84,350 @@ function ProcessamentoWorkflow(){
 		log.error(e);
 		throw e;
 	}
+	}	
 	
-}
+
+	function AprovarWorkflow(){ // Inserir movimento no RM
+		try { 
+			
+            // Criar o objeto de Integracao
+            var SERVICE_STUB = ServiceManager.getService('wsDataServer');
+            log.info("AprovarWorkflow-> SERVICE_STUB: " + SERVICE_STUB);
+            
+            var SERVICE_HELPER = SERVICE_STUB.getBean();
+            log.info("AprovarWorkflow-> SERVICE_HELPER: " + SERVICE_HELPER);
+            
+            // Criar o obejto da classe principal do Servico
+            var wsDataServer = SERVICE_HELPER.instantiate('com.totvs.WsDataServer');
+            //log.info("AprovarWorkflow-> wsDataServer: " + wsDataServer);
+
+            // Obter o objeto do WS
+            var iWsDataServer = wsDataServer.getRMIwsDataServer();
+            log.info("AprovarWorkflow-> iWsDataServer: " + iWsDataServer);
+            
+            // Configurar a autentica??o
+            var authIwsDataServer = SERVICE_STUB.getBasicAuthenticatedClient(iWsDataServer, 'com.totvs.IwsDataServer', Usuario, Senha);
+            log.info("AprovarWorkflow -> authIwsDataServer: " + authIwsDataServer);
+            
+            // Passar os parametros
+            var dataServerName = "MovMovimentoTBCData";
+            var contexto = "CODCOLIGADA=1;CODUSUARIO=integracao;CODSISTEMA=T";
+            // Chamada da função com os dados do movimento
+            var XML = GetXml();
+            
+            var result = authIwsDataServer.saveRecord(dataServerName, XML, contexto);
+            //log.info("AprovarWorkflow-> authIwsDataServer.saveRecord: " + result);
+            
+            if ((result != null) && (result.indexOf("===") != -1)) {
+                var msgErro = result.substring(0, result.indexOf("==="));                
+                throw msgErro;
+            }        
+
+            return result;
+
+		}
+		
+		catch (e)
+		{
+            if (e == null)  e = "Erro desconhecido!";  
+            var mensagemErro = "Ocorreu um erro ao salvar dados no RM: " + e;  
+            throw mensagemErro+"ERRO NO RM "+result;  
+		}
+	
+	}	
+	
+	
+	
+	function GetXml() {
+		
+		log.info("CUSTOM: geraXmlContrato - inicio");
+		var XML;
+		
+		// Coletando informações do form para XML
+		var SOLICITANTE = hAPI.getCardValue("solicitante");
+		var CODFILIAL = (hAPI.getCardValue("filial")).substring(0,1);
+        var CODCFO = (hAPI.getCardValue("favorecido")).substring(0,5);
+        var VALORBRUTO = hAPI.getCardValue("valorDespesa").replace(',','.');
+        var CODCCUSTO = (hAPI.getCardValue("ccusto")).substring(0,17);
+        var HOJE = new Date().toISOString().slice(0,19); // Formato ""+DTDESPESAFORMAT+"T22:34:02"
+        var HISTORICO = hAPI.getCardValue("observacaoMov");
+        var DTDESPESA = hAPI.getCardValue("dataDespesa"); // Formato DD/MM/AAAA
+        var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+"-"+DTDESPESA.substring(3,5)+"-"+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD
+		
+        // Estruturando XML
+		XML = "<MovMovimento >" +   
+		" <TMOV>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <CODFILIAL>"+CODFILIAL+"</CODFILIAL>	"  + 
+		" <CODLOC>0"+CODFILIAL+"</CODLOC>	"  + 
+		" <CODLOCDESTINO>0"+CODFILIAL+"</CODLOCDESTINO>	"  + 
+		" <CODCFO>"+CODCFO+"</CODCFO>	"  + 
+		" <NUMEROMOV>0</NUMEROMOV>	"  + 
+		" <SERIE>OE</SERIE>	"  + 
+		" <CODTMV>1.2.35</CODTMV>	"  + 
+		" <TIPO>A</TIPO>	"  + 
+		" <STATUS>A</STATUS>	"  + 
+		" <MOVIMPRESSO>0</MOVIMPRESSO>	"  + 
+		" <DOCIMPRESSO>0</DOCIMPRESSO>	"  + 
+		" <FATIMPRESSA>0</FATIMPRESSA>	"  + 
+		" <DATAEMISSAO>"+DTDESPESAFORMAT+"T00:00:00</DATAEMISSAO>	"  + 
+		" <DATASAIDA>"+HOJE+"</DATASAIDA>	"  + 
+		" <COMISSAOREPRES>0.0000</COMISSAOREPRES>	"  + 
+		" <CODCPG>29</CODCPG>	"  + 
+		" <VALORBRUTO>"+VALORBRUTO+"</VALORBRUTO>	"  + 
+		" <VALORLIQUIDO>"+VALORBRUTO+"</VALORLIQUIDO>	"  + 
+		" <VALOROUTROS>"+VALORBRUTO+"</VALOROUTROS>	"  + 
+		" <PERCENTUALFRETE>0.0000</PERCENTUALFRETE>	"  + 
+		" <VALORFRETE>0.0000</VALORFRETE>	"  + 
+		" <PERCENTUALSEGURO>0.0000</PERCENTUALSEGURO>	"  + 
+		" <VALORSEGURO>0.0000</VALORSEGURO>	"  + 
+		" <PERCENTUALDESC>0.0000</PERCENTUALDESC>	"  + 
+		" <VALORDESC>0.0000</VALORDESC>	"  + 
+		" <PERCENTUALDESP>0.0000</PERCENTUALDESP>	"  + 
+		" <VALORDESP>0.0000</VALORDESP>	"  + 
+		" <PERCCOMISSAO>0.0000</PERCCOMISSAO>	"  + 
+		" <PESOLIQUIDO>0.0000</PESOLIQUIDO>	"  + 
+		" <PESOBRUTO>0.0000</PESOBRUTO>	"  + 
+		" <CODTB1FLX>01.015</CODTB1FLX>	"  + 
+		" <CODTB2FLX>PCR</CODTB2FLX>	"  + 
+		" <IDMOVLCTFLUXUS>-1</IDMOVLCTFLUXUS>	"  + 
+		" <CODMOEVALORLIQUIDO>R$</CODMOEVALORLIQUIDO>	"  + 
+		" <DATAMOVIMENTO>"+DTDESPESAFORMAT+"T00:00:00</DATAMOVIMENTO>	"  + 
+		" <NUMEROLCTGERADO>1</NUMEROLCTGERADO>	"  + 
+		" <GEROUFATURA>0</GEROUFATURA>	"  + 
+		" <NUMEROLCTABERTO>1</NUMEROLCTABERTO>	"  + 
+		" <CODCFOAUX>"+CODCFO+"</CODCFOAUX>	"  + 
+		" <CODCCUSTO>"+CODCCUSTO+"</CODCCUSTO>	"  + 
+		" <PERCCOMISSAOVEN2>0.0000</PERCCOMISSAOVEN2>	"  + 
+		" <CODCOLCFO>1</CODCOLCFO>	"  + 
+		" <CODUSUARIO>"+SOLICITANTE+"</CODUSUARIO>	"  + 
+		" <CODFILIALDESTINO>2</CODFILIALDESTINO>	"  + 
+		" <GERADOPORLOTE>0</GERADOPORLOTE>	"  + 
+		" <CODEVENTO>39</CODEVENTO>	"  + 
+		" <STATUSEXPORTCONT>1</STATUSEXPORTCONT>	"  + 
+		" <CODLOTE>1235</CODLOTE>	"  + 
+		" <GEROUCONTATRABALHO>0</GEROUCONTATRABALHO>	"  + 
+		" <GERADOPORCONTATRABALHO>0</GERADOPORCONTATRABALHO>	"  + 
+		" <HORULTIMAALTERACAO>"+HOJE+"</HORULTIMAALTERACAO>	"  + 
+		" <INDUSOOBJ>0.00</INDUSOOBJ>	"  + 
+		" <CONTABILIZADOPORTOTAL>0</CONTABILIZADOPORTOTAL>	"  + 
+		" <INTEGRADOBONUM>0</INTEGRADOBONUM>	"  + 
+		" <FLAGPROCESSADO>0</FLAGPROCESSADO>	"  + 
+		" <ABATIMENTOICMS>0.0000</ABATIMENTOICMS>	"  + 
+		" <HORARIOEMISSAO>"+HOJE+"</HORARIOEMISSAO>	"  + 
+		" <USUARIOCRIACAO>"+SOLICITANTE+"</USUARIOCRIACAO>	"  + 
+		" <DATACRIACAO>"+HOJE+"</DATACRIACAO>	"  + 
+		" <STSEMAIL>0</STSEMAIL>	"  + 
+		" <VALORBRUTOINTERNO>"+VALORBRUTO+"</VALORBRUTOINTERNO>	"  + 
+		" <VINCULADOESTOQUEFL>0</VINCULADOESTOQUEFL>	"  + 
+		" <VRBASEINSSOUTRAEMPRESA>0.0000</VRBASEINSSOUTRAEMPRESA>	"  + 
+		" <VALORDESCCONDICIONAL>0.0000</VALORDESCCONDICIONAL>	"  + 
+		" <VALORDESPCONDICIONAL>0.0000</VALORDESPCONDICIONAL>	"  + 
+		" <CONTORCAMENTOANTIGO>0</CONTORCAMENTOANTIGO>	"  + 
+		" <DATACONTABILIZACAO>"+DTDESPESAFORMAT+"T00:00:00</DATACONTABILIZACAO>	"  + 
+		" <INTEGRADOAUTOMACAO>0</INTEGRADOAUTOMACAO>	"  + 
+		" <INTEGRAAPLICACAO>T</INTEGRAAPLICACAO>	"  + 
+		" <DATALANCAMENTO>"+HOJE+"</DATALANCAMENTO>	"  + 
+		" <EXTENPORANEO>0</EXTENPORANEO>	"  + 
+		" <RECIBONFESTATUS>0</RECIBONFESTATUS>	"  + 
+		" <IDMOVCFO>9843</IDMOVCFO>	"  + 
+		" <VALORMERCADORIAS>0.0000</VALORMERCADORIAS>	"  + 
+		" <USARATEIOVALORFIN>0</USARATEIOVALORFIN>	"  + 
+		" <CODCOLCFOAUX>1</CODCOLCFOAUX>	"  + 
+		//" <AVISOPERMISSAO>Movimento teve seus lançamentos contábeis exportados!</AVISOPERMISSAO>	"  + 
+		" <VALORRATEIOLAN>"+VALORBRUTO+"</VALORRATEIOLAN>	"  + 
+		" <HISTORICOLONGO>"+HISTORICO+"</HISTORICOLONGO>	"  + 
+		" <RATEIOCCUSTODEPTO>"+VALORBRUTO+"</RATEIOCCUSTODEPTO>	"  + 
+		" <VALORBRUTOORIG>"+VALORBRUTO+"</VALORBRUTOORIG>	"  + 
+		" <VALORLIQUIDOORIG>"+VALORBRUTO+"</VALORLIQUIDOORIG>	"  + 
+		" <VALOROUTROSORIG>"+VALORBRUTO+"</VALOROUTROSORIG>	"  + 
+		" <VALORRATEIOLANORIG>"+VALORBRUTO+"</VALORRATEIOLANORIG>	"  + 
+		" <FLAGCONCLUSAO>0</FLAGCONCLUSAO>	"  + 
+		" <STATUSPARADIGMA>N</STATUSPARADIGMA>	"  + 
+		" <STATUSINTEGRACAO>N</STATUSINTEGRACAO>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		" <STATUSMOVINCLUSAOCOLAB>0</STATUSMOVINCLUSAOCOLAB>	"  + 
+		" <CODCOLIGADA1>1</CODCOLIGADA1>	"  + 
+		" <IDMOVHST>-1</IDMOVHST>	"  + 
+		"	  </TMOV>	"  + 
+		"	  <TNFE>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <VALORSERVICO>0.0000</VALORSERVICO>	"  + 
+		" <DEDUCAOSERVICO>0.0000</DEDUCAOSERVICO>	"  + 
+		" <ALIQUOTAISS>0.0000</ALIQUOTAISS>	"  + 
+		" <ISSRETIDO>0</ISSRETIDO>	"  + 
+		" <VALORISS>0.0000</VALORISS>	"  + 
+		" <VALORCREDITOIPTU>0.0000</VALORCREDITOIPTU>	"  + 
+		" <BASEDECALCULO>0.0000</BASEDECALCULO>	"  + 
+		" <EDITADO>0</EDITADO>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		"	  </TNFE>	"  + 
+		"	  <TMOVFISCAL>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <CONTRIBUINTECREDENCIADO>0</CONTRIBUINTECREDENCIADO>	"  + 
+		" <OPERACAOCONSUMIDORFINAL>0</OPERACAOCONSUMIDORFINAL>	"  + 
+		" <OPERACAOPRESENCIAL>0</OPERACAOPRESENCIAL>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		"	  </TMOVFISCAL>	"  + 
+		"	  <TMOVRATCCU>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <CODCCUSTO>"+CODCCUSTO+"</CODCCUSTO>	"  + 
+//		" <NOME>Divisão Jurídica - RJ</NOME>	"  + 
+		" <VALOR>"+VALORBRUTO+"</VALOR>	"  + 
+		" <IDMOVRATCCU>-1</IDMOVRATCCU>	"  + 
+		"	  </TMOVRATCCU>	"  + 
+		"	  <TITMMOV>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <NSEQITMMOV>2</NSEQITMMOV>	"  + 
+		" <CODFILIAL>2</CODFILIAL>	"  + 
+		" <NUMEROSEQUENCIAL>1</NUMEROSEQUENCIAL>	"  + 
+		" <IDPRD>15237</IDPRD>	"  + 
+		" <CODIGOPRD>09.30.0128</CODIGOPRD>	"  + 
+		" <NOMEFANTASIA>REEMBOLSO DE DESPESA C/ ALIMENTAÇÃO</NOMEFANTASIA>	"  + 
+		" <CODIGOREDUZIDO>15237</CODIGOREDUZIDO>	"  + 
+		" <NUMNOFABRIC>09.30.0128</NUMNOFABRIC>	"  + 
+		" <QUANTIDADE>1.0000</QUANTIDADE>	"  + 
+		" <PRECOUNITARIO>"+VALORBRUTO+"000000</PRECOUNITARIO>	"  + 
+		" <PRECOTABELA>0.0000</PRECOTABELA>	"  + 
+		" <DATAEMISSAO>"+DTDESPESAFORMAT+"T00:00:00</DATAEMISSAO>	"  + 
+		" <CODTB1FLX>01.015</CODTB1FLX>	"  + 
+		" <CODUND>SERV</CODUND>	"  + 
+		" <QUANTIDADEARECEBER>1.0000</QUANTIDADEARECEBER>	"  + 
+		" <VALORUNITARIO>0.0000</VALORUNITARIO>	"  + 
+		" <VALORFINANCEIRO>0.0000</VALORFINANCEIRO>	"  + 
+		" <CODCCUSTO>"+CODCCUSTO+"</CODCCUSTO>	"  + 
+		" <ALIQORDENACAO>0.0000</ALIQORDENACAO>	"  + 
+		" <QUANTIDADEORIGINAL>1.0000</QUANTIDADEORIGINAL>	"  + 
+		" <FLAG>0</FLAG>	"  + 
+		" <BLOCK>0</BLOCK>	"  + 
+		" <FATORCONVUND>0.0000</FATORCONVUND>	"  + 
+		" <VALORBRUTOITEM>"+VALORBRUTO+"000000</VALORBRUTOITEM>	"  + 
+		" <VALORTOTALITEM>"+VALORBRUTO+"000000</VALORTOTALITEM>	"  + 
+		" <QUANTIDADESEPARADA>0.0000</QUANTIDADESEPARADA>	"  + 
+		" <PERCENTCOMISSAO>0.0000</PERCENTCOMISSAO>	"  + 
+		" <COMISSAOREPRES>0.0000</COMISSAOREPRES>	"  + 
+		" <VALORESCRITURACAO>0.0000</VALORESCRITURACAO>	"  + 
+		" <VALORFINPEDIDO>0.0000</VALORFINPEDIDO>	"  + 
+		" <VALOROPFRM1>0.0000</VALOROPFRM1>	"  + 
+		" <VALOROPFRM2>0.0000</VALOROPFRM2>	"  + 
+		" <PRECOEDITADO>1</PRECOEDITADO>	"  + 
+		" <QTDEVOLUMEUNITARIO>1</QTDEVOLUMEUNITARIO>	"  + 
+		" <PRECOTOTALEDITADO>0</PRECOTOTALEDITADO>	"  + 
+		" <VALORDESCCONDICONALITM>0.0000</VALORDESCCONDICONALITM>	"  + 
+		" <VALORDESPCONDICIONALITM>0.0000</VALORDESPCONDICIONALITM>	"  + 
+		" <DATAORCAMENTO>"+DTDESPESAFORMAT+"T00:00:00</DATAORCAMENTO>	"  + 
+		" <CODTBORCAMENTO>3.2.02.02.009</CODTBORCAMENTO>	"  + 
+		" <CODCOLTBORCAMENTO>1</CODCOLTBORCAMENTO>	"  + 
+		" <VALORUNTORCAMENTO>"+VALORBRUTO+"</VALORUNTORCAMENTO>	"  + 
+		" <VALSERVICONFE>0.0000</VALSERVICONFE>	"  + 
+		" <CODLOC>02</CODLOC>	"  + 
+		" <VALORBEM>0.0000</VALORBEM>	"  + 
+		" <VALORLIQUIDO>"+VALORBRUTO+"</VALORLIQUIDO>	"  + 
+		" <RATEIOCCUSTODEPTO>"+VALORBRUTO+"</RATEIOCCUSTODEPTO>	"  + 
+		" <VALORBRUTOITEMORIG>"+VALORBRUTO+"000000</VALORBRUTOITEMORIG>	"  + 
+		" <QUANTIDADETOTAL>1.0000</QUANTIDADETOTAL>	"  + 
+		" <PRODUTOSUBSTITUTO>0</PRODUTOSUBSTITUTO>	"  + 
+		" <PRECOUNITARIOSELEC>0</PRECOUNITARIOSELEC>	"  + 
+		" <INTEGRAAPLICACAO>T</INTEGRAAPLICACAO>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		" <CODCOLIGADA1>1</CODCOLIGADA1>	"  + 
+		" <IDMOVHST>-1</IDMOVHST>	"  + 
+		" <NSEQITMMOV1>2</NSEQITMMOV1>	"  + 
+		"	  </TITMMOV>	"  + 
+		"	  <TITMMOVRATCCU>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <NSEQITMMOV>2</NSEQITMMOV>	"  + 
+		" <CODCCUSTO>"+CODCCUSTO+"</CODCCUSTO>	"  + 
+		" <NOME>Divisão Jurídica - RJ</NOME>	"  + 
+		" <VALOR>"+VALORBRUTO+"</VALOR>	"  + 
+		" <IDMOVRATCCU>-1</IDMOVRATCCU>	"  + 
+		"	  </TITMMOVRATCCU>	"  + 
+		"	  <TMOVCOMPL>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		" <CNCAUTORIZ>00</CNCAUTORIZ>	"  + 
+		" <COMPROVANT>F</COMPROVANT>	"  + 
+		" <COMPROVANTE>NAO</COMPROVANTE>	"  + 
+		" <BCISS>0.0000</BCISS>	"  + 
+		" <VREMP>0.0000</VREMP>	"  + 
+		" <MULTAREC>0.0000</MULTAREC>	"  + 
+		"	  </TMOVCOMPL>	"  + 
+		"	  <TITMMOVCOMPL>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <NSEQITMMOV>2</NSEQITMMOV>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		" <SERVICO>0.0000</SERVICO>	"  + 
+		"	  </TITMMOVCOMPL>	"  + 
+		"	  <TMOVTRANSP>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <RETIRAMERCADORIA>0</RETIRAMERCADORIA>	"  + 
+		" <TIPOCTE>0</TIPOCTE>	"  + 
+		" <TOMADORTIPO>0</TOMADORTIPO>	"  + 
+		" <TIPOEMITENTEMDFE>0</TIPOEMITENTEMDFE>	"  + 
+		" <LOTACAO>1</LOTACAO>	"  + 
+		" <TIPOTRANSPORTADORMDFE>0</TIPOTRANSPORTADORMDFE>	"  + 
+		" <TIPOBPE>0</TIPOBPE>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		"	  </TMOVTRANSP>	"  + 
+		"	  <TCTRCMOV>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <VALORNOTAS>0.0000</VALORNOTAS>	"  + 
+		" <VALORRATEADO>0.0000</VALORRATEADO>	"  + 
+		" <QUANTIDADENOTAS>0</QUANTIDADENOTAS>	"  + 
+		" <QUANTIDADERATEADAS>0</QUANTIDADERATEADAS>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		"	  </TCTRCMOV>	"  + 
+		"	  <TITMMOVFISCAL>	"  + 
+		" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
+		" <IDMOV>-1</IDMOV>	"  + 
+		" <NSEQITMMOV>2</NSEQITMMOV>	"  + 
+		" <QTDECONTRATADA>0.0000</QTDECONTRATADA>	"  + 
+		" <VLRTOTTRIB>0.0000</VLRTOTTRIB>	"  + 
+		" <AQUISICAOPAA>0</AQUISICAOPAA>	"  + 
+		" <RECCREATEDBY>"+SOLICITANTE+"</RECCREATEDBY>	"  + 
+		" <RECCREATEDON>"+HOJE+"</RECCREATEDON>	"  + 
+		" <RECMODIFIEDBY>"+SOLICITANTE+"</RECMODIFIEDBY>	"  + 
+		" <RECMODIFIEDON>"+HOJE+"</RECMODIFIEDON>	"  + 
+		"	  </TITMMOVFISCAL>	"  + 
+			"</MovMovimento>";
+		
+		log.info("CUSTOM: geraXML"+XML );
+		 
+		 return XML;
+			      
+			}  
+	
