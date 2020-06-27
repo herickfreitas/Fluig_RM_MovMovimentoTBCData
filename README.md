@@ -12,3 +12,8 @@ Desenvolvimento de BPM Fluig para que sejam incluídas solicitações diversas e
 <a href="https://tdn.totvs.com/display/public/LRM/Separadores+decimais+nos+Web+Services+do+RM" target="_blank"> Separadores decimais nos Web Services do RM<a>
 
 <a href="https://api.totvs.com.br/legado/devrm/bo_rm/MOVMOVIMENTOTBCDATA.html?Objeto=MOVMOVIMENTOTBCDATA" target="_blank"> Detalhamento e exemplo para MOVMOVIMENTOTBCDATA<a>
+
+
+<!-- copy and paste. Modify height and width if desired. -->
+<iframe class="embeddedObject shadow resizable" name="embedded_content" scrolling="no" frameborder="0" type="text/html" 
+        style="overflow:hidden;" src="https://www.screencast.com/users/herickfreitas/folders/Jing/media/09cdfdbc-869d-4ee6-9ea3-66f4ec5fffe4/embed" height="902" width="1920" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
