@@ -2,7 +2,6 @@ function validateForm(form){
 	
 	var activity = getValue('WKNumState');
 	var inicioPadrao = 0;
-	//var inicioProcesso = 2;
 	
 	log.info("displayFields WKNumState "+activity);
 	
@@ -27,7 +26,7 @@ function validateForm(form){
 			msg += "Data da despesa tem preenchimento obrigatório. \n";
 			var hasErros = true;
 			}
-		if (form.getValue('valorDespesa') == ""){
+		if ((form.getValue('valorTransporte')  == "0,00") && (form.getValue('valorAlimentacao')  == "0,00")){
 			msg += "Valor da despesa tem preenchimento obrigatório. \n";
 			var hasErros = true;
 			}

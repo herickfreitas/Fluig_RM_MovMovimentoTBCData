@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, user-scalable=no">
-  <title>Prestação de contas de despesas com alimentação </title>
+  <title>Solicitação de reembolso de despesas</title>
 
   <link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide.min.css">
 
@@ -22,25 +22,29 @@
     <div class="fluig-style-guide">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">Prestação de contas de despesas com alimentação</h2>
+          <h2 class="panel-title">Solicitação de reembolso de despesas</h2>
         </div>
         <div class="panel-body">
           <div class="container-fluid">
 
             <!-- Informação oculta por script INICIO -->
             <div class="row form-group" id="dvCustomizada"> 
-              <div class="col-xs-4 col-md-4" id="divSolicitante">
-                <label class='control-label' id='lblsolicitante'>Solicitante</label>
+              <div class="col-xs-3 col-md-3" id="divSolicitante">
+                <label class='control-label' id='lblSolicitante'>Solicitante</label>
                 <input class="form-control" type="text" name="solicitante" id="solicitante"   />
               </div>
-              <div class="col-xs-4 col-md-4" id="divGestorcc">
+              <div class="col-xs-3 col-md-3" id="divGestorcc">
                 <label class="control-label" id="lblGestorcc">Gestor do Centro de Custo</label>
                 <input class="form-control" type="text" name="gestorcc" id="gestorcc"    />
               </div>
-              <div class="col-xs-4 col-md-4" id="divAutorizador">
-                <label class="control-label" id="lblautorizador">Chefia imediata</label>
+              <div class="col-xs-3 col-md-3" id="divChefia">
+                <label class="control-label" id="lblChefia">Chefia imediata</label>
                 <input class="form-control" type="text" name="chefia" id="chefia"    />
               </div>
+              <div class="col-xs-3 col-md-3" id="divAutorizador">
+                <label class="control-label" id="lblAutorizador">Autorizador</label>
+                <input class="form-control" type="text" name="autorizador" id="autorizador"    />
+              </div>			  
             </div>
             <!-- Informação oculta por script FIM -->            
 
@@ -100,9 +104,9 @@
             </div>
 <br><br> 
             <div class="row">
-              <div class="col-xs-10 col-md-10">
-              <label class="control-label" id="lblCcusto"><strong>Selecione o Centro de Custo</strong></label>
-              <input  type="zoom"
+				<div class="col-xs-8 col-md-8">
+				<label class="control-label" id="lblCcusto"><strong>Selecione o Centro de Custo</strong></label>
+				<input  type="zoom"
                       id = "ccusto"
                       name="ccusto"
                       data-zoom="{
@@ -124,28 +128,58 @@
                           ]
                       }"
                   />
-              </div>
-            </div>
-
-<br><br>
-
-			<div class="row">
-				<div class="col-xs-6 col-md-6">
+				</div>
+			  	<div class="col-xs-4 col-md-4">
 					<label class="control-label"  id="lbldataEmissao"><strong>Data da despesa</strong></label>
 					<input class="form-control" type="text" name="dataDespesa" id="dataDespesa" />
 				</div>
+			</div>
+
+<br><br>			
+			
+			<table class="table">
+					  <thead>
+						<tr>
+						  <th scope="col">#</th>
+						  <th scope="col">Item</th>
+						  <th scope="col">Valor R$</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <th scope="row">1</th>
+						  <td>09.30.0127 - REEMBOLSO DE DESPESA C/ TRANSPORTE (TAXI/ONIBUS/ETC)</td>
+						  <td><input class="form-control" type="text" name="valorTransporte" id="valorTransporte" value="0,00"/></td>
+						</tr>
+						<tr>
+						  <th scope="row">2</th>
+						  <td>09.30.0128 - REEMBOLSO DE DESPESA C/ ALIMENTAÇÃO</td>
+						  <td><input class="form-control" type="text" name="valorAlimentacao" id="valorAlimentacao" value="0,00"/></td>
+						</tr>
+					  </tbody>
+					</table>
+			
+			
+			
+<!--			
+<br><br>
+
+			<div class="row">
+
 				<div class="col-xs-6 col-md-6">
 					<label class="control-label" id="lblCcusto"><strong>Valor despesa</strong></label>
 					<input class="form-control" type="text" name="valorDespesa" id="valorDespesa" />
 				</div>
 			</div>
-
+-->
 <br><br>
             
             <div class="row">
-              <label class="control-label" id="lblObservacaoMov"><strong>Justificativa</strong></label>
-              <textarea class="form-control" rows="5" name="observacaoMov" id="observacaoMov" ></textarea>
-            </div>    
+				<div class="col-xs-12 col-md-12">
+				  <label class="control-label" id="lblObservacaoMov"><strong>Justificativa</strong></label>
+				  <textarea class="form-control" rows="5" name="observacaoMov" id="observacaoMov" ></textarea>
+				</div>    
+			</div>    
 
 
           </div>
