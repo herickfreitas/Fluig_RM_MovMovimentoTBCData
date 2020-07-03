@@ -40,12 +40,12 @@ function ProcessamentoWorkflow(){
             throw "É preciso anexar o comprovante da despesa para continuar o processo!";
         }
         
-		// VERIFICANDO SE TEM ANEXOS - INICIO //		
+		// VERIFICANDO SE TEM ANEXOS - FIM //		
 		
 		
 		//Recupera o usuário corrente associado a atividade
 		var requisitante = getValue("WKUser");		
-		log.info("==========[ ProcessamentoWorkflow requisitante ]=========="+requisitante);
+		//log.info("==========[ ProcessamentoWorkflow requisitante ]=========="+requisitante);
 		
 		// Gravando valores no formulário
 		hAPI.setCardValue("solicitante", requisitante);
@@ -53,72 +53,62 @@ function ProcessamentoWorkflow(){
 		// Preparacao de filtro para consulta
 		var c1 = DatasetFactory.createConstraint("SOLICITANTE", requisitante, requisitante, ConstraintType.MUST);
 		var constraints = new Array(c1);
-		log.info("==========[ ProcessamentoWorkflow createDataset constraints ]========== " + constraints);
+		//log.info("==========[ ProcessamentoWorkflow createDataset constraints ]========== " + constraints);
 			    
 		// coleta dados do dataset, utlizando filtro
 		var datasetReturned = DatasetFactory.getDataset("_RM_SOLICITANTE_CHEFIA", null, constraints, null);
-		log.info("==========[ ProcessamentoWorkflow createDataset datasetReturned ] ========== " + datasetReturned);	  
+		//log.info("==========[ ProcessamentoWorkflow createDataset datasetReturned ] ========== " + datasetReturned);	  
 			    
 		// Gravando valores de retorno
 		var retorno = datasetReturned.values;
-		log.info("==========[ ProcessamentoWorkflow createDataset dataset ]========== " + retorno);
+		//log.info("==========[ ProcessamentoWorkflow createDataset dataset ]========== " + retorno);
 			
 		// Retirando o campo do resultado
 		var chefe = datasetReturned.getValue(0, "CHEFIA");
-		log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);
+		//log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);
 			
 		// Gravando retorno		
 		hAPI.setCardValue("chefia", chefe);
 		
-		
+
+		// TRATANDO RESPONSÁVEL PELO CENTRO DE CUSTO - INICIO //
 	    
 		// Coleta do centro de custo seleciondo no formulário
         var ccustoTotal = hAPI.getCardValue("ccusto");
         var ccusto = ccustoTotal.substring(0,18);
-        log.info("==========[ ProcessamentoWorkflow ccustoTotal ]=========="+ccustoTotal);
-        log.info("==========[ ProcessamentoWorkflow ccusto ]=========="+ccusto);
+        //log.info("==========[ ProcessamentoWorkflow ccustoTotal ]=========="+ccustoTotal);
+        //log.info("==========[ ProcessamentoWorkflow ccusto ]=========="+ccusto);
 
  
         // Rodando novo dataset para coletar responsável do centro de custo
         var c1 = DatasetFactory.createConstraint("CODCCUSTO", ccusto, ccusto, ConstraintType.MUST);
         var constraints = new Array(c1);
-        log.info("==========[ ProcessamentoWorkflow constraints ]========== " + constraints);
+        //log.info("==========[ ProcessamentoWorkflow constraints ]========== " + constraints);
         
         // Executando chamada de dataset
         var datasetReturned = DatasetFactory.getDataset("_RM_GESTOR_CENTRO_CUSTO", null, constraints, null);
         
 		// Retirando o campo do resultado
 		var chefe = datasetReturned.getValue(0, "RESPONSAVEL");
-		log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);        
+		//log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);        
         
         // Gravando retorno no formulário		
 		hAPI.setCardValue("gestorcc", chefe);
 		
 		
+		// TRATANDO GESTORES/AUTORIZADORES DA CNC - INICIO //
+		
 		// Atribuido valor na variável autorizador, para preenchimento do formulário
-    	if (ccusto.substring(0,11) == ('12.01.02.01'))
-    		var autorizador = 'Pool:Group:w_SG'; // COMO SG - SIMONEGUIMARAES
-    		
-    	else if (ccusto == ('20.01.02.08.70080'))
-    		var autorizador = 'Pool:Group:w_VPF'; // COMO VPF - LEANDROPINTO		
-    	
-    	else if (ccusto.substring(0,8) == ('20.01.01'))
-    			var autorizador = 'Pool:Group:w_VPF'; // COMO VPF - LEANDROPINTO
-    		
-    	else if (ccusto.substring(0,2) == ('12') || ccusto.substring(0,2) == ('13') || ccusto.substring(0,2) == ('14') || 
-    			ccusto.substring(0,2) == ('15') || ccusto.substring(0,2) == ('16'))
-    		var autorizador = 'Pool:Group:w_GP'; // COMO GP - LenouraSchmidt
-    	
-    	else if (ccusto.substring(0,2) == ('11') || ccusto.substring(0,2) == ('18') || ccusto.substring(0,2) == ('50') || 
-    			ccusto.substring(0,2) == ('90') || ccusto.substring(0,2) == ('99'))
-    		var autorizador = 'Pool:Group:w_VPF'; // COMO VPF - LEANDROPINTO
-    	
-    	else
-    		var autorizador = 'Pool:Group:w_SG'; // COMO SG - SIMONEGUIMARAES
+		
+        // Executando chamada de dataset
+        var datasetReturn = DatasetFactory.getDataset("_RM_CCUSTO_AUTORIZADOR", null, constraints, null);
+		
+		// Retirando o campo do resultado
+        var autorizador = datasetReturn.getValue(0, "");
+		//log.info("==========[ ProcessamentoWorkflow createDataset autorizador ]========== " + autorizador); 
     	
     	// Gravando retorno no formulário		
 		hAPI.setCardValue("autorizador", autorizador);
-		
 		
 		
 		}
@@ -136,10 +126,10 @@ function ProcessamentoWorkflow(){
 			
             // Criar o objeto de Integracao
             var SERVICE_STUB = ServiceManager.getService('wsDataServer');
-            log.info("AprovarWorkflow-> SERVICE_STUB: " + SERVICE_STUB);
+            //log.info("AprovarWorkflow-> SERVICE_STUB: " + SERVICE_STUB);
             
             var SERVICE_HELPER = SERVICE_STUB.getBean();
-            log.info("AprovarWorkflow-> SERVICE_HELPER: " + SERVICE_HELPER);
+            //log.info("AprovarWorkflow-> SERVICE_HELPER: " + SERVICE_HELPER);
             
             // Criar o obejto da classe principal do Servico
             var wsDataServer = SERVICE_HELPER.instantiate('com.totvs.WsDataServer');
@@ -147,11 +137,11 @@ function ProcessamentoWorkflow(){
 
             // Obter o objeto do WS
             var iWsDataServer = wsDataServer.getRMIwsDataServer();
-            log.info("AprovarWorkflow-> iWsDataServer: " + iWsDataServer);
+            //log.info("AprovarWorkflow-> iWsDataServer: " + iWsDataServer);
             
             // Configurar a autentica??o
             var authIwsDataServer = SERVICE_STUB.getBasicAuthenticatedClient(iWsDataServer, 'com.totvs.IwsDataServer', Usuario, Senha);
-            log.info("AprovarWorkflow -> authIwsDataServer: " + authIwsDataServer);
+            //log.info("AprovarWorkflow -> authIwsDataServer: " + authIwsDataServer);
             
             // Passar os parametros
             var dataServerName = "MovMovimentoTBCData";
@@ -184,7 +174,7 @@ function ProcessamentoWorkflow(){
 	
 	function GetXml() {
 		
-		log.info("CUSTOM: geraXmlContrato - inicio");
+		//log.info("CUSTOM: geraXmlContrato - inicio");
 		var XML;
 		
 		// Coletando informações do form para XML
@@ -601,7 +591,7 @@ function ProcessamentoWorkflow(){
 		
 		XML = XML + "</MovMovimento>";
 		 
-		log.info("CUSTOM: geraXML"+XML );
+		//log.info("CUSTOM: geraXML"+XML );
 		 
 		return XML;
 			      

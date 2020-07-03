@@ -1,0 +1,1530 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>SolicitacaoReembolso</processId>
+    </processDefinitionPK>
+    <processDescription>Solicitação de reembolso</processDescription>
+    <instruction></instruction>
+    <active>true</active>
+    <publicProcess>false</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>Solicitações.Financeiro</categoryId>
+    <managerEngineAllocationId>Grupo</managerEngineAllocationId>
+    <managerEngineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;w_COMPRADORES&lt;/Group&gt;&lt;/AssignmentController&gt;</managerEngineAllocationConfiguration>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>true</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>0</complementsLevel>
+    <notifyRequisitionerComplements>false</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>false</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>Solicitação de reembolso</processId>
+      <version>6</version>
+    </processDefinitionVersionPK>
+    <versionDescription></versionDescription>
+    <formId>0</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>false</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>2</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>true</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </processStatePK>
+      <stateName>Início</stateName>
+      <stateDescription>Início</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>true</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Grupo</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;Interno&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>440</positionX>
+      <positionY>68</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>116</sequence>
+      </processStatePK>
+      <stateName>Chefe Imediato - Aprovar solicitação</stateName>
+      <stateDescription>Chefe Imediato - Aprovar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>7200</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;chefia&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1800</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>40</positionX>
+      <positionY>150</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>145</sequence>
+      </processStatePK>
+      <stateName>Gestor Centro de Custos - Aprovar solicitação</stateName>
+      <stateDescription>Gestor Centro de Custos - Aprovar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>7200</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;gestorcc&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>200</positionX>
+      <positionY>140</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId>Expediente_CNC_10as19</periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>161</sequence>
+      </processStatePK>
+      <stateName>GEF - Validar solicitação</stateName>
+      <stateDescription>GEF - Validar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>7200</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Grupo</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;w_GEF&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>220</positionX>
+      <positionY>360</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>172</sequence>
+      </processStatePK>
+      <stateName>Processamento</stateName>
+      <stateDescription>Processamento</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>120</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;2&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>false</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>290</positionX>
+      <positionY>10</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>true</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>174</sequence>
+      </processStatePK>
+      <stateName>Autorizadores - Aprovar solicitação</stateName>
+      <stateDescription>Autorizadores - Aprovar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;autorizador&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>370</positionX>
+      <positionY>180</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>168</sequence>
+      </processStatePK>
+      <stateName>Exclusivo</stateName>
+      <stateDescription>Exclusivo</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>70</positionX>
+      <positionY>20</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>8</sequence>
+      </processStatePK>
+      <stateName>Aprovar</stateName>
+      <stateDescription>Aprovar</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>100</positionX>
+      <positionY>514</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>134</sequence>
+      </processStatePK>
+      <stateName>Reprovar</stateName>
+      <stateDescription>Reprovar</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>400</positionX>
+      <positionY>514</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>65</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>6</version>
+        <sequence>168</sequence>
+      </conditionProcessStatePK>
+      <condition></condition>
+      <destinationSequenceId>116</destinationSequenceId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>6</version>
+        <sequence>168</sequence>
+      </conditionProcessStatePK>
+      <condition></condition>
+      <destinationSequenceId>145</destinationSequenceId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>146</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>116</initialStateSequence>
+      <finalStateSequence>145</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>163</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>161</initialStateSequence>
+      <finalStateSequence>8</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>164</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>161</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>166</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>2</initialStateSequence>
+      <finalStateSequence>172</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>169</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>172</initialStateSequence>
+      <finalStateSequence>168</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>170</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>168</initialStateSequence>
+      <finalStateSequence>145</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>171</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>168</initialStateSequence>
+      <finalStateSequence>116</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>173</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>172</initialStateSequence>
+      <finalStateSequence>168</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>true</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>175</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>145</initialStateSequence>
+      <finalStateSequence>174</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>176</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>174</initialStateSequence>
+      <finalStateSequence>161</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeStateEntry</eventId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>var SeqProcessamento = 172;&#xd;
+var SeqAprovado = 8; // Inserir movimento no RM&#xd;
+var Usuario = &apos;integracao&apos;;&#xd;
+var Senha = &apos;!2018@Minha!&apos;;&#xd;
+&#xd;
+&#xd;
+function beforeStateEntry(sequenceId){&#xd;
+&#xd;
+	&#xd;
+	log.info(&quot;beforeStateEntry &quot;+sequenceId);&#xd;
+	&#xd;
+	//If para sequenciar conforme etapas do processo&#xd;
+    if (sequenceId == SeqProcessamento) {&#xd;
+    	ProcessamentoWorkflow();&#xd;
+    }&#xd;
+    &#xd;
+    else if (sequenceId == SeqAprovado) {&#xd;
+    	AprovarWorkflow();&#xd;
+    }&#xd;
+	&#xd;
+}&#xd;
+&#xd;
+&#xd;
+function ProcessamentoWorkflow(){&#xd;
+	try { &#xd;
+		&#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow ENTROU ]==========&quot;);&#xd;
+		&#xd;
+		&#xd;
+		// VERIFICANDO SE TEM ANEXOS - INICIO //&#xd;
+		&#xd;
+        var anexos   = hAPI.listAttachments();&#xd;
+        var temAnexo = false;&#xd;
+&#xd;
+        if (anexos.size() &gt; 0) {&#xd;
+            temAnexo = true;&#xd;
+        }&#xd;
+&#xd;
+        if (!temAnexo) {&#xd;
+            throw &quot;É preciso anexar o comprovante da despesa para continuar o processo!&quot;;&#xd;
+        }&#xd;
+        &#xd;
+		// VERIFICANDO SE TEM ANEXOS - FIM //		&#xd;
+		&#xd;
+		&#xd;
+		//Recupera o usuário corrente associado a atividade&#xd;
+		var requisitante = getValue(&quot;WKUser&quot;);		&#xd;
+		//log.info(&quot;==========[ ProcessamentoWorkflow requisitante ]==========&quot;+requisitante);&#xd;
+		&#xd;
+		// Gravando valores no formulário&#xd;
+		hAPI.setCardValue(&quot;solicitante&quot;, requisitante);&#xd;
+		&#xd;
+		// Preparacao de filtro para consulta&#xd;
+		var c1 = DatasetFactory.createConstraint(&quot;SOLICITANTE&quot;, requisitante, requisitante, ConstraintType.MUST);&#xd;
+		var constraints = new Array(c1);&#xd;
+		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset constraints ]========== &quot; + constraints);&#xd;
+			    &#xd;
+		// coleta dados do dataset, utlizando filtro&#xd;
+		var datasetReturned = DatasetFactory.getDataset(&quot;_RM_SOLICITANTE_CHEFIA&quot;, null, constraints, null);&#xd;
+		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset datasetReturned ] ========== &quot; + datasetReturned);	  &#xd;
+			    &#xd;
+		// Gravando valores de retorno&#xd;
+		var retorno = datasetReturned.values;&#xd;
+		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset dataset ]========== &quot; + retorno);&#xd;
+			&#xd;
+		// Retirando o campo do resultado&#xd;
+		var chefe = datasetReturned.getValue(0, &quot;CHEFIA&quot;);&#xd;
+		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset chefe ]========== &quot; + chefe);&#xd;
+			&#xd;
+		// Gravando retorno		&#xd;
+		hAPI.setCardValue(&quot;chefia&quot;, chefe);&#xd;
+		&#xd;
+&#xd;
+		// TRATANDO RESPONSÁVEL PELO CENTRO DE CUSTO - INICIO //&#xd;
+	    &#xd;
+		// Coleta do centro de custo seleciondo no formulário&#xd;
+        var ccustoTotal = hAPI.getCardValue(&quot;ccusto&quot;);&#xd;
+        var ccusto = ccustoTotal.substring(0,18);&#xd;
+        //log.info(&quot;==========[ ProcessamentoWorkflow ccustoTotal ]==========&quot;+ccustoTotal);&#xd;
+        //log.info(&quot;==========[ ProcessamentoWorkflow ccusto ]==========&quot;+ccusto);&#xd;
+&#xd;
+ &#xd;
+        // Rodando novo dataset para coletar responsável do centro de custo&#xd;
+        var c1 = DatasetFactory.createConstraint(&quot;CODCCUSTO&quot;, ccusto, ccusto, ConstraintType.MUST);&#xd;
+        var constraints = new Array(c1);&#xd;
+        //log.info(&quot;==========[ ProcessamentoWorkflow constraints ]========== &quot; + constraints);&#xd;
+        &#xd;
+        // Executando chamada de dataset&#xd;
+        var datasetReturned = DatasetFactory.getDataset(&quot;_RM_GESTOR_CENTRO_CUSTO&quot;, null, constraints, null);&#xd;
+        &#xd;
+		// Retirando o campo do resultado&#xd;
+		var chefe = datasetReturned.getValue(0, &quot;RESPONSAVEL&quot;);&#xd;
+		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset chefe ]========== &quot; + chefe);        &#xd;
+        &#xd;
+        // Gravando retorno no formulário		&#xd;
+		hAPI.setCardValue(&quot;gestorcc&quot;, chefe);&#xd;
+		&#xd;
+		&#xd;
+		// TRATANDO GESTORES/AUTORIZADORES DA CNC - INICIO //&#xd;
+		&#xd;
+		// Atribuido valor na variável autorizador, para preenchimento do formulário&#xd;
+		&#xd;
+        // Executando chamada de dataset&#xd;
+        var datasetReturn = DatasetFactory.getDataset(&quot;_RM_CCUSTO_AUTORIZADOR&quot;, null, constraints, null);&#xd;
+		&#xd;
+		// Retirando o campo do resultado&#xd;
+        var autorizador = datasetReturn.getValue(0, &quot;&quot;);&#xd;
+		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset autorizador ]========== &quot; + autorizador); &#xd;
+    	&#xd;
+    	// Gravando retorno no formulário		&#xd;
+		hAPI.setCardValue(&quot;autorizador&quot;, autorizador);&#xd;
+		&#xd;
+		&#xd;
+		}&#xd;
+	&#xd;
+	catch (e)&#xd;
+	{&#xd;
+		log.error(e);&#xd;
+		throw e;&#xd;
+	}&#xd;
+	}	&#xd;
+	&#xd;
+&#xd;
+	function AprovarWorkflow(){ // Inserir movimento no RM&#xd;
+		try { &#xd;
+			&#xd;
+            // Criar o objeto de Integracao&#xd;
+            var SERVICE_STUB = ServiceManager.getService(&apos;wsDataServer&apos;);&#xd;
+            //log.info(&quot;AprovarWorkflow-&gt; SERVICE_STUB: &quot; + SERVICE_STUB);&#xd;
+            &#xd;
+            var SERVICE_HELPER = SERVICE_STUB.getBean();&#xd;
+            //log.info(&quot;AprovarWorkflow-&gt; SERVICE_HELPER: &quot; + SERVICE_HELPER);&#xd;
+            &#xd;
+            // Criar o obejto da classe principal do Servico&#xd;
+            var wsDataServer = SERVICE_HELPER.instantiate(&apos;com.totvs.WsDataServer&apos;);&#xd;
+            //log.info(&quot;AprovarWorkflow-&gt; wsDataServer: &quot; + wsDataServer);&#xd;
+&#xd;
+            // Obter o objeto do WS&#xd;
+            var iWsDataServer = wsDataServer.getRMIwsDataServer();&#xd;
+            //log.info(&quot;AprovarWorkflow-&gt; iWsDataServer: &quot; + iWsDataServer);&#xd;
+            &#xd;
+            // Configurar a autentica??o&#xd;
+            var authIwsDataServer = SERVICE_STUB.getBasicAuthenticatedClient(iWsDataServer, &apos;com.totvs.IwsDataServer&apos;, Usuario, Senha);&#xd;
+            //log.info(&quot;AprovarWorkflow -&gt; authIwsDataServer: &quot; + authIwsDataServer);&#xd;
+            &#xd;
+            // Passar os parametros&#xd;
+            var dataServerName = &quot;MovMovimentoTBCData&quot;;&#xd;
+            var contexto = &quot;CODCOLIGADA=1;CODUSUARIO=integracao;CODSISTEMA=T&quot;;&#xd;
+            // Chamada da função com os dados do movimento&#xd;
+            var XML = GetXml();&#xd;
+            &#xd;
+            var result = authIwsDataServer.saveRecord(dataServerName, XML, contexto);&#xd;
+            //log.info(&quot;AprovarWorkflow-&gt; authIwsDataServer.saveRecord: &quot; + result);&#xd;
+            &#xd;
+            if ((result != null) &amp;&amp; (result.indexOf(&quot;===&quot;) != -1)) {&#xd;
+                var msgErro = result.substring(0, result.indexOf(&quot;===&quot;));                &#xd;
+                throw msgErro;&#xd;
+            }        &#xd;
+&#xd;
+            return result;&#xd;
+&#xd;
+		}&#xd;
+		&#xd;
+		catch (e)&#xd;
+		{&#xd;
+            if (e == null)  e = &quot;Erro desconhecido!&quot;;  &#xd;
+            var mensagemErro = &quot;Ocorreu um erro ao salvar dados no RM: &quot; + e;  &#xd;
+            throw mensagemErro+&quot;ERRO NO RM &quot;+result;  &#xd;
+		}&#xd;
+	&#xd;
+	}	&#xd;
+	&#xd;
+	&#xd;
+	&#xd;
+	function GetXml() {&#xd;
+		&#xd;
+		//log.info(&quot;CUSTOM: geraXmlContrato - inicio&quot;);&#xd;
+		var XML;&#xd;
+		&#xd;
+		// Coletando informações do form para XML&#xd;
+		var IDFLUIG = getValue(&apos;WKNumProces&apos;);&#xd;
+		var SOLICITANTE = hAPI.getCardValue(&quot;solicitante&quot;);&#xd;
+		var CODFILIAL = (hAPI.getCardValue(&quot;filial&quot;)).substring(0,1);&#xd;
+        var CODCFO = (hAPI.getCardValue(&quot;favorecido&quot;)).substring(0,5);&#xd;
+        var VLTRANSP = hAPI.getCardValue(&quot;valorTransporte&quot;).replace(&apos;,&apos;,&apos;.&apos;);&#xd;
+        var VLALIMENT = hAPI.getCardValue(&quot;valorAlimentacao&quot;).replace(&apos;,&apos;,&apos;.&apos;);&#xd;
+        var VALORBRUTO = (parseFloat(VLTRANSP)+parseFloat(VLALIMENT));&#xd;
+        var CODCCUSTO = (hAPI.getCardValue(&quot;ccusto&quot;)).substring(0,17);&#xd;
+        var HOJE = new Date().toISOString().slice(0,19); // Formato &quot;&quot;+DTDESPESAFORMAT+&quot;T22:34:02&quot;&#xd;
+        var HISTORICO = &quot;Solicitação Fluig : &quot;+IDFLUIG+&quot; - &quot;+(hAPI.getCardValue(&quot;observacaoMov&quot;));&#xd;
+        var DTDESPESA = hAPI.getCardValue(&quot;dataDespesa&quot;); // Formato DD/MM/AAAA&#xd;
+        var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+&quot;-&quot;+DTDESPESA.substring(3,5)+&quot;-&quot;+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD&#xd;
+		&#xd;
+        // Estruturando XML&#xd;
+		XML = &quot;&lt;MovMovimento &gt;&quot; +   &#xd;
+		&quot; &lt;TMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODFILIAL&gt;&quot;+CODFILIAL+&quot;&lt;/CODFILIAL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODLOC&gt;0&quot;+CODFILIAL+&quot;&lt;/CODLOC&gt;	&quot;  + &#xd;
+		&quot; &lt;CODLOCDESTINO&gt;0&quot;+CODFILIAL+&quot;&lt;/CODLOCDESTINO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCFO&gt;&quot;+CODCFO+&quot;&lt;/CODCFO&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMEROMOV&gt;0&lt;/NUMEROMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;SERIE&gt;OE&lt;/SERIE&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTMV&gt;1.2.35&lt;/CODTMV&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPO&gt;A&lt;/TIPO&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUS&gt;A&lt;/STATUS&gt;	&quot;  + &#xd;
+		&quot; &lt;MOVIMPRESSO&gt;0&lt;/MOVIMPRESSO&gt;	&quot;  + &#xd;
+		&quot; &lt;DOCIMPRESSO&gt;0&lt;/DOCIMPRESSO&gt;	&quot;  + &#xd;
+		&quot; &lt;FATIMPRESSA&gt;0&lt;/FATIMPRESSA&gt;	&quot;  + &#xd;
+		&quot; &lt;DATAEMISSAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAEMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATASAIDA&gt;&quot;+HOJE+&quot;&lt;/DATASAIDA&gt;	&quot;  + &#xd;
+		&quot; &lt;COMISSAOREPRES&gt;0.0000&lt;/COMISSAOREPRES&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCPG&gt;29&lt;/CODCPG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORBRUTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORLIQUIDO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORLIQUIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOROUTROS&gt;&quot;+VALORBRUTO+&quot;&lt;/VALOROUTROS&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALFRETE&gt;0.0000&lt;/PERCENTUALFRETE&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORFRETE&gt;0.0000&lt;/VALORFRETE&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALSEGURO&gt;0.0000&lt;/PERCENTUALSEGURO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORSEGURO&gt;0.0000&lt;/VALORSEGURO&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALDESC&gt;0.0000&lt;/PERCENTUALDESC&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESC&gt;0.0000&lt;/VALORDESC&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCENTUALDESP&gt;0.0000&lt;/PERCENTUALDESP&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESP&gt;0.0000&lt;/VALORDESP&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCCOMISSAO&gt;0.0000&lt;/PERCCOMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;PESOLIQUIDO&gt;0.0000&lt;/PESOLIQUIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;PESOBRUTO&gt;0.0000&lt;/PESOBRUTO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTB1FLX&gt;01.015&lt;/CODTB1FLX&gt;	&quot;  + &#xd;
+		&quot; &lt;CODTB2FLX&gt;PCR&lt;/CODTB2FLX&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVLCTFLUXUS&gt;-1&lt;/IDMOVLCTFLUXUS&gt;	&quot;  + &#xd;
+		&quot; &lt;CODMOEVALORLIQUIDO&gt;R$&lt;/CODMOEVALORLIQUIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATAMOVIMENTO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAMOVIMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMEROLCTGERADO&gt;1&lt;/NUMEROLCTGERADO&gt;	&quot;  + &#xd;
+		&quot; &lt;GEROUFATURA&gt;0&lt;/GEROUFATURA&gt;	&quot;  + &#xd;
+		&quot; &lt;NUMEROLCTABERTO&gt;1&lt;/NUMEROLCTABERTO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCFOAUX&gt;&quot;+CODCFO+&quot;&lt;/CODCFOAUX&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+		&quot; &lt;PERCCOMISSAOVEN2&gt;0.0000&lt;/PERCCOMISSAOVEN2&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLCFO&gt;1&lt;/CODCOLCFO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODUSUARIO&gt;&quot;+SOLICITANTE+&quot;&lt;/CODUSUARIO&gt;	&quot;  + &#xd;
+		&quot; &lt;CODFILIALDESTINO&gt;&quot;+CODFILIAL+&quot;&lt;/CODFILIALDESTINO&gt;	&quot;  + &#xd;
+		&quot; &lt;GERADOPORLOTE&gt;0&lt;/GERADOPORLOTE&gt;	&quot;  + &#xd;
+		&quot; &lt;CODEVENTO&gt;39&lt;/CODEVENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSEXPORTCONT&gt;1&lt;/STATUSEXPORTCONT&gt;	&quot;  + &#xd;
+		&quot; &lt;CODLOTE&gt;1235&lt;/CODLOTE&gt;	&quot;  + &#xd;
+		&quot; &lt;GEROUCONTATRABALHO&gt;0&lt;/GEROUCONTATRABALHO&gt;	&quot;  + &#xd;
+		&quot; &lt;GERADOPORCONTATRABALHO&gt;0&lt;/GERADOPORCONTATRABALHO&gt;	&quot;  + &#xd;
+		&quot; &lt;HORULTIMAALTERACAO&gt;&quot;+HOJE+&quot;&lt;/HORULTIMAALTERACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;INDUSOOBJ&gt;0.00&lt;/INDUSOOBJ&gt;	&quot;  + &#xd;
+		&quot; &lt;CONTABILIZADOPORTOTAL&gt;0&lt;/CONTABILIZADOPORTOTAL&gt;	&quot;  + &#xd;
+		&quot; &lt;INTEGRADOBONUM&gt;0&lt;/INTEGRADOBONUM&gt;	&quot;  + &#xd;
+		&quot; &lt;FLAGPROCESSADO&gt;0&lt;/FLAGPROCESSADO&gt;	&quot;  + &#xd;
+		&quot; &lt;ABATIMENTOICMS&gt;0.0000&lt;/ABATIMENTOICMS&gt;	&quot;  + &#xd;
+		&quot; &lt;HORARIOEMISSAO&gt;&quot;+HOJE+&quot;&lt;/HORARIOEMISSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;USUARIOCRIACAO&gt;&quot;+SOLICITANTE+&quot;&lt;/USUARIOCRIACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATACRIACAO&gt;&quot;+HOJE+&quot;&lt;/DATACRIACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;STSEMAIL&gt;0&lt;/STSEMAIL&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTOINTERNO&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORBRUTOINTERNO&gt;	&quot;  + &#xd;
+		&quot; &lt;VINCULADOESTOQUEFL&gt;0&lt;/VINCULADOESTOQUEFL&gt;	&quot;  + &#xd;
+		&quot; &lt;VRBASEINSSOUTRAEMPRESA&gt;0.0000&lt;/VRBASEINSSOUTRAEMPRESA&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESCCONDICIONAL&gt;0.0000&lt;/VALORDESCCONDICIONAL&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORDESPCONDICIONAL&gt;0.0000&lt;/VALORDESPCONDICIONAL&gt;	&quot;  + &#xd;
+		&quot; &lt;CONTORCAMENTOANTIGO&gt;0&lt;/CONTORCAMENTOANTIGO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATACONTABILIZACAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATACONTABILIZACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;INTEGRADOAUTOMACAO&gt;0&lt;/INTEGRADOAUTOMACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;INTEGRAAPLICACAO&gt;T&lt;/INTEGRAAPLICACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;DATALANCAMENTO&gt;&quot;+HOJE+&quot;&lt;/DATALANCAMENTO&gt;	&quot;  + &#xd;
+		&quot; &lt;EXTENPORANEO&gt;0&lt;/EXTENPORANEO&gt;	&quot;  + &#xd;
+		&quot; &lt;RECIBONFESTATUS&gt;0&lt;/RECIBONFESTATUS&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVCFO&gt;9843&lt;/IDMOVCFO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORMERCADORIAS&gt;0.0000&lt;/VALORMERCADORIAS&gt;	&quot;  + &#xd;
+		&quot; &lt;USARATEIOVALORFIN&gt;0&lt;/USARATEIOVALORFIN&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLCFOAUX&gt;1&lt;/CODCOLCFOAUX&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORRATEIOLAN&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORRATEIOLAN&gt;	&quot;  + &#xd;
+		&quot; &lt;HISTORICOLONGO&gt;&quot;+HISTORICO+&quot;&lt;/HISTORICOLONGO&gt;	&quot;  + &#xd;
+		&quot; &lt;RATEIOCCUSTODEPTO&gt;&quot;+VALORBRUTO+&quot;&lt;/RATEIOCCUSTODEPTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORBRUTOORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORBRUTOORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORLIQUIDOORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORLIQUIDOORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOROUTROSORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALOROUTROSORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORRATEIOLANORIG&gt;&quot;+VALORBRUTO+&quot;&lt;/VALORRATEIOLANORIG&gt;	&quot;  + &#xd;
+		&quot; &lt;FLAGCONCLUSAO&gt;0&lt;/FLAGCONCLUSAO&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSPARADIGMA&gt;N&lt;/STATUSPARADIGMA&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSINTEGRACAO&gt;N&lt;/STATUSINTEGRACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;STATUSMOVINCLUSAOCOLAB&gt;0&lt;/STATUSMOVINCLUSAOCOLAB&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA1&gt;1&lt;/CODCOLIGADA1&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVHST&gt;-1&lt;/IDMOVHST&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOV&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TNFE&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORSERVICO&gt;0.0000&lt;/VALORSERVICO&gt;	&quot;  + &#xd;
+		&quot; &lt;DEDUCAOSERVICO&gt;0.0000&lt;/DEDUCAOSERVICO&gt;	&quot;  + &#xd;
+		&quot; &lt;ALIQUOTAISS&gt;0.0000&lt;/ALIQUOTAISS&gt;	&quot;  + &#xd;
+		&quot; &lt;ISSRETIDO&gt;0&lt;/ISSRETIDO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORISS&gt;0.0000&lt;/VALORISS&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORCREDITOIPTU&gt;0.0000&lt;/VALORCREDITOIPTU&gt;	&quot;  + &#xd;
+		&quot; &lt;BASEDECALCULO&gt;0.0000&lt;/BASEDECALCULO&gt;	&quot;  + &#xd;
+		&quot; &lt;EDITADO&gt;0&lt;/EDITADO&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TNFE&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TMOVFISCAL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CONTRIBUINTECREDENCIADO&gt;0&lt;/CONTRIBUINTECREDENCIADO&gt;	&quot;  + &#xd;
+		&quot; &lt;OPERACAOCONSUMIDORFINAL&gt;0&lt;/OPERACAOCONSUMIDORFINAL&gt;	&quot;  + &#xd;
+		&quot; &lt;OPERACAOPRESENCIAL&gt;0&lt;/OPERACAOPRESENCIAL&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVFISCAL&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+		&quot; &lt;VALOR&gt;&quot;+VALORBRUTO+&quot;&lt;/VALOR&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOVRATCCU&gt;-1&lt;/IDMOVRATCCU&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVRATCCU&gt;	&quot;; &#xd;
+		&#xd;
+		if (VLTRANSP &gt; 1 ){&#xd;
+			XML = XML + &#xd;
+			&quot;	  &lt;TITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;1&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;CODFILIAL&gt;&quot;+CODFILIAL+&quot;&lt;/CODFILIAL&gt;	&quot;  + &#xd;
+			&quot; &lt;NUMEROSEQUENCIAL&gt;1&lt;/NUMEROSEQUENCIAL&gt;	&quot;  + &#xd;
+			&quot; &lt;IDPRD&gt;15236&lt;/IDPRD&gt;	&quot;  + &#xd;
+			&quot; &lt;CODIGOPRD&gt;09.30.0128&lt;/CODIGOPRD&gt;	&quot;  + &#xd;
+			&quot; &lt;NOMEFANTASIA&gt;REEMBOLSO DE DESPESA C/ TRANSPORTE(TAXI/ONIBUS/ETC)&lt;/NOMEFANTASIA&gt;	&quot;  + &#xd;
+			&quot; &lt;CODIGOREDUZIDO&gt;15236&lt;/CODIGOREDUZIDO&gt;	&quot;  + &#xd;
+			&quot; &lt;NUMNOFABRIC&gt;09.30.0127&lt;/NUMNOFABRIC&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADE&gt;1.0000&lt;/QUANTIDADE&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOUNITARIO&gt;&quot;+VLTRANSP+&quot;&lt;/PRECOUNITARIO&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOTABELA&gt;0.0000&lt;/PRECOTABELA&gt;	&quot;  + &#xd;
+			&quot; &lt;DATAEMISSAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAEMISSAO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODTB1FLX&gt;01.015&lt;/CODTB1FLX&gt;	&quot;  + &#xd;
+			&quot; &lt;CODUND&gt;SERV&lt;/CODUND&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEARECEBER&gt;1.0000&lt;/QUANTIDADEARECEBER&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORUNITARIO&gt;0.0000&lt;/VALORUNITARIO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORFINANCEIRO&gt;0.0000&lt;/VALORFINANCEIRO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+			&quot; &lt;ALIQORDENACAO&gt;0.0000&lt;/ALIQORDENACAO&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEORIGINAL&gt;1.0000&lt;/QUANTIDADEORIGINAL&gt;	&quot;  + &#xd;
+			&quot; &lt;FLAG&gt;0&lt;/FLAG&gt;	&quot;  + &#xd;
+			&quot; &lt;BLOCK&gt;0&lt;/BLOCK&gt;	&quot;  + &#xd;
+			&quot; &lt;FATORCONVUND&gt;0.0000&lt;/FATORCONVUND&gt;	&quot;  + &#xd;
+			&quot; &lt;VLTRANSPITEM&gt;&quot;+VLTRANSP+&quot;&lt;/VLTRANSPITEM&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORTOTALITEM&gt;&quot;+VLTRANSP+&quot;&lt;/VALORTOTALITEM&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADESEPARADA&gt;0.0000&lt;/QUANTIDADESEPARADA&gt;	&quot;  + &#xd;
+			&quot; &lt;PERCENTCOMISSAO&gt;0.0000&lt;/PERCENTCOMISSAO&gt;	&quot;  + &#xd;
+			&quot; &lt;COMISSAOREPRES&gt;0.0000&lt;/COMISSAOREPRES&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORESCRITURACAO&gt;0.0000&lt;/VALORESCRITURACAO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORFINPEDIDO&gt;0.0000&lt;/VALORFINPEDIDO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALOROPFRM1&gt;0.0000&lt;/VALOROPFRM1&gt;	&quot;  + &#xd;
+			&quot; &lt;VALOROPFRM2&gt;0.0000&lt;/VALOROPFRM2&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOEDITADO&gt;1&lt;/PRECOEDITADO&gt;	&quot;  + &#xd;
+			&quot; &lt;QTDEVOLUMEUNITARIO&gt;1&lt;/QTDEVOLUMEUNITARIO&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOTOTALEDITADO&gt;0&lt;/PRECOTOTALEDITADO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORDESCCONDICONALITM&gt;0.0000&lt;/VALORDESCCONDICONALITM&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORDESPCONDICIONALITM&gt;0.0000&lt;/VALORDESPCONDICIONALITM&gt;	&quot;  + &#xd;
+			&quot; &lt;DATAORCAMENTO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODTBORCAMENTO&gt;3.2.02.01.005&lt;/CODTBORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLTBORCAMENTO&gt;1&lt;/CODCOLTBORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORUNTORCAMENTO&gt;&quot;+VLTRANSP+&quot;&lt;/VALORUNTORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALSERVICONFE&gt;0.0000&lt;/VALSERVICONFE&gt;	&quot;  + &#xd;
+			&quot; &lt;CODLOC&gt;0&quot;+CODFILIAL+&quot;&lt;/CODLOC&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORBEM&gt;0.0000&lt;/VALORBEM&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORLIQUIDO&gt;&quot;+VLTRANSP+&quot;&lt;/VALORLIQUIDO&gt;	&quot;  + &#xd;
+			&quot; &lt;RATEIOCCUSTODEPTO&gt;&quot;+VLTRANSP+&quot;&lt;/RATEIOCCUSTODEPTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VLTRANSPITEMORIG&gt;&quot;+VLTRANSP+&quot;&lt;/VLTRANSPITEMORIG&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADETOTAL&gt;1.0000&lt;/QUANTIDADETOTAL&gt;	&quot;  + &#xd;
+			&quot; &lt;PRODUTOSUBSTITUTO&gt;0&lt;/PRODUTOSUBSTITUTO&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOUNITARIOSELEC&gt;0&lt;/PRECOUNITARIOSELEC&gt;	&quot;  + &#xd;
+			&quot; &lt;INTEGRAAPLICACAO&gt;T&lt;/INTEGRAAPLICACAO&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA1&gt;1&lt;/CODCOLIGADA1&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOVHST&gt;-1&lt;/IDMOVHST&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV1&gt;1&lt;/NSEQITMMOV1&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOV&gt;	&quot;; &#xd;
+		}&#xd;
+		&#xd;
+		if (VLALIMENT &gt; 1) {&#xd;
+			XML = XML + &#xd;
+			&quot;	  &lt;TITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;CODFILIAL&gt;&quot;+CODFILIAL+&quot;&lt;/CODFILIAL&gt;	&quot;  + &#xd;
+			&quot; &lt;NUMEROSEQUENCIAL&gt;1&lt;/NUMEROSEQUENCIAL&gt;	&quot;  + &#xd;
+			&quot; &lt;IDPRD&gt;15237&lt;/IDPRD&gt;	&quot;  + &#xd;
+			&quot; &lt;CODIGOPRD&gt;09.30.0128&lt;/CODIGOPRD&gt;	&quot;  + &#xd;
+			&quot; &lt;NOMEFANTASIA&gt;REEMBOLSO DE DESPESA C/ ALIMENTAÇÃO&lt;/NOMEFANTASIA&gt;	&quot;  + &#xd;
+			&quot; &lt;CODIGOREDUZIDO&gt;15237&lt;/CODIGOREDUZIDO&gt;	&quot;  + &#xd;
+			&quot; &lt;NUMNOFABRIC&gt;09.30.0128&lt;/NUMNOFABRIC&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADE&gt;1.0000&lt;/QUANTIDADE&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOUNITARIO&gt;&quot;+VLALIMENT+&quot;&lt;/PRECOUNITARIO&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOTABELA&gt;0.0000&lt;/PRECOTABELA&gt;	&quot;  + &#xd;
+			&quot; &lt;DATAEMISSAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAEMISSAO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODTB1FLX&gt;01.015&lt;/CODTB1FLX&gt;	&quot;  + &#xd;
+			&quot; &lt;CODUND&gt;SERV&lt;/CODUND&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEARECEBER&gt;1.0000&lt;/QUANTIDADEARECEBER&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORUNITARIO&gt;0.0000&lt;/VALORUNITARIO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORFINANCEIRO&gt;0.0000&lt;/VALORFINANCEIRO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+			&quot; &lt;ALIQORDENACAO&gt;0.0000&lt;/ALIQORDENACAO&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEORIGINAL&gt;1.0000&lt;/QUANTIDADEORIGINAL&gt;	&quot;  + &#xd;
+			&quot; &lt;FLAG&gt;0&lt;/FLAG&gt;	&quot;  + &#xd;
+			&quot; &lt;BLOCK&gt;0&lt;/BLOCK&gt;	&quot;  + &#xd;
+			&quot; &lt;FATORCONVUND&gt;0.0000&lt;/FATORCONVUND&gt;	&quot;  + &#xd;
+			&quot; &lt;VLTRANSPITEM&gt;&quot;+VLALIMENT+&quot;&lt;/VLTRANSPITEM&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORTOTALITEM&gt;&quot;+VLALIMENT+&quot;&lt;/VALORTOTALITEM&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADESEPARADA&gt;0.0000&lt;/QUANTIDADESEPARADA&gt;	&quot;  + &#xd;
+			&quot; &lt;PERCENTCOMISSAO&gt;0.0000&lt;/PERCENTCOMISSAO&gt;	&quot;  + &#xd;
+			&quot; &lt;COMISSAOREPRES&gt;0.0000&lt;/COMISSAOREPRES&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORESCRITURACAO&gt;0.0000&lt;/VALORESCRITURACAO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORFINPEDIDO&gt;0.0000&lt;/VALORFINPEDIDO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALOROPFRM1&gt;0.0000&lt;/VALOROPFRM1&gt;	&quot;  + &#xd;
+			&quot; &lt;VALOROPFRM2&gt;0.0000&lt;/VALOROPFRM2&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOEDITADO&gt;1&lt;/PRECOEDITADO&gt;	&quot;  + &#xd;
+			&quot; &lt;QTDEVOLUMEUNITARIO&gt;1&lt;/QTDEVOLUMEUNITARIO&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOTOTALEDITADO&gt;0&lt;/PRECOTOTALEDITADO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORDESCCONDICONALITM&gt;0.0000&lt;/VALORDESCCONDICONALITM&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORDESPCONDICIONALITM&gt;0.0000&lt;/VALORDESPCONDICIONALITM&gt;	&quot;  + &#xd;
+			&quot; &lt;DATAORCAMENTO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODTBORCAMENTO&gt;3.2.02.02.009&lt;/CODTBORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLTBORCAMENTO&gt;1&lt;/CODCOLTBORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORUNTORCAMENTO&gt;&quot;+VLALIMENT+&quot;&lt;/VALORUNTORCAMENTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALSERVICONFE&gt;0.0000&lt;/VALSERVICONFE&gt;	&quot;  + &#xd;
+			&quot; &lt;CODLOC&gt;0&quot;+CODFILIAL+&quot;&lt;/CODLOC&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORBEM&gt;0.0000&lt;/VALORBEM&gt;	&quot;  + &#xd;
+			&quot; &lt;VALORLIQUIDO&gt;&quot;+VLALIMENT+&quot;&lt;/VALORLIQUIDO&gt;	&quot;  + &#xd;
+			&quot; &lt;RATEIOCCUSTODEPTO&gt;&quot;+VLALIMENT+&quot;&lt;/RATEIOCCUSTODEPTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VLTRANSPITEMORIG&gt;&quot;+VLALIMENT+&quot;&lt;/VLTRANSPITEMORIG&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADETOTAL&gt;1.0000&lt;/QUANTIDADETOTAL&gt;	&quot;  + &#xd;
+			&quot; &lt;PRODUTOSUBSTITUTO&gt;0&lt;/PRODUTOSUBSTITUTO&gt;	&quot;  + &#xd;
+			&quot; &lt;PRECOUNITARIOSELEC&gt;0&lt;/PRECOUNITARIOSELEC&gt;	&quot;  + &#xd;
+			&quot; &lt;INTEGRAAPLICACAO&gt;T&lt;/INTEGRAAPLICACAO&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA1&gt;1&lt;/CODCOLIGADA1&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOVHST&gt;-1&lt;/IDMOVHST&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV1&gt;2&lt;/NSEQITMMOV1&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOV&gt;	&quot;;&#xd;
+		}&#xd;
+		&#xd;
+		if (VLTRANSP &gt; 1) {&#xd;
+			XML = XML + &#xd;
+			&quot;	  &lt;TITMMOVRATCCU&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;1&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALOR&gt;&quot;+VLTRANSP+&quot;&lt;/VALOR&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOVRATCCU&gt;-1&lt;/IDMOVRATCCU&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOVRATCCU&gt;	&quot;;&#xd;
+		}&#xd;
+				&#xd;
+		if (VLALIMENT &gt; 1) {&#xd;
+			XML = XML + &#xd;
+			&quot;	  &lt;TITMMOVRATCCU&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
+			&quot; &lt;VALOR&gt;&quot;+VLALIMENT+&quot;&lt;/VALOR&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOVRATCCU&gt;-1&lt;/IDMOVRATCCU&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOVRATCCU&gt;	&quot;;&#xd;
+		}&#xd;
+		&#xd;
+		XML = XML +&#xd;
+		&quot;	  &lt;TMOVCOMPL&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;CNCAUTORIZ&gt;00&lt;/CNCAUTORIZ&gt;	&quot;  + &#xd;
+		&quot; &lt;COMPROVANT&gt;F&lt;/COMPROVANT&gt;	&quot;  + &#xd;
+		&quot; &lt;COMPROVANTE&gt;NAO&lt;/COMPROVANTE&gt;	&quot;  + &#xd;
+		&quot; &lt;BCISS&gt;0.0000&lt;/BCISS&gt;	&quot;  + &#xd;
+		&quot; &lt;VREMP&gt;0.0000&lt;/VREMP&gt;	&quot;  + &#xd;
+		&quot; &lt;MULTAREC&gt;0.0000&lt;/MULTAREC&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVCOMPL&gt;	&quot;;&#xd;
+		&#xd;
+		if (VLTRANSP &gt; 1) {&#xd;
+			XML = XML +&#xd;
+			&quot;	  &lt;TITMMOVCOMPL&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;1&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;SERVICO&gt;0.0000&lt;/SERVICO&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOVCOMPL&gt;	&quot;;&#xd;
+		}&#xd;
+		&#xd;
+		if (VLALIMENT &gt; 1) {&#xd;
+			XML = XML +&#xd;
+			&quot;	  &lt;TITMMOVCOMPL&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;SERVICO&gt;0.0000&lt;/SERVICO&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOVCOMPL&gt;	&quot;;&#xd;
+		}&#xd;
+			&#xd;
+		&#xd;
+		XML = XML +&#xd;
+		&quot;	  &lt;TMOVTRANSP&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;RETIRAMERCADORIA&gt;0&lt;/RETIRAMERCADORIA&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOCTE&gt;0&lt;/TIPOCTE&gt;	&quot;  + &#xd;
+		&quot; &lt;TOMADORTIPO&gt;0&lt;/TOMADORTIPO&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOEMITENTEMDFE&gt;0&lt;/TIPOEMITENTEMDFE&gt;	&quot;  + &#xd;
+		&quot; &lt;LOTACAO&gt;1&lt;/LOTACAO&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOTRANSPORTADORMDFE&gt;0&lt;/TIPOTRANSPORTADORMDFE&gt;	&quot;  + &#xd;
+		&quot; &lt;TIPOBPE&gt;0&lt;/TIPOBPE&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TMOVTRANSP&gt;	&quot;  + &#xd;
+		&quot;	  &lt;TCTRCMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+		&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORNOTAS&gt;0.0000&lt;/VALORNOTAS&gt;	&quot;  + &#xd;
+		&quot; &lt;VALORRATEADO&gt;0.0000&lt;/VALORRATEADO&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADENOTAS&gt;0&lt;/QUANTIDADENOTAS&gt;	&quot;  + &#xd;
+		&quot; &lt;QUANTIDADERATEADAS&gt;0&lt;/QUANTIDADERATEADAS&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+		&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+		&quot;	  &lt;/TCTRCMOV&gt;	&quot;; &#xd;
+		&#xd;
+		&#xd;
+		if (VLTRANSP &gt; 1) {&#xd;
+			XML = XML +&#xd;
+			&quot;	  &lt;TITMMOVFISCAL&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;1&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;QTDECONTRATADA&gt;0.0000&lt;/QTDECONTRATADA&gt;	&quot;  + &#xd;
+			&quot; &lt;VLRTOTTRIB&gt;0.0000&lt;/VLRTOTTRIB&gt;	&quot;  + &#xd;
+			&quot; &lt;AQUISICAOPAA&gt;0&lt;/AQUISICAOPAA&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOVFISCAL&gt;	&quot;;&#xd;
+		}&#xd;
+			&#xd;
+		&#xd;
+		if (VLALIMENT &gt; 1) {&#xd;
+			XML = XML +&#xd;
+			&quot;	  &lt;TITMMOVFISCAL&gt;	&quot;  + &#xd;
+			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
+			&quot; &lt;IDMOV&gt;-1&lt;/IDMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;NSEQITMMOV&gt;2&lt;/NSEQITMMOV&gt;	&quot;  + &#xd;
+			&quot; &lt;QTDECONTRATADA&gt;0.0000&lt;/QTDECONTRATADA&gt;	&quot;  + &#xd;
+			&quot; &lt;VLRTOTTRIB&gt;0.0000&lt;/VLRTOTTRIB&gt;	&quot;  + &#xd;
+			&quot; &lt;AQUISICAOPAA&gt;0&lt;/AQUISICAOPAA&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECCREATEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECCREATEDON&gt;&quot;+HOJE+&quot;&lt;/RECCREATEDON&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDBY&gt;&quot;+SOLICITANTE+&quot;&lt;/RECMODIFIEDBY&gt;	&quot;  + &#xd;
+			&quot; &lt;RECMODIFIEDON&gt;&quot;+HOJE+&quot;&lt;/RECMODIFIEDON&gt;	&quot;  + &#xd;
+			&quot;	  &lt;/TITMMOVFISCAL&gt;	&quot;;&#xd;
+		}&#xd;
+		&#xd;
+		XML = XML + &quot;&lt;/MovMovimento&gt;&quot;;&#xd;
+		 &#xd;
+		//log.info(&quot;CUSTOM: geraXML&quot;+XML );&#xd;
+		 &#xd;
+		return XML;&#xd;
+			      &#xd;
+			}  &#xd;
+	&#xd;
+</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list>
+    <AdvancedProcessProperties>
+      <advancedProcessPropertiesPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <propertyId>AutomaticTasks</propertyId>
+        <version>6</version>
+      </advancedProcessPropertiesPK>
+      <propertieValue></propertieValue>
+    </AdvancedProcessProperties>
+  </list>
+  <list>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>134</height>
+      <width>531</width>
+      <positionX>2</positionX>
+      <positionY>0</positionY>
+      <stateName>Solicitante</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>155</height>
+      <width>531</width>
+      <positionX>2</positionX>
+      <positionY>316</positionY>
+      <stateName>Gerencia financeira e contábil</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>82b0b7</color>
+      <height>117</height>
+      <width>285</width>
+      <positionX>249</positionX>
+      <positionY>470</positionY>
+      <stateName>Reprovar</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>3</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>A7FCC0</color>
+      <height>117</height>
+      <width>248</width>
+      <positionX>2</positionX>
+      <positionY>470</positionY>
+      <stateName>Aprovar</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>183</height>
+      <width>531</width>
+      <positionX>2</positionX>
+      <positionY>133</positionY>
+      <stateName>Gestão </stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>5</sequence>
+      </swimLanePK>
+    </SwimLane>
+  </list>
+  <list/>
+  <list/>
+  <list>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>6</version>
+        <linkSequence>169</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>244</positionX>
+      <positionY>96</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>6</version>
+        <linkSequence>173</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>172</positionX>
+      <positionY>18</positionY>
+    </ProcessLinkBend>
+  </list>
+  <list/>
+  <list>
+    <ExtendedPropertyField>
+      <extendedPropertyFieldPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>6</version>
+        <stateSequence>0</stateSequence>
+        <propertyName>AutomaticTasks</propertyName>
+      </extendedPropertyFieldPK>
+      <propertyType>0</propertyType>
+      <propertyDescription>AutomaticTasks</propertyDescription>
+      <propertyValue></propertyValue>
+      <isDefaultProperty>false</isDefaultProperty>
+    </ExtendedPropertyField>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>116</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description>Solicitação de Outras Entradas</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>116</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description>@[form:valorliquido]</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>116</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description>117</description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>172</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>172</stateSequence>
+      <appKey>approval</appKey>
+      <appField>description</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>172</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>172</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>6</processVersion>
+      <stateSequence>172</stateSequence>
+      <appKey>approval</appKey>
+      <appField>reject</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+  </list>
+  <list/>
+  <list>
+    <ConditionProcessAutomaticRules>
+      <sequence>168</sequence>
+      <expressionOrder>1</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>chefia</field>
+      <value>gestorcc</value>
+      <operator>2</operator>
+      <valueType>0</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>168</sequence>
+      <expressionOrder>2</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>chefia</field>
+      <value>gestorcc</value>
+      <operator>1</operator>
+      <valueType>0</valueType>
+    </ConditionProcessAutomaticRules>
+  </list>
+</list>
