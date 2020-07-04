@@ -1,7 +1,8 @@
 # Fluig_RM_MovMovimentoTBCData
-Desenvolvimento de BPM Fluig para que sejam incluídas solicitações diversas e ao final do processo  estas sejam inseridas em movimentos do sistema TOTVS RM quando aprovadas.
+Desenvolvimento de Workflow Fluig para que sejam incluídas solicitações de reembolso de despesas e quando aprovadas ao final do processo, 
+sejam inseridas em um movimento expecífico do sistema TOTVS RM.
 
-
+<br><br>
 
 <h2> Atividade e conhecimentos preliminares </h2>
 
@@ -17,7 +18,7 @@ Desenvolvimento de BPM Fluig para que sejam incluídas solicitações diversas e
 <br><br>
 
 
-<h2> Video demonstrativo - Microsoft Stream </h2>
+<h2> Vídeo demonstrativo - Microsoft Stream </h2>
 
 [![Video demonstrativo](/img/PrintVideo.JPG)](https://web.microsoftstream.com/video/7cc6c259-68b2-4a11-badb-1fba03c10c58)
 
