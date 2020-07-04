@@ -16,6 +16,6 @@ Desenvolvimento de BPM Fluig para que sejam incluídas solicitações diversas e
 
 <br>
 
-[![Video demonstrativo](\imgPrint\Video.JPG)](https://web.microsoftstream.com/video/7cc6c259-68b2-4a11-badb-1fba03c10c58)
+[![Video demonstrativo](/img/PrintVideo.JPG)](https://web.microsoftstream.com/video/7cc6c259-68b2-4a11-badb-1fba03c10c58)
 
 
