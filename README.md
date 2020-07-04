@@ -14,7 +14,10 @@ Desenvolvimento de BPM Fluig para que sejam incluídas solicitações diversas e
 <a href="https://api.totvs.com.br/legado/devrm/bo_rm/MOVMOVIMENTOTBCDATA.html?Objeto=MOVMOVIMENTOTBCDATA" target="_blank"> Detalhamento e exemplo para MOVMOVIMENTOTBCDATA<a>
 
 
-<br>
+<br><br>
+
+
+<h2> Video demonstrativo - Microsoft Stream </h2>
 
 [![Video demonstrativo](/img/PrintVideo.JPG)](https://web.microsoftstream.com/video/7cc6c259-68b2-4a11-badb-1fba03c10c58)
 
