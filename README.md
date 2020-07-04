@@ -4,7 +4,7 @@ sejam inseridas em um movimento expecífico do sistema TOTVS RM.
 
 <br><br>
 
-<h2> Atividade e conhecimentos preliminares </h2>
+<h2> Atividades e conhecimentos preliminares </h2>
 
 <a href="https://centraldeatendimento.totvs.com/hc/pt-br/articles/360003035312-RM-Integra%C3%A7%C3%B5es-Como-habilitar-webservice-via-RM-HOST?source=search" target="_blank"> RM - Integrações - Como habilitar webservice via RM HOST <a>
 
