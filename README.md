@@ -18,8 +18,8 @@ sejam inseridas em um movimento expecífico do sistema TOTVS RM.
 <br><br>
 
 
-<h2> Vídeo demonstrativo - Microsoft Stream </h2>
+<h2> Vídeo demonstrativo </h2>
 
-[![Video demonstrativo](/img/PrintVideo.JPG)](https://web.microsoftstream.com/video/7cc6c259-68b2-4a11-badb-1fba03c10c58)
+[![Video demonstrativo](/img/PrintVideo.JPG)](https://youtu.be/sdeYsyOa9r4)
 
 
