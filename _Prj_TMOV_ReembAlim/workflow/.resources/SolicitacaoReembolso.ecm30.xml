@@ -29,7 +29,7 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Solicitação de reembolso</processId>
-      <version>6</version>
+      <version>8</version>
     </processDefinitionVersionPK>
     <versionDescription></versionDescription>
     <formId>0</formId>
@@ -76,8 +76,8 @@
       <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
       <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
       <automatic>false</automatic>
-      <positionX>440</positionX>
-      <positionY>68</positionY>
+      <positionX>420</positionX>
+      <positionY>10</positionY>
       <forecastedEffortType>0</forecastedEffortType>
       <forecastedEffort>0</forecastedEffort>
       <notifyManagerFollowUp>false</notifyManagerFollowUp>
@@ -231,7 +231,7 @@
       <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
       <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
       <automatic>false</automatic>
-      <positionX>220</positionX>
+      <positionX>170</positionX>
       <positionY>360</positionY>
       <forecastedEffortType>0</forecastedEffortType>
       <forecastedEffort>0</forecastedEffort>
@@ -260,8 +260,8 @@
         <version>1</version>
         <sequence>172</sequence>
       </processStatePK>
-      <stateName>Processamento</stateName>
-      <stateDescription>Processamento</stateDescription>
+      <stateName>Processamento do fluxo de aprovação</stateName>
+      <stateDescription>Processamento do fluxo de aprovação</stateDescription>
       <instruction></instruction>
       <deadlineTime>120</deadlineTime>
       <deadlineFieldName></deadlineFieldName>
@@ -283,8 +283,8 @@
       <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
       <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
       <automatic>false</automatic>
-      <positionX>290</positionX>
-      <positionY>10</positionY>
+      <positionX>250</positionX>
+      <positionY>15</positionY>
       <forecastedEffortType>0</forecastedEffortType>
       <forecastedEffort>0</forecastedEffort>
       <notifyManagerFollowUp>false</notifyManagerFollowUp>
@@ -335,8 +335,60 @@
       <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
       <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
       <automatic>false</automatic>
-      <positionX>370</positionX>
-      <positionY>180</positionY>
+      <positionX>350</positionX>
+      <positionY>160</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>180</sequence>
+      </processStatePK>
+      <stateName>Solicitante - Ajustar solicitação</stateName>
+      <stateDescription>Solicitante - Ajustar solicitação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;solicitante&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>490</positionX>
+      <positionY>20</positionY>
       <forecastedEffortType>0</forecastedEffortType>
       <forecastedEffort>0</forecastedEffort>
       <notifyManagerFollowUp>false</notifyManagerFollowUp>
@@ -458,8 +510,8 @@
       <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
       <notifyRequisitionerFollowUp>true</notifyRequisitionerFollowUp>
       <automatic>false</automatic>
-      <positionX>400</positionX>
-      <positionY>514</positionY>
+      <positionX>470</positionX>
+      <positionY>512</positionY>
       <forecastedEffortType>0</forecastedEffortType>
       <forecastedEffort>0</forecastedEffort>
       <notifyManagerFollowUp>false</notifyManagerFollowUp>
@@ -483,7 +535,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <expressionOrder>1</expressionOrder>
-        <version>6</version>
+        <version>8</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -495,7 +547,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <expressionOrder>2</expressionOrder>
-        <version>6</version>
+        <version>8</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -668,6 +720,108 @@
       <returnPermited>false</returnPermited>
       <initialStateSequence>174</initialStateSequence>
       <finalStateSequence>161</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>177</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>116</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>178</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>145</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>179</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>174</initialStateSequence>
+      <finalStateSequence>134</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>181</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>161</initialStateSequence>
+      <finalStateSequence>180</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>183</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>180</initialStateSequence>
+      <finalStateSequence>161</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <linkSequence>184</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>180</initialStateSequence>
+      <finalStateSequence>172</finalStateSequence>
       <returnLabel></returnLabel>
       <name></name>
       <automaticLink>false</automaticLink>
@@ -1292,7 +1446,7 @@ function ProcessamentoWorkflow(){&#xd;
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <propertyId>AutomaticTasks</propertyId>
-        <version>6</version>
+        <version>8</version>
       </advancedProcessPropertiesPK>
       <propertieValue></propertieValue>
     </AdvancedProcessProperties>
@@ -1301,7 +1455,7 @@ function ProcessamentoWorkflow(){&#xd;
     <SwimLane>
       <color>FFFFFF</color>
       <height>134</height>
-      <width>531</width>
+      <width>629</width>
       <positionX>2</positionX>
       <positionY>0</positionY>
       <stateName>Solicitante</stateName>
@@ -1317,7 +1471,7 @@ function ProcessamentoWorkflow(){&#xd;
     <SwimLane>
       <color>FFFFFF</color>
       <height>155</height>
-      <width>531</width>
+      <width>629</width>
       <positionX>2</positionX>
       <positionY>316</positionY>
       <stateName>Gerencia financeira e contábil</stateName>
@@ -1333,8 +1487,8 @@ function ProcessamentoWorkflow(){&#xd;
     <SwimLane>
       <color>82b0b7</color>
       <height>117</height>
-      <width>285</width>
-      <positionX>249</positionX>
+      <width>326</width>
+      <positionX>305</positionX>
       <positionY>470</positionY>
       <stateName>Reprovar</stateName>
       <type>2</type>
@@ -1349,7 +1503,7 @@ function ProcessamentoWorkflow(){&#xd;
     <SwimLane>
       <color>A7FCC0</color>
       <height>117</height>
-      <width>248</width>
+      <width>304</width>
       <positionX>2</positionX>
       <positionY>470</positionY>
       <stateName>Aprovar</stateName>
@@ -1365,7 +1519,7 @@ function ProcessamentoWorkflow(){&#xd;
     <SwimLane>
       <color>FFFFFF</color>
       <height>183</height>
-      <width>531</width>
+      <width>629</width>
       <positionX>2</positionX>
       <positionY>133</positionY>
       <stateName>Gestão </stateName>
@@ -1386,23 +1540,100 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>6</version>
+        <version>8</version>
         <linkSequence>169</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
-      <positionX>244</positionX>
-      <positionY>96</positionY>
+      <positionX>173</positionX>
+      <positionY>101</positionY>
     </ProcessLinkBend>
     <ProcessLinkBend>
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>6</version>
+        <version>8</version>
         <linkSequence>173</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
       <positionX>172</positionX>
       <positionY>18</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>8</version>
+        <linkSequence>177</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>92</positionX>
+      <positionY>329</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>8</version>
+        <linkSequence>177</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>433</positionX>
+      <positionY>329</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>8</version>
+        <linkSequence>178</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>252</positionX>
+      <positionY>325</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>8</version>
+        <linkSequence>178</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>436</positionX>
+      <positionY>325</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>8</version>
+        <linkSequence>181</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>557</positionX>
+      <positionY>398</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>8</version>
+        <linkSequence>183</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>601</positionX>
+      <positionY>72</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>8</version>
+        <linkSequence>183</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>601</positionX>
+      <positionY>398</positionY>
     </ProcessLinkBend>
   </list>
   <list/>
@@ -1411,7 +1642,7 @@ function ProcessamentoWorkflow(){&#xd;
       <extendedPropertyFieldPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>6</version>
+        <version>8</version>
         <stateSequence>0</stateSequence>
         <propertyName>AutomaticTasks</propertyName>
       </extendedPropertyFieldPK>
@@ -1429,7 +1660,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1439,7 +1670,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1449,7 +1680,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1459,7 +1690,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1469,7 +1700,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1479,7 +1710,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1489,7 +1720,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1499,8 +1730,58 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>6</processVersion>
+      <processVersion>8</processVersion>
       <stateSequence>172</stateSequence>
+      <appKey>approval</appKey>
+      <appField>reject</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>8</processVersion>
+      <stateSequence>180</stateSequence>
+      <appKey>approval</appKey>
+      <appField>title</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>8</processVersion>
+      <stateSequence>180</stateSequence>
+      <appKey>approval</appKey>
+      <appField>description</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>8</processVersion>
+      <stateSequence>180</stateSequence>
+      <appKey>approval</appKey>
+      <appField>highlight</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>8</processVersion>
+      <stateSequence>180</stateSequence>
+      <appKey>approval</appKey>
+      <appField>approve</appField>
+      <description></description>
+    </ProcessAppConfiguration>
+    <ProcessAppConfiguration>
+      <id>0</id>
+      <tenantId>0</tenantId>
+      <processId>SolicitacaoReembolso</processId>
+      <processVersion>8</processVersion>
+      <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
       <description></description>
