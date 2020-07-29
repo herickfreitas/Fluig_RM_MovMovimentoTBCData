@@ -1,5 +1,5 @@
 # Fluig_RM_MovMovimentoTBCData
-Este Workflow Fluig trata solicitações de reembolso de despesas (exclusivamente de reembolsos com transporte e almentação) 
+Este Workflow Fluig trata solicitações de reembolso de despesas (exclusivamente de reembolsos com transporte e alimentação) 
 e quando aprovadas ao final do processo, são inseridas em um movimento específico do sistema TOTVS RM.
 
 <br><br>
