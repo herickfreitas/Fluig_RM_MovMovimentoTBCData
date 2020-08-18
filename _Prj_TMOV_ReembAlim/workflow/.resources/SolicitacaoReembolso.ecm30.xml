@@ -29,7 +29,7 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Solicitação de Reembolso</processId>
-      <version>18</version>
+      <version>9</version>
     </processDefinitionVersionPK>
     <versionDescription></versionDescription>
     <formId>0</formId>
@@ -535,7 +535,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <expressionOrder>1</expressionOrder>
-        <version>18</version>
+        <version>9</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -547,7 +547,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <expressionOrder>2</expressionOrder>
-        <version>18</version>
+        <version>9</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition></condition>
@@ -885,7 +885,7 @@ function ProcessamentoWorkflow(){&#xd;
 		&#xd;
 		//Recupera o usuário corrente associado a atividade&#xd;
 		var requisitante = getValue(&quot;WKUser&quot;);		&#xd;
-		//log.info(&quot;==========[ ProcessamentoWorkflow requisitante ]==========&quot;+requisitante);&#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow requisitante ]==========&quot;+requisitante);&#xd;
 		&#xd;
 		// Gravando valores no formulário&#xd;
 		hAPI.setCardValue(&quot;solicitante&quot;, requisitante);&#xd;
@@ -893,19 +893,19 @@ function ProcessamentoWorkflow(){&#xd;
 		// Preparacao de filtro para consulta&#xd;
 		var c1 = DatasetFactory.createConstraint(&quot;SOLICITANTE&quot;, requisitante, requisitante, ConstraintType.MUST);&#xd;
 		var constraints = new Array(c1);&#xd;
-		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset constraints ]========== &quot; + constraints);&#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow createDataset constraints ]========== &quot; + constraints);&#xd;
 			    &#xd;
 		// coleta dados do dataset, utlizando filtro&#xd;
 		var datasetReturned = DatasetFactory.getDataset(&quot;_RM_SOLICITANTE_CHEFIA&quot;, null, constraints, null);&#xd;
-		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset datasetReturned ] ========== &quot; + datasetReturned);	  &#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow createDataset datasetReturned ] ========== &quot; + datasetReturned);	  &#xd;
 			    &#xd;
 		// Gravando valores de retorno&#xd;
 		var retorno = datasetReturned.values;&#xd;
-		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset dataset ]========== &quot; + retorno);&#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow createDataset dataset ]========== &quot; + retorno);&#xd;
 			&#xd;
 		// Retirando o campo do resultado&#xd;
 		var chefe = datasetReturned.getValue(0, &quot;CHEFIA&quot;);&#xd;
-		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset chefe ]========== &quot; + chefe);&#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow createDataset chefe ]========== &quot; + chefe);&#xd;
 			&#xd;
 		// Gravando retorno		&#xd;
 		hAPI.setCardValue(&quot;chefia&quot;, chefe);&#xd;
@@ -916,21 +916,21 @@ function ProcessamentoWorkflow(){&#xd;
 		// Coleta do centro de custo seleciondo no formulário&#xd;
         var ccustoTotal = hAPI.getCardValue(&quot;ccusto&quot;);&#xd;
         var ccusto = ccustoTotal.substring(0,18);&#xd;
-        //log.info(&quot;==========[ ProcessamentoWorkflow ccustoTotal ]==========&quot;+ccustoTotal);&#xd;
-        //log.info(&quot;==========[ ProcessamentoWorkflow ccusto ]==========&quot;+ccusto);&#xd;
+        log.info(&quot;==========[ ProcessamentoWorkflow ccustoTotal ]==========&quot;+ccustoTotal);&#xd;
+        log.info(&quot;==========[ ProcessamentoWorkflow ccusto ]==========&quot;+ccusto);&#xd;
 &#xd;
  &#xd;
         // Rodando novo dataset para coletar responsável do centro de custo&#xd;
         var c1 = DatasetFactory.createConstraint(&quot;CODCCUSTO&quot;, ccusto, ccusto, ConstraintType.MUST);&#xd;
         var constraints = new Array(c1);&#xd;
-        //log.info(&quot;==========[ ProcessamentoWorkflow constraints ]========== &quot; + constraints);&#xd;
+        log.info(&quot;==========[ ProcessamentoWorkflow constraints ]========== &quot; + constraints);&#xd;
         &#xd;
         // Executando chamada de dataset&#xd;
         var datasetReturned = DatasetFactory.getDataset(&quot;_RM_GESTOR_CENTRO_CUSTO&quot;, null, constraints, null);&#xd;
         &#xd;
 		// Retirando o campo do resultado&#xd;
 		var chefe = datasetReturned.getValue(0, &quot;RESPONSAVEL&quot;);&#xd;
-		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset chefe ]========== &quot; + chefe);        &#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow createDataset chefe ]========== &quot; + chefe);        &#xd;
         &#xd;
         // Gravando retorno no formulário		&#xd;
 		hAPI.setCardValue(&quot;gestorcc&quot;, chefe);&#xd;
@@ -945,7 +945,7 @@ function ProcessamentoWorkflow(){&#xd;
 		&#xd;
 		// Retirando o campo do resultado&#xd;
         var autorizador = datasetReturn.getValue(0, &quot;&quot;);&#xd;
-		//log.info(&quot;==========[ ProcessamentoWorkflow createDataset autorizador ]========== &quot; + autorizador); &#xd;
+		log.info(&quot;==========[ ProcessamentoWorkflow createDataset autorizador ]========== &quot; + autorizador); &#xd;
     	&#xd;
     	// Gravando retorno no formulário		&#xd;
 		hAPI.setCardValue(&quot;autorizador&quot;, autorizador);&#xd;
@@ -965,23 +965,23 @@ function ProcessamentoWorkflow(){&#xd;
 		try { &#xd;
 			&#xd;
             // Criar o objeto de Integracao&#xd;
-            var SERVICE_STUB = ServiceManager.getService(&apos;wsDataServer&apos;);&#xd;
-            //log.info(&quot;AprovarWorkflow-&gt; SERVICE_STUB: &quot; + SERVICE_STUB);&#xd;
+            var SERVICE_STUB = ServiceManager.getService(&apos;RMWsDataServer&apos;);&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; SERVICE_STUB: &quot; + SERVICE_STUB);&#xd;
             &#xd;
             var SERVICE_HELPER = SERVICE_STUB.getBean();&#xd;
-            //log.info(&quot;AprovarWorkflow-&gt; SERVICE_HELPER: &quot; + SERVICE_HELPER);&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; SERVICE_HELPER: &quot; + SERVICE_HELPER);&#xd;
             &#xd;
             // Criar o obejto da classe principal do Servico&#xd;
             var wsDataServer = SERVICE_HELPER.instantiate(&apos;com.totvs.WsDataServer&apos;);&#xd;
-            //log.info(&quot;AprovarWorkflow-&gt; wsDataServer: &quot; + wsDataServer);&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; wsDataServer: &quot; + wsDataServer);&#xd;
 &#xd;
             // Obter o objeto do WS&#xd;
             var iWsDataServer = wsDataServer.getRMIwsDataServer();&#xd;
-            //log.info(&quot;AprovarWorkflow-&gt; iWsDataServer: &quot; + iWsDataServer);&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; iWsDataServer: &quot; + iWsDataServer);&#xd;
             &#xd;
             // Configurar a autentica??o&#xd;
             var authIwsDataServer = SERVICE_STUB.getBasicAuthenticatedClient(iWsDataServer, &apos;com.totvs.IwsDataServer&apos;, Usuario, Senha);&#xd;
-            //log.info(&quot;AprovarWorkflow -&gt; authIwsDataServer: &quot; + authIwsDataServer);&#xd;
+            log.info(&quot;AprovarWorkflow -&gt; authIwsDataServer: &quot; + authIwsDataServer);&#xd;
             &#xd;
             // Passar os parametros&#xd;
             var dataServerName = &quot;MovMovimentoTBCData&quot;;&#xd;
@@ -990,7 +990,7 @@ function ProcessamentoWorkflow(){&#xd;
             var XML = GetXml();&#xd;
             &#xd;
             var result = authIwsDataServer.saveRecord(dataServerName, XML, contexto);&#xd;
-            //log.info(&quot;AprovarWorkflow-&gt; authIwsDataServer.saveRecord: &quot; + result);&#xd;
+            log.info(&quot;AprovarWorkflow-&gt; authIwsDataServer.saveRecord: &quot; + result);&#xd;
             &#xd;
             if ((result != null) &amp;&amp; (result.indexOf(&quot;===&quot;) != -1)) {&#xd;
                 var msgErro = result.substring(0, result.indexOf(&quot;===&quot;));                &#xd;
@@ -1014,7 +1014,7 @@ function ProcessamentoWorkflow(){&#xd;
 	&#xd;
 	function GetXml() {&#xd;
 		&#xd;
-		//log.info(&quot;CUSTOM: geraXmlContrato - inicio&quot;);&#xd;
+		log.info(&quot;CUSTOM: geraXmlContrato - inicio&quot;);&#xd;
 		var XML;&#xd;
 		&#xd;
 		// Coletando informações do form para XML&#xd;
@@ -1022,15 +1022,26 @@ function ProcessamentoWorkflow(){&#xd;
 		var SOLICITANTE = hAPI.getCardValue(&quot;solicitante&quot;);&#xd;
 		var CODFILIAL = (hAPI.getCardValue(&quot;filial&quot;)).substring(0,1);&#xd;
         var CODCFO = (hAPI.getCardValue(&quot;favorecido&quot;)).substring(0,5);&#xd;
-        var VLTRANSP = hAPI.getCardValue(&quot;valorTransporte&quot;).replace(&apos;,&apos;,&apos;.&apos;);&#xd;
-        var VLALIMENT = hAPI.getCardValue(&quot;valorAlimentacao&quot;).replace(&apos;,&apos;,&apos;.&apos;);&#xd;
-        var VALORBRUTO = (parseFloat(VLTRANSP)+parseFloat(VLALIMENT));&#xd;
         var CODCCUSTO = (hAPI.getCardValue(&quot;ccusto&quot;)).substring(0,17);&#xd;
         var HOJE = new Date().toISOString().slice(0,19); // Formato &quot;&quot;+DTDESPESAFORMAT+&quot;T22:34:02&quot;&#xd;
         var HISTORICO = &quot;Solicitação Fluig : &quot;+IDFLUIG+&quot; - &quot;+(hAPI.getCardValue(&quot;observacaoMov&quot;));&#xd;
         var DTDESPESA = hAPI.getCardValue(&quot;dataDespesa&quot;); // Formato DD/MM/AAAA&#xd;
         var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+&quot;-&quot;+DTDESPESA.substring(3,5)+&quot;-&quot;+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD&#xd;
-		&#xd;
+        &#xd;
+        // Os valores declarados, serão coletados e gravados exatamente no mesmo formato de entrada&#xd;
+        var VLTRANSP = hAPI.getCardValue(&quot;valorTransporte&quot;);&#xd;
+        var VLALIMENT = hAPI.getCardValue(&quot;valorAlimentacao&quot;);&#xd;
+        &#xd;
+        // Para calcular o valor bruto os formatos de entrada foram alterados.&#xd;
+        var VLTRANSP_temp = parseFloat((VLTRANSP).replace(&apos;,&apos;,&apos;.&apos;));&#xd;
+        var VLALIMENT_temp = parseFloat((VLALIMENT).replace(&apos;,&apos;,&apos;.&apos;));&#xd;
+        var VALORBRUTO_temp = ((VLTRANSP_temp)+(VLALIMENT_temp));&#xd;
+        &#xd;
+        // Para gravação o valorbruto retorna ao formato com &quot;,&quot;&#xd;
+        var VALORBRUTO = (VALORBRUTO_temp.toString()).replace(&apos;.&apos;,&apos;,&apos;);&#xd;
+        &#xd;
+        &#xd;
+        &#xd;
         // Estruturando XML&#xd;
 		XML = &quot;&lt;MovMovimento &gt;&quot; +   &#xd;
 		&quot; &lt;TMOV&gt;	&quot;  + &#xd;
@@ -1165,7 +1176,9 @@ function ProcessamentoWorkflow(){&#xd;
 		&quot; &lt;IDMOVRATCCU&gt;-1&lt;/IDMOVRATCCU&gt;	&quot;  + &#xd;
 		&quot;	  &lt;/TMOVRATCCU&gt;	&quot;; &#xd;
 		&#xd;
-		if (VLTRANSP &gt; 1 ){&#xd;
+		&#xd;
+		&#xd;
+		if ( VLTRANSP_temp &gt; 0 ){&#xd;
 			XML = XML + &#xd;
 			&quot;	  &lt;TITMMOV&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1178,18 +1191,18 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot; &lt;NOMEFANTASIA&gt;REEMBOLSO DE DESPESA C/ TRANSPORTE(TAXI/ONIBUS/ETC)&lt;/NOMEFANTASIA&gt;	&quot;  + &#xd;
 			&quot; &lt;CODIGOREDUZIDO&gt;15236&lt;/CODIGOREDUZIDO&gt;	&quot;  + &#xd;
 			&quot; &lt;NUMNOFABRIC&gt;09.30.0127&lt;/NUMNOFABRIC&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADE&gt;1.0000&lt;/QUANTIDADE&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADE&gt;1&lt;/QUANTIDADE&gt;	&quot;  + &#xd;
 			&quot; &lt;PRECOUNITARIO&gt;&quot;+VLTRANSP+&quot;&lt;/PRECOUNITARIO&gt;	&quot;  + &#xd;
 			&quot; &lt;PRECOTABELA&gt;0.0000&lt;/PRECOTABELA&gt;	&quot;  + &#xd;
 			&quot; &lt;DATAEMISSAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAEMISSAO&gt;	&quot;  + &#xd;
 			&quot; &lt;CODTB1FLX&gt;01.015&lt;/CODTB1FLX&gt;	&quot;  + &#xd;
 			&quot; &lt;CODUND&gt;SERV&lt;/CODUND&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADEARECEBER&gt;1.0000&lt;/QUANTIDADEARECEBER&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEARECEBER&gt;1&lt;/QUANTIDADEARECEBER&gt;	&quot;  + &#xd;
 			&quot; &lt;VALORUNITARIO&gt;0.0000&lt;/VALORUNITARIO&gt;	&quot;  + &#xd;
 			&quot; &lt;VALORFINANCEIRO&gt;0.0000&lt;/VALORFINANCEIRO&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
 			&quot; &lt;ALIQORDENACAO&gt;0.0000&lt;/ALIQORDENACAO&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADEORIGINAL&gt;1.0000&lt;/QUANTIDADEORIGINAL&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEORIGINAL&gt;1&lt;/QUANTIDADEORIGINAL&gt;	&quot;  + &#xd;
 			&quot; &lt;FLAG&gt;0&lt;/FLAG&gt;	&quot;  + &#xd;
 			&quot; &lt;BLOCK&gt;0&lt;/BLOCK&gt;	&quot;  + &#xd;
 			&quot; &lt;FATORCONVUND&gt;0.0000&lt;/FATORCONVUND&gt;	&quot;  + &#xd;
@@ -1217,7 +1230,7 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot; &lt;VALORLIQUIDO&gt;&quot;+VLTRANSP+&quot;&lt;/VALORLIQUIDO&gt;	&quot;  + &#xd;
 			&quot; &lt;RATEIOCCUSTODEPTO&gt;&quot;+VLTRANSP+&quot;&lt;/RATEIOCCUSTODEPTO&gt;	&quot;  + &#xd;
 			&quot; &lt;VLTRANSPITEMORIG&gt;&quot;+VLTRANSP+&quot;&lt;/VLTRANSPITEMORIG&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADETOTAL&gt;1.0000&lt;/QUANTIDADETOTAL&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADETOTAL&gt;1&lt;/QUANTIDADETOTAL&gt;	&quot;  + &#xd;
 			&quot; &lt;PRODUTOSUBSTITUTO&gt;0&lt;/PRODUTOSUBSTITUTO&gt;	&quot;  + &#xd;
 			&quot; &lt;PRECOUNITARIOSELEC&gt;0&lt;/PRECOUNITARIOSELEC&gt;	&quot;  + &#xd;
 			&quot; &lt;INTEGRAAPLICACAO&gt;T&lt;/INTEGRAAPLICACAO&gt;	&quot;  + &#xd;
@@ -1231,7 +1244,7 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot;	  &lt;/TITMMOV&gt;	&quot;; &#xd;
 		}&#xd;
 		&#xd;
-		if (VLALIMENT &gt; 1) {&#xd;
+		if ( VLALIMENT_temp &gt; 0) {&#xd;
 			XML = XML + &#xd;
 			&quot;	  &lt;TITMMOV&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1244,18 +1257,18 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot; &lt;NOMEFANTASIA&gt;REEMBOLSO DE DESPESA C/ ALIMENTAÇÃO&lt;/NOMEFANTASIA&gt;	&quot;  + &#xd;
 			&quot; &lt;CODIGOREDUZIDO&gt;15237&lt;/CODIGOREDUZIDO&gt;	&quot;  + &#xd;
 			&quot; &lt;NUMNOFABRIC&gt;09.30.0128&lt;/NUMNOFABRIC&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADE&gt;1.0000&lt;/QUANTIDADE&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADE&gt;1&lt;/QUANTIDADE&gt;	&quot;  + &#xd;
 			&quot; &lt;PRECOUNITARIO&gt;&quot;+VLALIMENT+&quot;&lt;/PRECOUNITARIO&gt;	&quot;  + &#xd;
 			&quot; &lt;PRECOTABELA&gt;0.0000&lt;/PRECOTABELA&gt;	&quot;  + &#xd;
 			&quot; &lt;DATAEMISSAO&gt;&quot;+DTDESPESAFORMAT+&quot;T00:00:00&lt;/DATAEMISSAO&gt;	&quot;  + &#xd;
 			&quot; &lt;CODTB1FLX&gt;01.015&lt;/CODTB1FLX&gt;	&quot;  + &#xd;
 			&quot; &lt;CODUND&gt;SERV&lt;/CODUND&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADEARECEBER&gt;1.0000&lt;/QUANTIDADEARECEBER&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEARECEBER&gt;1&lt;/QUANTIDADEARECEBER&gt;	&quot;  + &#xd;
 			&quot; &lt;VALORUNITARIO&gt;0.0000&lt;/VALORUNITARIO&gt;	&quot;  + &#xd;
 			&quot; &lt;VALORFINANCEIRO&gt;0.0000&lt;/VALORFINANCEIRO&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCCUSTO&gt;&quot;+CODCCUSTO+&quot;&lt;/CODCCUSTO&gt;	&quot;  + &#xd;
 			&quot; &lt;ALIQORDENACAO&gt;0.0000&lt;/ALIQORDENACAO&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADEORIGINAL&gt;1.0000&lt;/QUANTIDADEORIGINAL&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADEORIGINAL&gt;1&lt;/QUANTIDADEORIGINAL&gt;	&quot;  + &#xd;
 			&quot; &lt;FLAG&gt;0&lt;/FLAG&gt;	&quot;  + &#xd;
 			&quot; &lt;BLOCK&gt;0&lt;/BLOCK&gt;	&quot;  + &#xd;
 			&quot; &lt;FATORCONVUND&gt;0.0000&lt;/FATORCONVUND&gt;	&quot;  + &#xd;
@@ -1283,7 +1296,7 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot; &lt;VALORLIQUIDO&gt;&quot;+VLALIMENT+&quot;&lt;/VALORLIQUIDO&gt;	&quot;  + &#xd;
 			&quot; &lt;RATEIOCCUSTODEPTO&gt;&quot;+VLALIMENT+&quot;&lt;/RATEIOCCUSTODEPTO&gt;	&quot;  + &#xd;
 			&quot; &lt;VLTRANSPITEMORIG&gt;&quot;+VLALIMENT+&quot;&lt;/VLTRANSPITEMORIG&gt;	&quot;  + &#xd;
-			&quot; &lt;QUANTIDADETOTAL&gt;1.0000&lt;/QUANTIDADETOTAL&gt;	&quot;  + &#xd;
+			&quot; &lt;QUANTIDADETOTAL&gt;1&lt;/QUANTIDADETOTAL&gt;	&quot;  + &#xd;
 			&quot; &lt;PRODUTOSUBSTITUTO&gt;0&lt;/PRODUTOSUBSTITUTO&gt;	&quot;  + &#xd;
 			&quot; &lt;PRECOUNITARIOSELEC&gt;0&lt;/PRECOUNITARIOSELEC&gt;	&quot;  + &#xd;
 			&quot; &lt;INTEGRAAPLICACAO&gt;T&lt;/INTEGRAAPLICACAO&gt;	&quot;  + &#xd;
@@ -1297,7 +1310,7 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot;	  &lt;/TITMMOV&gt;	&quot;;&#xd;
 		}&#xd;
 		&#xd;
-		if (VLTRANSP &gt; 1) {&#xd;
+		if ( VLTRANSP_temp &gt; 0) {&#xd;
 			XML = XML + &#xd;
 			&quot;	  &lt;TITMMOVRATCCU&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1309,7 +1322,7 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot;	  &lt;/TITMMOVRATCCU&gt;	&quot;;&#xd;
 		}&#xd;
 				&#xd;
-		if (VLALIMENT &gt; 1) {&#xd;
+		if ( VLALIMENT_temp &gt; 0) {&#xd;
 			XML = XML + &#xd;
 			&quot;	  &lt;TITMMOVRATCCU&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1337,7 +1350,7 @@ function ProcessamentoWorkflow(){&#xd;
 		&quot; &lt;MULTAREC&gt;0.0000&lt;/MULTAREC&gt;	&quot;  + &#xd;
 		&quot;	  &lt;/TMOVCOMPL&gt;	&quot;;&#xd;
 		&#xd;
-		if (VLTRANSP &gt; 1) {&#xd;
+		if ( VLTRANSP_temp &gt; 0) {&#xd;
 			XML = XML +&#xd;
 			&quot;	  &lt;TITMMOVCOMPL&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1351,7 +1364,7 @@ function ProcessamentoWorkflow(){&#xd;
 			&quot;	  &lt;/TITMMOVCOMPL&gt;	&quot;;&#xd;
 		}&#xd;
 		&#xd;
-		if (VLALIMENT &gt; 1) {&#xd;
+		if ( VLALIMENT_temp &gt; 0) {&#xd;
 			XML = XML +&#xd;
 			&quot;	  &lt;TITMMOVCOMPL&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1396,7 +1409,7 @@ function ProcessamentoWorkflow(){&#xd;
 		&quot;	  &lt;/TCTRCMOV&gt;	&quot;; &#xd;
 		&#xd;
 		&#xd;
-		if (VLTRANSP &gt; 1) {&#xd;
+		if ( VLTRANSP_temp &gt; 0) {&#xd;
 			XML = XML +&#xd;
 			&quot;	  &lt;TITMMOVFISCAL&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1413,7 +1426,7 @@ function ProcessamentoWorkflow(){&#xd;
 		}&#xd;
 			&#xd;
 		&#xd;
-		if (VLALIMENT &gt; 1) {&#xd;
+		if ( VLALIMENT_temp &gt; 0) {&#xd;
 			XML = XML +&#xd;
 			&quot;	  &lt;TITMMOVFISCAL&gt;	&quot;  + &#xd;
 			&quot; &lt;CODCOLIGADA&gt;1&lt;/CODCOLIGADA&gt;	&quot;  + &#xd;
@@ -1431,7 +1444,7 @@ function ProcessamentoWorkflow(){&#xd;
 		&#xd;
 		XML = XML + &quot;&lt;/MovMovimento&gt;&quot;;&#xd;
 		 &#xd;
-		//log.info(&quot;CUSTOM: geraXML&quot;+XML );&#xd;
+		log.info(&quot;CUSTOM: geraXML&quot;+XML );&#xd;
 		 &#xd;
 		return XML;&#xd;
 			      &#xd;
@@ -1446,7 +1459,7 @@ function ProcessamentoWorkflow(){&#xd;
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <propertyId>AutomaticTasks</propertyId>
-        <version>18</version>
+        <version>9</version>
       </advancedProcessPropertiesPK>
       <propertieValue></propertieValue>
     </AdvancedProcessProperties>
@@ -1540,7 +1553,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>169</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1551,7 +1564,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>173</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1562,7 +1575,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>177</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1573,7 +1586,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>177</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -1584,7 +1597,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>178</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1595,7 +1608,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>178</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -1606,7 +1619,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>181</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1617,7 +1630,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <linkSequence>181</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -1631,7 +1644,7 @@ function ProcessamentoWorkflow(){&#xd;
       <extendedPropertyFieldPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>18</version>
+        <version>9</version>
         <stateSequence>0</stateSequence>
         <propertyName>AutomaticTasks</propertyName>
       </extendedPropertyFieldPK>
@@ -1649,7 +1662,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1659,7 +1672,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1669,7 +1682,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1679,7 +1692,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1689,7 +1702,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1699,7 +1712,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1709,7 +1722,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1720,7 +1733,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1730,7 +1743,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1740,7 +1753,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1750,7 +1763,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1760,7 +1773,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1771,7 +1784,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1781,7 +1794,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1791,7 +1804,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1801,7 +1814,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1811,7 +1824,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1821,7 +1834,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1831,7 +1844,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1841,7 +1854,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>172</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1851,7 +1864,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1861,7 +1874,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1872,7 +1885,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1882,7 +1895,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1892,7 +1905,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1902,7 +1915,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1912,7 +1925,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1923,7 +1936,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1933,7 +1946,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1943,7 +1956,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>18</processVersion>
+      <processVersion>9</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>

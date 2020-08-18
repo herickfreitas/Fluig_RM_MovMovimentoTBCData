@@ -45,7 +45,7 @@ function ProcessamentoWorkflow(){
 		
 		//Recupera o usuário corrente associado a atividade
 		var requisitante = getValue("WKUser");		
-		//log.info("==========[ ProcessamentoWorkflow requisitante ]=========="+requisitante);
+		log.info("==========[ ProcessamentoWorkflow requisitante ]=========="+requisitante);
 		
 		// Gravando valores no formulário
 		hAPI.setCardValue("solicitante", requisitante);
@@ -53,19 +53,19 @@ function ProcessamentoWorkflow(){
 		// Preparacao de filtro para consulta
 		var c1 = DatasetFactory.createConstraint("SOLICITANTE", requisitante, requisitante, ConstraintType.MUST);
 		var constraints = new Array(c1);
-		//log.info("==========[ ProcessamentoWorkflow createDataset constraints ]========== " + constraints);
+		log.info("==========[ ProcessamentoWorkflow createDataset constraints ]========== " + constraints);
 			    
 		// coleta dados do dataset, utlizando filtro
 		var datasetReturned = DatasetFactory.getDataset("_RM_SOLICITANTE_CHEFIA", null, constraints, null);
-		//log.info("==========[ ProcessamentoWorkflow createDataset datasetReturned ] ========== " + datasetReturned);	  
+		log.info("==========[ ProcessamentoWorkflow createDataset datasetReturned ] ========== " + datasetReturned);	  
 			    
 		// Gravando valores de retorno
 		var retorno = datasetReturned.values;
-		//log.info("==========[ ProcessamentoWorkflow createDataset dataset ]========== " + retorno);
+		log.info("==========[ ProcessamentoWorkflow createDataset dataset ]========== " + retorno);
 			
 		// Retirando o campo do resultado
 		var chefe = datasetReturned.getValue(0, "CHEFIA");
-		//log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);
+		log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);
 			
 		// Gravando retorno		
 		hAPI.setCardValue("chefia", chefe);
@@ -76,21 +76,21 @@ function ProcessamentoWorkflow(){
 		// Coleta do centro de custo seleciondo no formulário
         var ccustoTotal = hAPI.getCardValue("ccusto");
         var ccusto = ccustoTotal.substring(0,18);
-        //log.info("==========[ ProcessamentoWorkflow ccustoTotal ]=========="+ccustoTotal);
-        //log.info("==========[ ProcessamentoWorkflow ccusto ]=========="+ccusto);
+        log.info("==========[ ProcessamentoWorkflow ccustoTotal ]=========="+ccustoTotal);
+        log.info("==========[ ProcessamentoWorkflow ccusto ]=========="+ccusto);
 
  
         // Rodando novo dataset para coletar responsável do centro de custo
         var c1 = DatasetFactory.createConstraint("CODCCUSTO", ccusto, ccusto, ConstraintType.MUST);
         var constraints = new Array(c1);
-        //log.info("==========[ ProcessamentoWorkflow constraints ]========== " + constraints);
+        log.info("==========[ ProcessamentoWorkflow constraints ]========== " + constraints);
         
         // Executando chamada de dataset
         var datasetReturned = DatasetFactory.getDataset("_RM_GESTOR_CENTRO_CUSTO", null, constraints, null);
         
 		// Retirando o campo do resultado
 		var chefe = datasetReturned.getValue(0, "RESPONSAVEL");
-		//log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);        
+		log.info("==========[ ProcessamentoWorkflow createDataset chefe ]========== " + chefe);        
         
         // Gravando retorno no formulário		
 		hAPI.setCardValue("gestorcc", chefe);
@@ -105,7 +105,7 @@ function ProcessamentoWorkflow(){
 		
 		// Retirando o campo do resultado
         var autorizador = datasetReturn.getValue(0, "");
-		//log.info("==========[ ProcessamentoWorkflow createDataset autorizador ]========== " + autorizador); 
+		log.info("==========[ ProcessamentoWorkflow createDataset autorizador ]========== " + autorizador); 
     	
     	// Gravando retorno no formulário		
 		hAPI.setCardValue("autorizador", autorizador);
@@ -125,23 +125,23 @@ function ProcessamentoWorkflow(){
 		try { 
 			
             // Criar o objeto de Integracao
-            var SERVICE_STUB = ServiceManager.getService('wsDataServer');
-            //log.info("AprovarWorkflow-> SERVICE_STUB: " + SERVICE_STUB);
+            var SERVICE_STUB = ServiceManager.getService('RMWsDataServer');
+            log.info("AprovarWorkflow-> SERVICE_STUB: " + SERVICE_STUB);
             
             var SERVICE_HELPER = SERVICE_STUB.getBean();
-            //log.info("AprovarWorkflow-> SERVICE_HELPER: " + SERVICE_HELPER);
+            log.info("AprovarWorkflow-> SERVICE_HELPER: " + SERVICE_HELPER);
             
             // Criar o obejto da classe principal do Servico
             var wsDataServer = SERVICE_HELPER.instantiate('com.totvs.WsDataServer');
-            //log.info("AprovarWorkflow-> wsDataServer: " + wsDataServer);
+            log.info("AprovarWorkflow-> wsDataServer: " + wsDataServer);
 
             // Obter o objeto do WS
             var iWsDataServer = wsDataServer.getRMIwsDataServer();
-            //log.info("AprovarWorkflow-> iWsDataServer: " + iWsDataServer);
+            log.info("AprovarWorkflow-> iWsDataServer: " + iWsDataServer);
             
             // Configurar a autentica??o
             var authIwsDataServer = SERVICE_STUB.getBasicAuthenticatedClient(iWsDataServer, 'com.totvs.IwsDataServer', Usuario, Senha);
-            //log.info("AprovarWorkflow -> authIwsDataServer: " + authIwsDataServer);
+            log.info("AprovarWorkflow -> authIwsDataServer: " + authIwsDataServer);
             
             // Passar os parametros
             var dataServerName = "MovMovimentoTBCData";
@@ -150,7 +150,7 @@ function ProcessamentoWorkflow(){
             var XML = GetXml();
             
             var result = authIwsDataServer.saveRecord(dataServerName, XML, contexto);
-            //log.info("AprovarWorkflow-> authIwsDataServer.saveRecord: " + result);
+            log.info("AprovarWorkflow-> authIwsDataServer.saveRecord: " + result);
             
             if ((result != null) && (result.indexOf("===") != -1)) {
                 var msgErro = result.substring(0, result.indexOf("==="));                
@@ -174,7 +174,7 @@ function ProcessamentoWorkflow(){
 	
 	function GetXml() {
 		
-		//log.info("CUSTOM: geraXmlContrato - inicio");
+		log.info("CUSTOM: geraXmlContrato - inicio");
 		var XML;
 		
 		// Coletando informações do form para XML
@@ -182,15 +182,26 @@ function ProcessamentoWorkflow(){
 		var SOLICITANTE = hAPI.getCardValue("solicitante");
 		var CODFILIAL = (hAPI.getCardValue("filial")).substring(0,1);
         var CODCFO = (hAPI.getCardValue("favorecido")).substring(0,5);
-        var VLTRANSP = hAPI.getCardValue("valorTransporte").replace(',','.');
-        var VLALIMENT = hAPI.getCardValue("valorAlimentacao").replace(',','.');
-        var VALORBRUTO = (parseFloat(VLTRANSP)+parseFloat(VLALIMENT));
         var CODCCUSTO = (hAPI.getCardValue("ccusto")).substring(0,17);
         var HOJE = new Date().toISOString().slice(0,19); // Formato ""+DTDESPESAFORMAT+"T22:34:02"
         var HISTORICO = "Solicitação Fluig : "+IDFLUIG+" - "+(hAPI.getCardValue("observacaoMov"));
         var DTDESPESA = hAPI.getCardValue("dataDespesa"); // Formato DD/MM/AAAA
         var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+"-"+DTDESPESA.substring(3,5)+"-"+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD
-		
+        
+        // Os valores declarados, serão coletados e gravados exatamente no mesmo formato de entrada
+        var VLTRANSP = hAPI.getCardValue("valorTransporte");
+        var VLALIMENT = hAPI.getCardValue("valorAlimentacao");
+        
+        // Para calcular o valor bruto os formatos de entrada foram alterados.
+        var VLTRANSP_temp = parseFloat((VLTRANSP).replace(',','.'));
+        var VLALIMENT_temp = parseFloat((VLALIMENT).replace(',','.'));
+        var VALORBRUTO_temp = ((VLTRANSP_temp)+(VLALIMENT_temp));
+        
+        // Para gravação o valorbruto retorna ao formato com ","
+        var VALORBRUTO = (VALORBRUTO_temp.toString()).replace('.',',');
+        
+        
+        
         // Estruturando XML
 		XML = "<MovMovimento >" +   
 		" <TMOV>	"  + 
@@ -325,7 +336,9 @@ function ProcessamentoWorkflow(){
 		" <IDMOVRATCCU>-1</IDMOVRATCCU>	"  + 
 		"	  </TMOVRATCCU>	"; 
 		
-		if (VLTRANSP > 1 ){
+		
+		
+		if ( VLTRANSP_temp > 0 ){
 			XML = XML + 
 			"	  <TITMMOV>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -338,18 +351,18 @@ function ProcessamentoWorkflow(){
 			" <NOMEFANTASIA>REEMBOLSO DE DESPESA C/ TRANSPORTE(TAXI/ONIBUS/ETC)</NOMEFANTASIA>	"  + 
 			" <CODIGOREDUZIDO>15236</CODIGOREDUZIDO>	"  + 
 			" <NUMNOFABRIC>09.30.0127</NUMNOFABRIC>	"  + 
-			" <QUANTIDADE>1.0000</QUANTIDADE>	"  + 
+			" <QUANTIDADE>1</QUANTIDADE>	"  + 
 			" <PRECOUNITARIO>"+VLTRANSP+"</PRECOUNITARIO>	"  + 
 			" <PRECOTABELA>0.0000</PRECOTABELA>	"  + 
 			" <DATAEMISSAO>"+DTDESPESAFORMAT+"T00:00:00</DATAEMISSAO>	"  + 
 			" <CODTB1FLX>01.015</CODTB1FLX>	"  + 
 			" <CODUND>SERV</CODUND>	"  + 
-			" <QUANTIDADEARECEBER>1.0000</QUANTIDADEARECEBER>	"  + 
+			" <QUANTIDADEARECEBER>1</QUANTIDADEARECEBER>	"  + 
 			" <VALORUNITARIO>0.0000</VALORUNITARIO>	"  + 
 			" <VALORFINANCEIRO>0.0000</VALORFINANCEIRO>	"  + 
 			" <CODCCUSTO>"+CODCCUSTO+"</CODCCUSTO>	"  + 
 			" <ALIQORDENACAO>0.0000</ALIQORDENACAO>	"  + 
-			" <QUANTIDADEORIGINAL>1.0000</QUANTIDADEORIGINAL>	"  + 
+			" <QUANTIDADEORIGINAL>1</QUANTIDADEORIGINAL>	"  + 
 			" <FLAG>0</FLAG>	"  + 
 			" <BLOCK>0</BLOCK>	"  + 
 			" <FATORCONVUND>0.0000</FATORCONVUND>	"  + 
@@ -377,7 +390,7 @@ function ProcessamentoWorkflow(){
 			" <VALORLIQUIDO>"+VLTRANSP+"</VALORLIQUIDO>	"  + 
 			" <RATEIOCCUSTODEPTO>"+VLTRANSP+"</RATEIOCCUSTODEPTO>	"  + 
 			" <VLTRANSPITEMORIG>"+VLTRANSP+"</VLTRANSPITEMORIG>	"  + 
-			" <QUANTIDADETOTAL>1.0000</QUANTIDADETOTAL>	"  + 
+			" <QUANTIDADETOTAL>1</QUANTIDADETOTAL>	"  + 
 			" <PRODUTOSUBSTITUTO>0</PRODUTOSUBSTITUTO>	"  + 
 			" <PRECOUNITARIOSELEC>0</PRECOUNITARIOSELEC>	"  + 
 			" <INTEGRAAPLICACAO>T</INTEGRAAPLICACAO>	"  + 
@@ -391,7 +404,7 @@ function ProcessamentoWorkflow(){
 			"	  </TITMMOV>	"; 
 		}
 		
-		if (VLALIMENT > 1) {
+		if ( VLALIMENT_temp > 0) {
 			XML = XML + 
 			"	  <TITMMOV>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -404,18 +417,18 @@ function ProcessamentoWorkflow(){
 			" <NOMEFANTASIA>REEMBOLSO DE DESPESA C/ ALIMENTAÇÃO</NOMEFANTASIA>	"  + 
 			" <CODIGOREDUZIDO>15237</CODIGOREDUZIDO>	"  + 
 			" <NUMNOFABRIC>09.30.0128</NUMNOFABRIC>	"  + 
-			" <QUANTIDADE>1.0000</QUANTIDADE>	"  + 
+			" <QUANTIDADE>1</QUANTIDADE>	"  + 
 			" <PRECOUNITARIO>"+VLALIMENT+"</PRECOUNITARIO>	"  + 
 			" <PRECOTABELA>0.0000</PRECOTABELA>	"  + 
 			" <DATAEMISSAO>"+DTDESPESAFORMAT+"T00:00:00</DATAEMISSAO>	"  + 
 			" <CODTB1FLX>01.015</CODTB1FLX>	"  + 
 			" <CODUND>SERV</CODUND>	"  + 
-			" <QUANTIDADEARECEBER>1.0000</QUANTIDADEARECEBER>	"  + 
+			" <QUANTIDADEARECEBER>1</QUANTIDADEARECEBER>	"  + 
 			" <VALORUNITARIO>0.0000</VALORUNITARIO>	"  + 
 			" <VALORFINANCEIRO>0.0000</VALORFINANCEIRO>	"  + 
 			" <CODCCUSTO>"+CODCCUSTO+"</CODCCUSTO>	"  + 
 			" <ALIQORDENACAO>0.0000</ALIQORDENACAO>	"  + 
-			" <QUANTIDADEORIGINAL>1.0000</QUANTIDADEORIGINAL>	"  + 
+			" <QUANTIDADEORIGINAL>1</QUANTIDADEORIGINAL>	"  + 
 			" <FLAG>0</FLAG>	"  + 
 			" <BLOCK>0</BLOCK>	"  + 
 			" <FATORCONVUND>0.0000</FATORCONVUND>	"  + 
@@ -443,7 +456,7 @@ function ProcessamentoWorkflow(){
 			" <VALORLIQUIDO>"+VLALIMENT+"</VALORLIQUIDO>	"  + 
 			" <RATEIOCCUSTODEPTO>"+VLALIMENT+"</RATEIOCCUSTODEPTO>	"  + 
 			" <VLTRANSPITEMORIG>"+VLALIMENT+"</VLTRANSPITEMORIG>	"  + 
-			" <QUANTIDADETOTAL>1.0000</QUANTIDADETOTAL>	"  + 
+			" <QUANTIDADETOTAL>1</QUANTIDADETOTAL>	"  + 
 			" <PRODUTOSUBSTITUTO>0</PRODUTOSUBSTITUTO>	"  + 
 			" <PRECOUNITARIOSELEC>0</PRECOUNITARIOSELEC>	"  + 
 			" <INTEGRAAPLICACAO>T</INTEGRAAPLICACAO>	"  + 
@@ -457,7 +470,7 @@ function ProcessamentoWorkflow(){
 			"	  </TITMMOV>	";
 		}
 		
-		if (VLTRANSP > 1) {
+		if ( VLTRANSP_temp > 0) {
 			XML = XML + 
 			"	  <TITMMOVRATCCU>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -469,7 +482,7 @@ function ProcessamentoWorkflow(){
 			"	  </TITMMOVRATCCU>	";
 		}
 				
-		if (VLALIMENT > 1) {
+		if ( VLALIMENT_temp > 0) {
 			XML = XML + 
 			"	  <TITMMOVRATCCU>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -497,7 +510,7 @@ function ProcessamentoWorkflow(){
 		" <MULTAREC>0.0000</MULTAREC>	"  + 
 		"	  </TMOVCOMPL>	";
 		
-		if (VLTRANSP > 1) {
+		if ( VLTRANSP_temp > 0) {
 			XML = XML +
 			"	  <TITMMOVCOMPL>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -511,7 +524,7 @@ function ProcessamentoWorkflow(){
 			"	  </TITMMOVCOMPL>	";
 		}
 		
-		if (VLALIMENT > 1) {
+		if ( VLALIMENT_temp > 0) {
 			XML = XML +
 			"	  <TITMMOVCOMPL>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -556,7 +569,7 @@ function ProcessamentoWorkflow(){
 		"	  </TCTRCMOV>	"; 
 		
 		
-		if (VLTRANSP > 1) {
+		if ( VLTRANSP_temp > 0) {
 			XML = XML +
 			"	  <TITMMOVFISCAL>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -573,7 +586,7 @@ function ProcessamentoWorkflow(){
 		}
 			
 		
-		if (VLALIMENT > 1) {
+		if ( VLALIMENT_temp > 0) {
 			XML = XML +
 			"	  <TITMMOVFISCAL>	"  + 
 			" <CODCOLIGADA>1</CODCOLIGADA>	"  + 
@@ -591,7 +604,7 @@ function ProcessamentoWorkflow(){
 		
 		XML = XML + "</MovMovimento>";
 		 
-		//log.info("CUSTOM: geraXML"+XML );
+		log.info("CUSTOM: geraXML"+XML );
 		 
 		return XML;
 			      
