@@ -184,7 +184,8 @@ function ProcessamentoWorkflow(){
         var CODCFO = (hAPI.getCardValue("favorecido")).substring(0,5);
         var CODCCUSTO = (hAPI.getCardValue("ccusto")).substring(0,17);
         var HOJE = new Date().toISOString().slice(0,19); // Formato ""+DTDESPESAFORMAT+"T22:34:02"
-        var HISTORICO = "Solicitação Fluig : "+IDFLUIG+" - "+(hAPI.getCardValue("observacaoMov"));
+        var HISTORICO = "SOLICITAÇÃO FLUIG : "+IDFLUIG+" - "+"SOLICITANTE : "+SOLICITANTE.toUpperCase()+" - "+ (hAPI.getCardValue("observacaoMov")).toUpperCase();
+        //var HISTORICO = "Solicitação Fluig : "+IDFLUIG+" - "+(hAPI.getCardValue("observacaoMov"));
         var DTDESPESA = hAPI.getCardValue("dataDespesa"); // Formato DD/MM/AAAA
         var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+"-"+DTDESPESA.substring(3,5)+"-"+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD
         

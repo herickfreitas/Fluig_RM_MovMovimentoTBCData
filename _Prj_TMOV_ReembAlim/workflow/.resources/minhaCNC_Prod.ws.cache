@@ -10,6 +10,44 @@
    </array>
   </void>
   <void method="put">
+   <string>camposFormulario, documentoId = 24718</string>
+   <array class="java.lang.String" length="11">
+    <void index="0">
+     <string>autorizador</string>
+    </void>
+    <void index="1">
+     <string>ccusto</string>
+    </void>
+    <void index="2">
+     <string>chefia</string>
+    </void>
+    <void index="3">
+     <string>dataDespesa</string>
+    </void>
+    <void index="4">
+     <string>favorecido</string>
+    </void>
+    <void index="5">
+     <string>filial</string>
+    </void>
+    <void index="6">
+     <string>gestorcc</string>
+    </void>
+    <void index="7">
+     <string>observacaoMov</string>
+    </void>
+    <void index="8">
+     <string>solicitante</string>
+    </void>
+    <void index="9">
+     <string>valorAlimentacao</string>
+    </void>
+    <void index="10">
+     <string>valorTransporte</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
    <string>mecanismoGrupo</string>
    <object class="java.util.ArrayList">
     <void method="add">
