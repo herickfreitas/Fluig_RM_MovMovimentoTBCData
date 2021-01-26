@@ -111,6 +111,28 @@ function ProcessamentoWorkflow(){
 		hAPI.setCardValue("autorizador", autorizador);
 		
 		
+		/////////////////////////////////////////////////////////
+	  	//		ATRIBUINDO GRUPO AUTORIZADOR FINANCEIRO 	   //
+		/////////////////////////////////////////////////////////
+		
+		var codfilial = (hAPI.getCardValue("filial")).substring(0,1);
+		
+        if (codfilial == "1") {
+        	var financAprov = "Pool:Group:w_AnaFinanceiras_BSB";
+        }
+        else {
+        	var financAprov = "Pool:Group:w_AnaFinanceiras_RIO";
+        }
+        
+        log.info("==========[ seleciona grupo analise financeiro -  financAprov ]========== " + financAprov);	
+        
+        hAPI.setCardValue("financAprov", financAprov);
+		
+		
+		
+		
+		
+		
 		}
 	
 	catch (e)
@@ -186,8 +208,19 @@ function ProcessamentoWorkflow(){
         var HOJE = new Date().toISOString().slice(0,19); // Formato ""+DTDESPESAFORMAT+"T22:34:02"
         var HISTORICO = "SOLICITAÇÃO FLUIG : "+IDFLUIG+" - "+"SOLICITANTE : "+SOLICITANTE.toUpperCase()+" - "+ (hAPI.getCardValue("observacaoMov")).toUpperCase();
         //var HISTORICO = "Solicitação Fluig : "+IDFLUIG+" - "+(hAPI.getCardValue("observacaoMov"));
+        
+        
+        // VERIFICANDO E AJUSTANDO DATA INFORMADA - INICIO
         var DTDESPESA = hAPI.getCardValue("dataDespesa"); // Formato DD/MM/AAAA
-        var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+"-"+DTDESPESA.substring(3,5)+"-"+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD
+        tesetData = DTDESPESA.lastIndexOf("/");
+        if (tesetData < 0) { 
+        	var DTDESPESAFORMAT = DTDESPESA; 
+        }
+        else {
+        	var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+"-"+DTDESPESA.substring(3,5)+"-"+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD
+        }
+        // VERIFICANDO E AJUSTANDO DATA INFORMADA - FIM
+        
         
         // Os valores declarados, serão coletados e gravados exatamente no mesmo formato de entrada
         var VLTRANSP = hAPI.getCardValue("valorTransporte");
@@ -506,6 +539,7 @@ function ProcessamentoWorkflow(){
 		" <CNCAUTORIZ>00</CNCAUTORIZ>	"  + 
 		" <COMPROVANT>F</COMPROVANT>	"  + 
 		" <COMPROVANTE>NAO</COMPROVANTE>	"  + 
+		" <IDFLUIG>"+IDFLUIG+"</IDFLUIG>	"  + 
 		" <BCISS>0.0000</BCISS>	"  + 
 		" <VREMP>0.0000</VREMP>	"  + 
 		" <MULTAREC>0.0000</MULTAREC>	"  + 

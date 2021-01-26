@@ -15,7 +15,7 @@
     <snapshotFrequency>0</snapshotFrequency>
     <baseDay>0</baseDay>
     <baseMonth>0</baseMonth>
-    <periodId>Expediente_CNC_10as19</periodId>
+    <periodId>Default</periodId>
     <uniqueCardVersion>true</uniqueCardVersion>
     <keyWord></keyWord>
     <complementsLevel>0</complementsLevel>
@@ -29,10 +29,10 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Solicitação de Reembolso</processId>
-      <version>10</version>
+      <version>17</version>
     </processDefinitionVersionPK>
     <versionDescription></versionDescription>
-    <formId>24718</formId>
+    <formId>0</formId>
     <editionMode>true</editionMode>
     <updateAttachmentsVersion>false</updateAttachmentsVersion>
     <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
@@ -135,7 +135,7 @@
       <notifyManagerDelay>false</notifyManagerDelay>
       <allowanceManagerTime>0</allowanceManagerTime>
       <frequenceManagerTime>0</frequenceManagerTime>
-      <inhibitTransfer>true</inhibitTransfer>
+      <inhibitTransfer>false</inhibitTransfer>
       <periodId>Expediente_CNC_10as19</periodId>
       <stateType>0</stateType>
       <bpmnType>80</bpmnType>
@@ -187,7 +187,7 @@
       <notifyManagerDelay>false</notifyManagerDelay>
       <allowanceManagerTime>0</allowanceManagerTime>
       <frequenceManagerTime>0</frequenceManagerTime>
-      <inhibitTransfer>true</inhibitTransfer>
+      <inhibitTransfer>false</inhibitTransfer>
       <periodId>Expediente_CNC_10as19</periodId>
       <stateType>0</stateType>
       <bpmnType>80</bpmnType>
@@ -215,8 +215,8 @@
       <deadlineFieldName></deadlineFieldName>
       <joint>false</joint>
       <agreementPercentage>0</agreementPercentage>
-      <engineAllocationId>Pool Grupo</engineAllocationId>
-      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;w_GEF_Aferir_Reemb&lt;/Group&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;financAprov&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
       <selectColleague>1</selectColleague>
       <initialState>false</initialState>
       <notifyAuthorityDelay>true</notifyAuthorityDelay>
@@ -473,7 +473,7 @@
       <frequenceManagerTime>0</frequenceManagerTime>
       <inhibitTransfer>false</inhibitTransfer>
       <periodId></periodId>
-      <stateType>0</stateType>
+      <stateType>6</stateType>
       <bpmnType>60</bpmnType>
       <signalId>0</signalId>
       <counterSign>false</counterSign>
@@ -520,7 +520,7 @@
       <frequenceManagerTime>0</frequenceManagerTime>
       <inhibitTransfer>false</inhibitTransfer>
       <periodId></periodId>
-      <stateType>0</stateType>
+      <stateType>6</stateType>
       <bpmnType>65</bpmnType>
       <signalId>0</signalId>
       <counterSign>false</counterSign>
@@ -535,7 +535,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <expressionOrder>1</expressionOrder>
-        <version>10</version>
+        <version>17</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -547,7 +547,7 @@
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <expressionOrder>2</expressionOrder>
-        <version>10</version>
+        <version>17</version>
         <sequence>168</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -951,6 +951,28 @@ function ProcessamentoWorkflow(){&#xd;
 		hAPI.setCardValue(&quot;autorizador&quot;, autorizador);&#xd;
 		&#xd;
 		&#xd;
+		/////////////////////////////////////////////////////////&#xd;
+	  	//		ATRIBUINDO GRUPO AUTORIZADOR FINANCEIRO 	   //&#xd;
+		/////////////////////////////////////////////////////////&#xd;
+		&#xd;
+		var codfilial = (hAPI.getCardValue(&quot;filial&quot;)).substring(0,1);&#xd;
+		&#xd;
+        if (codfilial == &quot;1&quot;) {&#xd;
+        	var financAprov = &quot;Pool:Group:w_AnaFinanceiras_BSB&quot;;&#xd;
+        }&#xd;
+        else {&#xd;
+        	var financAprov = &quot;Pool:Group:w_AnaFinanceiras_RIO&quot;;&#xd;
+        }&#xd;
+        &#xd;
+        log.info(&quot;==========[ seleciona grupo analise financeiro -  financAprov ]========== &quot; + financAprov);	&#xd;
+        &#xd;
+        hAPI.setCardValue(&quot;financAprov&quot;, financAprov);&#xd;
+		&#xd;
+		&#xd;
+		&#xd;
+		&#xd;
+		&#xd;
+		&#xd;
 		}&#xd;
 	&#xd;
 	catch (e)&#xd;
@@ -1026,8 +1048,19 @@ function ProcessamentoWorkflow(){&#xd;
         var HOJE = new Date().toISOString().slice(0,19); // Formato &quot;&quot;+DTDESPESAFORMAT+&quot;T22:34:02&quot;&#xd;
         var HISTORICO = &quot;SOLICITAÇÃO FLUIG : &quot;+IDFLUIG+&quot; - &quot;+&quot;SOLICITANTE : &quot;+SOLICITANTE.toUpperCase()+&quot; - &quot;+ (hAPI.getCardValue(&quot;observacaoMov&quot;)).toUpperCase();&#xd;
         //var HISTORICO = &quot;Solicitação Fluig : &quot;+IDFLUIG+&quot; - &quot;+(hAPI.getCardValue(&quot;observacaoMov&quot;));&#xd;
+        &#xd;
+        &#xd;
+        // VERIFICANDO E AJUSTANDO DATA INFORMADA - INICIO&#xd;
         var DTDESPESA = hAPI.getCardValue(&quot;dataDespesa&quot;); // Formato DD/MM/AAAA&#xd;
-        var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+&quot;-&quot;+DTDESPESA.substring(3,5)+&quot;-&quot;+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD&#xd;
+        tesetData = DTDESPESA.lastIndexOf(&quot;/&quot;);&#xd;
+        if (tesetData &lt; 0) { &#xd;
+        	var DTDESPESAFORMAT = DTDESPESA; &#xd;
+        }&#xd;
+        else {&#xd;
+        	var DTDESPESAFORMAT = DTDESPESA.substring(6,10)+&quot;-&quot;+DTDESPESA.substring(3,5)+&quot;-&quot;+DTDESPESA.substring(0,2); // Formato AAAA-MM-DD&#xd;
+        }&#xd;
+        // VERIFICANDO E AJUSTANDO DATA INFORMADA - FIM&#xd;
+        &#xd;
         &#xd;
         // Os valores declarados, serão coletados e gravados exatamente no mesmo formato de entrada&#xd;
         var VLTRANSP = hAPI.getCardValue(&quot;valorTransporte&quot;);&#xd;
@@ -1346,6 +1379,7 @@ function ProcessamentoWorkflow(){&#xd;
 		&quot; &lt;CNCAUTORIZ&gt;00&lt;/CNCAUTORIZ&gt;	&quot;  + &#xd;
 		&quot; &lt;COMPROVANT&gt;F&lt;/COMPROVANT&gt;	&quot;  + &#xd;
 		&quot; &lt;COMPROVANTE&gt;NAO&lt;/COMPROVANTE&gt;	&quot;  + &#xd;
+		&quot; &lt;IDFLUIG&gt;&quot;+IDFLUIG+&quot;&lt;/IDFLUIG&gt;	&quot;  + &#xd;
 		&quot; &lt;BCISS&gt;0.0000&lt;/BCISS&gt;	&quot;  + &#xd;
 		&quot; &lt;VREMP&gt;0.0000&lt;/VREMP&gt;	&quot;  + &#xd;
 		&quot; &lt;MULTAREC&gt;0.0000&lt;/MULTAREC&gt;	&quot;  + &#xd;
@@ -1460,12 +1494,28 @@ function ProcessamentoWorkflow(){&#xd;
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <propertyId>AutomaticTasks</propertyId>
-        <version>10</version>
+        <version>17</version>
       </advancedProcessPropertiesPK>
       <propertieValue></propertieValue>
     </AdvancedProcessProperties>
   </list>
   <list>
+    <SwimLane>
+      <color>FFFFFF</color>
+      <height>218</height>
+      <width>869</width>
+      <positionX>2</positionX>
+      <positionY>133</positionY>
+      <stateName>Alta Gestão </stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>SolicitacaoReembolso</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
     <SwimLane>
       <color>FFFFFF</color>
       <height>134</height>
@@ -1479,7 +1529,7 @@ function ProcessamentoWorkflow(){&#xd;
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <version>1</version>
-        <sequence>1</sequence>
+        <sequence>2</sequence>
       </swimLanePK>
     </SwimLane>
     <SwimLane>
@@ -1495,32 +1545,16 @@ function ProcessamentoWorkflow(){&#xd;
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
         <version>1</version>
-        <sequence>2</sequence>
-      </swimLanePK>
-    </SwimLane>
-    <SwimLane>
-      <color>A7FCC0</color>
-      <height>117</height>
-      <width>389</width>
-      <positionX>2</positionX>
-      <positionY>470</positionY>
-      <stateName>Aprovar</stateName>
-      <type>2</type>
-      <parentSequence>0</parentSequence>
-      <swimLanePK>
-        <companyId>1</companyId>
-        <processId>SolicitacaoReembolso</processId>
-        <version>1</version>
         <sequence>3</sequence>
       </swimLanePK>
     </SwimLane>
     <SwimLane>
       <color>FFFFFF</color>
-      <height>218</height>
+      <height>121</height>
       <width>869</width>
       <positionX>2</positionX>
-      <positionY>133</positionY>
-      <stateName>Alta Gestão </stateName>
+      <positionY>350</positionY>
+      <stateName>Gerencia financeira e contábil</stateName>
       <type>2</type>
       <parentSequence>0</parentSequence>
       <swimLanePK>
@@ -1531,12 +1565,12 @@ function ProcessamentoWorkflow(){&#xd;
       </swimLanePK>
     </SwimLane>
     <SwimLane>
-      <color>FFFFFF</color>
-      <height>121</height>
-      <width>869</width>
+      <color>A7FCC0</color>
+      <height>117</height>
+      <width>389</width>
       <positionX>2</positionX>
-      <positionY>350</positionY>
-      <stateName>Gerencia financeira e contábil</stateName>
+      <positionY>470</positionY>
+      <stateName>Aprovar</stateName>
       <type>2</type>
       <parentSequence>0</parentSequence>
       <swimLanePK>
@@ -1554,7 +1588,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>169</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1565,7 +1599,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>173</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1576,7 +1610,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>177</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1587,7 +1621,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>177</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -1598,7 +1632,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>178</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1609,7 +1643,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>178</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -1620,7 +1654,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>181</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -1631,7 +1665,7 @@ function ProcessamentoWorkflow(){&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <linkSequence>181</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -1645,7 +1679,7 @@ function ProcessamentoWorkflow(){&#xd;
       <extendedPropertyFieldPK>
         <companyId>1</companyId>
         <processId>SolicitacaoReembolso</processId>
-        <version>10</version>
+        <version>17</version>
         <stateSequence>0</stateSequence>
         <propertyName>AutomaticTasks</propertyName>
       </extendedPropertyFieldPK>
@@ -1663,7 +1697,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1673,7 +1707,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1683,7 +1717,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1693,7 +1727,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1703,7 +1737,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>116</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1713,7 +1747,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1723,7 +1757,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1734,7 +1768,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1744,7 +1778,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1754,7 +1788,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>145</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1764,7 +1798,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1774,7 +1808,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1785,7 +1819,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1795,7 +1829,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1805,7 +1839,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>161</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1815,7 +1849,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1825,7 +1859,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1836,7 +1870,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1846,7 +1880,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -1856,7 +1890,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>174</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -1866,7 +1900,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -1876,7 +1910,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -1887,7 +1921,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -1897,7 +1931,7 @@ function ProcessamentoWorkflow(){&#xd;
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>SolicitacaoReembolso</processId>
-      <processVersion>10</processVersion>
+      <processVersion>17</processVersion>
       <stateSequence>180</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
