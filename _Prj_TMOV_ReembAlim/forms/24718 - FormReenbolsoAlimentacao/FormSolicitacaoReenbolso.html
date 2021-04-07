@@ -13,6 +13,7 @@
   <script src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
   <script src="/portal/resources/js/mustache/mustache-min.js"></script>
   <script src="/portal/resources/style-guide/js/fluig-style-guide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
   <script type="text/javascript" src="numeral.js"></script>
 
 </head>
@@ -153,12 +154,12 @@
 						<tr>
 						  <th scope="row">1</th>
 						  <td>09.30.0127 - REEMBOLSO DE DESPESA C/ TRANSPORTE (TAXI/ONIBUS/ETC)</td>
-						  <td><input class="form-control" type="text" name="valorTransporte" id="valorTransporte" value="0,00"/></td>
+						  <td><input class="form-control" type="text" name="valorTransporte" id="valorTransporte" value="0,00" onkeypress="$(this).mask('###.###.##0,00', {reverse: true});" /></td>
 						</tr>
 						<tr>
 						  <th scope="row">2</th>
 						  <td>09.30.0128 - REEMBOLSO DE DESPESA C/ ALIMENTAÇÃO</td>
-						  <td><input class="form-control" type="text" name="valorAlimentacao" id="valorAlimentacao" value="0,00"/></td>
+						  <td><input class="form-control" type="text" name="valorAlimentacao" id="valorAlimentacao" value="0,00" onkeypress="$(this).mask('###.###.##0,00', {reverse: true});" /></td>
 						</tr>
 					  </tbody>
 					</table>
